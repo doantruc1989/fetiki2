@@ -65,7 +65,7 @@ const Hero2 = () => {
                 return (
                   <img
                   src={brand.image}
-                  className="rounded-xl h-fit w-11/12 mx-auto"
+                  className="rounded-xl w-11/12 mx-auto"
                   alt={brand.name}
                   key={brand.id}
                 />
