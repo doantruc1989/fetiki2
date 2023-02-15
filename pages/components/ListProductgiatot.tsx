@@ -41,7 +41,7 @@ const ListProductgiatot = ({ prop }:any) => {
   return (
     <React.Fragment>
       <ToastContainer />
-      <div className="grid gap-1 grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 mx-3">
+      <div className="grid gap-1 grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 mx-3">
         {products
           ? products.map((product:any) => {
               return (
@@ -56,7 +56,7 @@ const ListProductgiatot = ({ prop }:any) => {
                         });
                     }}
                     src={product?.image}
-                    className="rounded-t-lg cursor-pointer w-fit h-fit"
+                    className="rounded-t-lg cursor-pointer w-full h-fit"
                     alt="..."
                   />
                   <a
