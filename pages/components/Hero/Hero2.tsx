@@ -49,14 +49,14 @@ const Hero2 = () => {
           responsive={responsive}
           ssr={true} // means to render carousel on server-side.
           infinite={true}
-          autoPlay={this?.props.deviceType !== "mobile" ? true : false}
+          autoPlay={true}
           autoPlaySpeed={4000}
           keyBoardControl={true}
           customTransition="all .5"
           transitionDuration={2000}
           containerClass="carousel-container"
           // removeArrowOnDeviceType={["tablet", "mobile"]}
-          deviceType={this?.props.deviceType}
+          deviceType={"desktop"}
           dotListClass="custom-dot-list-style"
           itemClass="carousel-item-margin-40-px"
         >

@@ -211,7 +211,7 @@ const Hero6 = () => {
                   });
                 }}
               >
-                <h5 className="cursor-pointer text-sm sm:text-xs font-semibold text-gray-900 dark:text-white mx-1 mt-3 h-20 text-ellipsis">
+                <h5 className="cursor-pointer text-sm sm:text-xs font-semibold text-gray-900 dark:text-white mx-1 mt-3 h-24 text-ellipsis mb-4">
                   {product?.productName}
                 </h5>
               </a>
