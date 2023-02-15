@@ -165,13 +165,13 @@ const Nav = () => {
 
         <div>
           <div className="flex md:order-2 justify-end items-center">
-            <div className="flex items-center">
+            <div className="flex items-center justify-end">
               <Button className="navbutton">
-                <HiGift className="mr-2 text-xl" />
-                <p className="text-md">Astra</p>
+                <HiGift className="text-xl" />
+                <p className="text-md hidden md:block">Astra</p>
               </Button>
               <Button className="navbutton relative" href="/cart">
-                <HiOutlineShoppingCart className="mr-2 text-xl" />
+                <HiOutlineShoppingCart className="text-xl" />
                 {isEmpty ? null : (
                   <p className="bg-red-500 rounded-full px-2 py-1 text-white absolute top-0 right-1 text-xs">
                     {totalItems}
@@ -216,14 +216,14 @@ const Nav = () => {
               </Dropdown>
             ) : (
               <Button href={"/login"} className="navbutton">
-                <HiUser className="text-xl mr-2" />
-                <p className="font-medium text-md">Đăng nhập</p>
+                <HiUser className="text-xl" />
+                <p className="font-medium text-md hidden md:block">Đăng nhập</p>
               </Button>
             )}
 
             <Navbar.Toggle />
           </div>
-          <div className="flex items-center">
+          <div className="flex items-center justify-end">
             <HiMap className="navbutton" />
             <Link
               className="ml-2 navfont cursor-pointer text-xs"

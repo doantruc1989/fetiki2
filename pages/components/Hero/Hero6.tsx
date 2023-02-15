@@ -200,7 +200,7 @@ const Hero6 = () => {
                   });
                 }}
                 src={product?.image}
-                className="rounded-t-lg cursor-pointer w-fit h-fit"
+                className="rounded-t-lg cursor-pointer w-full h-fit"
                 alt="..."
               />
               <a
