@@ -21,7 +21,7 @@ const Homepage = () => {
     }
   }, []);
   return (
-    <div className="flex ml-2">
+    <div className="flex">
       <div className="w-fit hidden md:block mt-2">
         <Sidebar
           // className=" md:sticky md:left-0"
