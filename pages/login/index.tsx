@@ -17,7 +17,7 @@ const Login = () => {
         e.preventDefault();
         try {
             const response = await axios.post('https://quocson.fatcatweb.top/auth/signin',
-                JSON.stringify({ email, password, remember }),
+               { email, password, remember },
             );
             console.log(JSON.stringify(response?.data))
             localStorage.setItem("user", JSON.stringify(response?.data));

@@ -18,7 +18,7 @@ const Register = () => {
     try {
       const response = await axios.post(
         "https://quocson.fatcatweb.top/auth/signup",
-        JSON.stringify({ email, password, name: username })
+        { email, password, name: username }
       );
         setSuccess(true);
         setUsername("");
