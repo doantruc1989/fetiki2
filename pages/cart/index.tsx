@@ -13,14 +13,14 @@ const Index = () => {
   const { totalUniqueItems, items, updateItemQuantity, removeItem, cartTotal } =
     useCart();
   return (
-    <>
-      {totalUniqueItems > 0 ? (
-        <>
-          <h1 className="text-2xl font-medium flex justify-center py-6">
+    <div className="w-full">
+      <h1 className="text-2xl font-medium flex justify-center py-6 mb-6">
             Giỏ hàng
           </h1>
-          <div className="grid lg:grid-cols-4 w-11/12 mx-auto mb-10 gap-4">
-            <div className="lg:col-start-1 lg:col-end-4">
+      {totalUniqueItems > 0 ? (
+
+          <div className="grid lg:grid-cols-4 w-full gap-4 mb-10">
+            <div className="lg:col-start-1 lg:col-end-4 w-11/12 mx-auto mb-6">
               <Table striped={true}>
                 <Table.Head>
                   <Table.HeadCell>Tất cả</Table.HeadCell>
@@ -38,15 +38,15 @@ const Index = () => {
                     return (
                       <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800" key={item.id}>
                         <Table.Cell className="px-0 py-0">
-                          <img src={item.image} className="w-15 h-15" alt=".."/>
+                          <img src={item.image} className="w-14 h-14" alt=".."/>
                         </Table.Cell>
                         <Table.Cell className="flex-col self-center content-center hidden w-96 lg:flex text-xs font-medium text-gray-900 dark:text-white">
                           {item.productName}
                         </Table.Cell>
-                        <Table.Cell className="w-full font-medium">
+                        <Table.Cell className="w-40 font-medium text-xs">
                           {Intl.NumberFormat().format(item.price)} đ
                         </Table.Cell>
-                        <Table.Cell className="flex items-center content-center justify-center pt-10">
+                        <Table.Cell className="flex w-20 items-center content-start justify-start pt-10">
                           <button
                             className="font-medium text-2xl px-1"
                             onClick={() =>
@@ -68,7 +68,7 @@ const Index = () => {
                             <HiChevronRight />
                           </button>
                         </Table.Cell>
-                        <Table.Cell>
+                        <Table.Cell className="w-20">
                           <button
                             onClick={() => removeItem(item.id)}
                             className="text-lg rounded-full bg-red-500 px-2 pb-0.5 text-white"
@@ -82,7 +82,7 @@ const Index = () => {
                 </Table.Body>
               </Table>
             </div>
-            <div className="lg:fixed lg:right-14 lg:top-21 lg:w-1/5 lg:z-50">
+            <div className="lg:fixed lg:right-14 lg:top-21 lg:w-1/5 lg:z-50 w-full">
               <div className="bg-gray-200 rounded-xl h-fit p-4">
                 <div className="flex justify-between mb-4">
                   <h3>Tạm tính</h3>
@@ -108,13 +108,12 @@ const Index = () => {
               </Link>
             </div>
           </div>
-        </>
       ) : (
         <div className="flex justify-center font-medium text-lg mb-8 pt-20">
           Bạn chưa chọn sản phẩm nào
         </div>
       )}
-    </>
+    </div>
   );
 };
 
