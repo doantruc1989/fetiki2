@@ -51,7 +51,7 @@ const Homepage = () => {
           </Sidebar.Items>
         </Sidebar>
       </div>
-      <div className="w-full">
+      <div className="w-full md:w-9/12 mx-auto">
         <Hero />
         <Hero2 />
         <Hero3 />

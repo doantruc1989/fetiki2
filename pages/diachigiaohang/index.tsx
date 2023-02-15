@@ -18,10 +18,10 @@ const Index = () => {
 
   return (
     <>
-      {/* {logged ? (router.push('/diachigiaohang/giaohang')) : 
-    ( */}
+      {logged ? (router.push('/diachigiaohang/giaohang')) : 
+    (
       <Login />
-      {/* // )} */}
+    )}
     </>
   );
 };

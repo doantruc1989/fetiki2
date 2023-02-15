@@ -1,7 +1,8 @@
 import axios from "axios";
-import { Card, Carousel } from "flowbite-react";
+import { Card } from "flowbite-react";
 import React, { useEffect, useState } from "react";
-
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
 
 const Hero2 = () => {
   const [brands, setBrands] = useState([]);
@@ -15,37 +16,63 @@ const Hero2 = () => {
     }
   }, []);
 
+  const responsive = {
+    desktop: {
+      breakpoint: { max: 3000, min: 768 },
+      items: 4,
+      slidesToSlide: 3 // optional, default to 1.
+    },
+    tablet: {
+      breakpoint: { max: 768, min: 464 },
+      items: 2,
+      slidesToSlide: 2 // optional, default to 1.
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 1,
+      slidesToSlide: 1 // optional, default to 1.
+    }
+  };
+
   return (
-    <Card className="bg-gray-200 mx-6 mb-6">
+    <Card className="bg-gray-200 my-6 md:ml-6">
       <div className="flex items-center content-center ">
         <h5 className="text-base md:text-2xl font-bold tracking-tight text-gray-900 dark:text-white mr-3">
           Thương Hiệu Chính Hãng
         </h5>
         <img className="w-22 h-6" src="/image/official.png" alt="..."/>
       </div>
-      <div className="h-56 gap-4 sm:h-64 xl:h-80 2xl:h-96">
         <Carousel
-          slide={false}
-          indicators={false}
-          leftControl=" "
-          rightControl=" "
+          swipeable={false}
+          draggable={true}
+          showDots={true}
+          responsive={responsive}
+          ssr={true} // means to render carousel on server-side.
+          infinite={true}
+          autoPlay={this?.props.deviceType !== "mobile" ? true : false}
+          autoPlaySpeed={4000}
+          keyBoardControl={true}
+          customTransition="all .5"
+          transitionDuration={2000}
+          containerClass="carousel-container"
+          // removeArrowOnDeviceType={["tablet", "mobile"]}
+          deviceType={this?.props.deviceType}
+          dotListClass="custom-dot-list-style"
+          itemClass="carousel-item-margin-40-px"
         >
-          <div className="grid gap-1 grid-cols-6">
             {brands ?
               brands.map((brand: any) => {
                 return (
                   <img
                   src={brand.image}
-                  className="rounded-xl"
+                  className="rounded-xl h-fit w-11/12 mx-auto"
                   alt={brand.name}
                   key={brand.id}
                 />
                 )
               }) :null
             }
-          </div>
         </Carousel>
-      </div>
     </Card>
   );
 };

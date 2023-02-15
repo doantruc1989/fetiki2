@@ -1,9 +1,10 @@
 import { Card, Carousel } from "flowbite-react";
 import React from "react";
 
+
 const Hero4 = () => {
   return (
-    <Card className="bg-gray-200 mx-6 mb-6">
+    <Card className="bg-gray-200 my-6 md:ml-6">
       <h5 className="text-base md:text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
         Thương Hiệu Sale Tết
       </h5>

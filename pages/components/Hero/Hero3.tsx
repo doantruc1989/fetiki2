@@ -67,7 +67,7 @@ const Hero3 = () => {
   }, []);
 
   return (
-    <Card className="bg-gray-200 mx-6 mb-6">
+    <Card className="bg-gray-200 my-6 md:ml-6">
       <ToastContainer />
       <div className="flex justify-between">
         <div className="flex contents-start items-center">

@@ -3,7 +3,7 @@ import { Footer } from "flowbite-react";
 const Footera = () => {
   return (
     <Footer bgDark={true}>
-      <div className="w-full bg-gray-200 mb-6 rounded-xl p-4">
+      <div className="w-full bg-gray-200 mb-6 p-4">
         <div className="grid w-full grid-cols-2 gap-4 py-2 px-2 md:grid-cols-5 mb-6 ">
           <div>
             <Footer.Title title="Hỗ trợ khách hàng" />

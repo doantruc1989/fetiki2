@@ -59,7 +59,7 @@ const Hero6 = () => {
   };
 
   return (
-    <Card className="bg-gray-200 mx-6 mb-6">
+    <Card className="bg-gray-200 my-6 md:ml-6">
       <ToastContainer />
       <h5 className="text-base md:text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
         Gợi ý hôm nay
