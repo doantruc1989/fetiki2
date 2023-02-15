@@ -1,10 +1,10 @@
 import { Avatar, Button, Dropdown, Modal, Navbar } from "flowbite-react";
 import { HiOutlineShoppingCart, HiGift, HiMap, HiUser } from "react-icons/hi";
 import React, { useEffect, useState } from "react";
-import axiosAll from "./other/axiosAll";
 import { useCart } from "react-use-cart";
 import "react-toastify/dist/ReactToastify.css";
 import Link from "next/link";
+import axios from "axios";
 
 const Nav = () => {
   const { totalItems, isEmpty } = useCart();
@@ -26,7 +26,7 @@ const Nav = () => {
 
   useEffect(() => {
     try {
-      axiosAll.get("/listcategory").then((response) => {
+      axios.get("https://quocson.fatcatweb.top/listcategory").then((response) => {
         setItems(response.data);
       });
     } catch (error) {
@@ -44,7 +44,7 @@ const Nav = () => {
 
   useEffect(() => {
     try {
-      axiosAll.get("/homepage/provinces").then((response) => {
+      axios.get("https://quocson.fatcatweb.top/homepage/provinces").then((response) => {
         setProvinces(response.data);
       });
     } catch (error) {
@@ -54,7 +54,7 @@ const Nav = () => {
 
   useEffect(() => {
     try {
-      axiosAll.get(`/homepage/provinces/${city}`).then((response) => {
+      axios.get(`https://quocson.fatcatweb.top/homepage/provinces/${city}`).then((response) => {
         setStates(response.data ? JSON.parse(response.data.districts) : null);
       });
     } catch (error) {

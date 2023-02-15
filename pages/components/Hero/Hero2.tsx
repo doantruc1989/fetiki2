@@ -1,12 +1,13 @@
+import axios from "axios";
 import { Card, Carousel } from "flowbite-react";
 import React, { useEffect, useState } from "react";
-import axiosAll from "../other/axiosAll";
+
 
 const Hero2 = () => {
   const [brands, setBrands] = useState([]);
   useEffect(() => {
     try {
-      axiosAll.get("/homepage/chinhhang").then((response) => {
+      axios.get("https://quocson.fatcatweb.top/homepage/chinhhang").then((response) => {
         setBrands(response.data);
       });
     } catch (error) {

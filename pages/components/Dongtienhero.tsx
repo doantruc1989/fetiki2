@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 import {  toast } from "react-toastify";
 import { HiChevronRight } from "react-icons/hi";
 import { useCart } from "react-use-cart";
-import axiosAll from "./other/axiosAll";
+import axios from "axios";
 
 function Dongtienhero() {
   const { addItem } = useCart();
@@ -28,7 +28,7 @@ function Dongtienhero() {
 
   useEffect(() => {
     try {
-      axiosAll.get(`/product/all?search=random`).then((res) => {
+      axios.get(`https://quocson.fatcatweb.top/product/all?search=random`).then((res) => {
         setProducts(res.data);
       });
     } catch (error) {
@@ -38,7 +38,7 @@ function Dongtienhero() {
 
   useEffect(() => {
     try {
-      axiosAll.get("/product/all?search=random").then((res) => {
+      axios.get("https://quocson.fatcatweb.top/product/all?search=random").then((res) => {
         setProducts2(res.data);
       });
     } catch (error) {
@@ -76,8 +76,8 @@ function Dongtienhero() {
                   <div className="rounded-lg bg-white mb-4" key={product?.id}>
                     <img
                       onClick={() => {
-                        axiosAll
-                          .get(`/product/${product?.id}`)
+                        axios
+                          .get(`https://quocson.fatcatweb.top/product/${product?.id}`)
                           .then((response) => {
                             setProductDetail(response.data);
                             setModals(!modals);
@@ -89,8 +89,8 @@ function Dongtienhero() {
                     />
                     <a
                       onClick={() => {
-                        axiosAll
-                          .get(`/product/${product?.id}`)
+                        axios
+                          .get(`https://quocson.fatcatweb.top/product/${product?.id}`)
                           .then((response) => {
                             setProductDetail(response.data);
                             setModals(!modals);
@@ -133,8 +133,8 @@ function Dongtienhero() {
                   >
                     <img
                       onClick={() => {
-                        axiosAll
-                          .get(`/product/${product?.id}`)
+                        axios
+                          .get(`https://quocson.fatcatweb.top/product/${product?.id}`)
                           .then((response) => {
                             setProductDetail(response.data);
                             setModals(!modals);
@@ -146,8 +146,8 @@ function Dongtienhero() {
                     />
                     <a
                       onClick={() => {
-                        axiosAll
-                          .get(`/product/${product?.id}`)
+                        axios
+                          .get(`https://quocson.fatcatweb.top/product/${product?.id}`)
                           .then((response) => {
                             setProductDetail(response.data);
                             setModals(!modals);

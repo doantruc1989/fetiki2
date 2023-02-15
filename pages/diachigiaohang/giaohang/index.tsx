@@ -2,7 +2,6 @@ import axios from "axios";
 import { Button, Label, Radio, Select, TextInput } from "flowbite-react";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import axiosAll from "../../components/other/axiosAll";
 
 const Index = () => {
   const [users, setUsers] = useState([] as any);
@@ -13,7 +12,7 @@ const Index = () => {
 
   const handleClick = () => {
     try {
-      axiosAll.get("/homepage/provinces").then((response) => {
+      axios.get("https://quocson.fatcatweb.top/homepage/provinces").then((response) => {
         setProvinces(response.data);
       });
     } catch (error) {
@@ -42,7 +41,7 @@ const Index = () => {
 
   useEffect(() => {
     try {
-      axiosAll.get(`/homepage/provinces/${city}`).then((response) => {
+      axios.get(`https://quocson.fatcatweb.top/homepage/provinces/${city}`).then((response) => {
         setStates(response.data ? JSON.parse(response.data.districts) : null);
       });
     } catch (error) {

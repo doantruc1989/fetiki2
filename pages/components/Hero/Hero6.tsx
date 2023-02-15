@@ -2,7 +2,7 @@ import { Button, Card, Modal, Rating } from "flowbite-react";
 import React, { useEffect, useRef, useState } from "react";
 import { useCart } from "react-use-cart";
 import { ToastContainer, toast } from "react-toastify";
-import axiosAll from "../other/axiosAll";
+import axios from "axios";
 
 const Hero6 = () => {
   const { addItem } = useCart();
@@ -28,7 +28,7 @@ const Hero6 = () => {
 
   useEffect(() => {
     try {
-      axiosAll.get(`/product`).then((response) => {
+      axios.get(`https://quocson.fatcatweb.top/product`).then((response) => {
         setProducts(response.data);
       });
     } catch (error) {
@@ -38,7 +38,7 @@ const Hero6 = () => {
 
   const loadMore = () => {
     try {
-      axiosAll.get(`/product?page=${page}`).then((response) => {
+      axios.get(`https://quocson.fatcatweb.top/product?page=${page}`).then((response) => {
         setProducts([...products, ...response.data]);
       });
     } catch (error) {
@@ -48,8 +48,8 @@ const Hero6 = () => {
 
   const danhchoban = () => {
     try {
-      axiosAll
-        .get(`/product/all?search=${value}&category=${category}`)
+      axios
+        .get(`https://quocson.fatcatweb.top/product/all?search=${value}&category=${category}`)
         .then((res) => {
           setProducts(res.data);
         });
@@ -194,7 +194,7 @@ const Hero6 = () => {
             <div className="rounded-lg bg-white mb-4" key={product?.id}>
               <img
                 onClick={() => {
-                  axiosAll.get(`/product/${product?.id}`).then((response) => {
+                  axios.get(`https://quocson.fatcatweb.top/product/${product?.id}`).then((response) => {
                     setProductDetail(response.data);
                     setModals(!modals);
                   });
@@ -205,7 +205,7 @@ const Hero6 = () => {
               />
               <a
                 onClick={() => {
-                  axiosAll.get(`/product/${product?.id}`).then((response) => {
+                  axios.get(`https://quocson.fatcatweb.top/product/${product?.id}`).then((response) => {
                     setProductDetail(response.data);
                     setModals(!modals);
                   });

@@ -1,8 +1,8 @@
+import axios from "axios";
 import { Button, Modal, Rating } from "flowbite-react";
 import React, { useEffect, useRef, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import { useCart } from "react-use-cart";
-import axiosAll from "./other/axiosAll";
 
 const ListProductdetail = ({prop}: any) => {
   const { addItem } = useCart();
@@ -25,7 +25,7 @@ const ListProductdetail = ({prop}: any) => {
 
   useEffect(() => {
     try {
-      axiosAll.get(`/product/all?category=${prop.category}&search=${prop.search}&sortBy=${prop.sortBy}&fromPrice=${prop.fromPrice}&toPrice=${prop.toPrice}`)
+      axios.get(`https://quocson.fatcatweb.top/product/all?category=${prop.category}&search=${prop.search}&sortBy=${prop.sortBy}&fromPrice=${prop.fromPrice}&toPrice=${prop.toPrice}`)
       .then((response) => {
         setProducts(response.data);
       });
@@ -44,8 +44,8 @@ const ListProductdetail = ({prop}: any) => {
                 <div className="rounded-lg bg-white mb-4" key={product?.id}>
                   <img
                     onClick={() => {
-                      axiosAll
-                        .get(`/product/${product?.id}`)
+                      axios
+                        .get(`https://quocson.fatcatweb.top/product/${product?.id}`)
                         .then((response) => {
                           setProductDetail(response.data);
                           setModals(!modals);
@@ -57,8 +57,8 @@ const ListProductdetail = ({prop}: any) => {
                   />
                   <a
                     onClick={() => {
-                      axiosAll
-                        .get(`/product/${product?.id}`)
+                      axios
+                        .get(`https://quocson.fatcatweb.top/product/${product?.id}`)
                         .then((response) => {
                           setProductDetail(response.data);
                           setModals(!modals);

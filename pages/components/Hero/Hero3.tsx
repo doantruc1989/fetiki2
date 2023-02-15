@@ -1,3 +1,4 @@
+import axios from "axios";
 import {
   Button,
   Card,
@@ -12,7 +13,7 @@ import { HiChevronRight } from "react-icons/hi";
 import { toast, ToastContainer } from "react-toastify";
 import { useCart } from "react-use-cart";
 import CountdownComp from "../Countdown";
-import axiosAll from "../other/axiosAll";
+
 
 const Hero3 = () => {
   const { addItem } = useCart();
@@ -37,7 +38,7 @@ const Hero3 = () => {
 
   useEffect(() => {
     try {
-      axiosAll.get("/product/all?search=random").then((res) => {
+      axios.get("https://quocson.fatcatweb.top/product/all?search=random").then((res) => {
         setProducts(res.data);
       });
     } catch (error) {
@@ -47,7 +48,7 @@ const Hero3 = () => {
 
   useEffect(() => {
     try {
-      axiosAll.get("/product/all?search=random").then((res) => {
+      axios.get("https://quocson.fatcatweb.top/product/all?search=random").then((res) => {
         setProducts2(res.data);
       });
     } catch (error) {
@@ -57,7 +58,7 @@ const Hero3 = () => {
 
   useEffect(() => {
     try {
-      axiosAll.get("/product/all?search=random").then((res) => {
+      axios.get("https://quocson.fatcatweb.top/product/all?search=random").then((res) => {
         setProducts3(res.data);
       });
     } catch (error) {
@@ -96,8 +97,8 @@ const Hero3 = () => {
                 <div className="rounded-lg bg-white mb-4 relative" key={product?.id}>
                   <img
                     onClick={() => {
-                      axiosAll
-                        .get(`/product/${product?.id}`)
+                      axios
+                        .get(`https://quocson.fatcatweb.top/product/${product?.id}`)
                         .then((response) => {
                           setProductDetail(response.data);
                           setModals(!modals);
@@ -147,8 +148,8 @@ const Hero3 = () => {
                 <div className="rounded-lg bg-white mb-4 relative" key={product?.id}>
                   <img
                     onClick={() => {
-                      axiosAll
-                        .get(`/product/${product?.id}`)
+                      axios
+                        .get(`https://quocson.fatcatweb.top/product/${product?.id}`)
                         .then((response) => {
                           setProductDetail(response.data);
                           setModals(!modals);
@@ -199,8 +200,8 @@ const Hero3 = () => {
                 <div className="rounded-lg bg-white mb-4 relative" key={product?.id}>
                   <img
                     onClick={() => {
-                      axiosAll
-                        .get(`/product/${product?.id}`)
+                      axios
+                        .get(`https://quocson.fatcatweb.top/product/${product?.id}`)
                         .then((response) => {
                           setProductDetail(response.data);
                           setModals(!modals);

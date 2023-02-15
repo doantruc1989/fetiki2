@@ -1,3 +1,4 @@
+import axios from "axios";
 import { Sidebar } from "flowbite-react";
 import React, { useEffect, useState } from "react";
 import Hero from "./Hero/Hero";
@@ -6,14 +7,13 @@ import Hero3 from "./Hero/Hero3";
 import Hero4 from "./Hero/Hero4";
 import Hero5 from "./Hero/Hero5";
 import Hero6 from "./Hero/Hero6";
-import axiosAll from "./other/axiosAll";
 
 const Homepage = () => {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
     try {
-      axiosAll.get("/listcategory").then((response) => {
+      axios.get("https://quocson.fatcatweb.top/listcategory").then((response) => {
         setItems(response.data);
       });
     } catch (error) {

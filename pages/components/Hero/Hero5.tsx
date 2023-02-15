@@ -1,14 +1,14 @@
+import axios from "axios";
 import { Card, Carousel } from "flowbite-react";
 import path from "path";
 import React, { useEffect, useState } from "react";
-import axiosAll from "../other/axiosAll";
 
 const Hero5 = () => {
   const [collections, setCollections] = useState([]);
   const [nextCols, setNextCols] = useState([]);
   useEffect(() => {
     try {
-      axiosAll.get("/homepage/bosuutap").then((response) => {
+      axios.get("https://quocson.fatcatweb.top/homepage/bosuutap").then((response) => {
         setCollections(response.data.splice(0, 6));
         response.data.slice(6);
         setNextCols(response.data);

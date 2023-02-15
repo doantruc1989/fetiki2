@@ -1,9 +1,10 @@
-import axiosAll from '../components/other/axiosAll';
+
 import { Button, Checkbox, Label, TextInput } from 'flowbite-react'
 import React, { useState } from 'react'
 import Link from 'next/link';
 import { toast, ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
+import axios from 'axios';
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -15,7 +16,7 @@ const Login = () => {
     const handleSubmit = async (e: any) => {
         e.preventDefault();
         try {
-            const response = await axiosAll.post('/auth/signin',
+            const response = await axios.post('https://quocson.fatcatweb.top/auth/signin',
                 JSON.stringify({ email, password, remember }),
             );
             console.log(JSON.stringify(response?.data))

@@ -1,7 +1,7 @@
+import axios from "axios";
 import { Button, Checkbox, Label, TextInput } from "flowbite-react";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import axiosAll from "../components/other/axiosAll";
 import { toast, ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 
@@ -16,8 +16,8 @@ const Register = () => {
   const handleSubmit = async (e :any) => {
     e.preventDefault();
     try {
-      const response = await axiosAll.post(
-        "/auth/signup",
+      const response = await axios.post(
+        "https://quocson.fatcatweb.top/auth/signup",
         JSON.stringify({ email, password, name: username })
       );
         setSuccess(true);

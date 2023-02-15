@@ -1,6 +1,6 @@
+import axios from "axios";
 import { Card, Carousel } from "flowbite-react";
 import React, { useEffect, useState } from "react";
-import axiosAll from "../other/axiosAll";
 
 export interface rightPart {
   map(arg0: (rightPart: any) => JSX.Element): import("react").ReactNode;
@@ -17,7 +17,7 @@ const Hero = () => {
 
   useEffect(() => {
     try {
-      axiosAll.get("/homepage/hero").then((response) => {
+      axios.get("https://quocson.fatcatweb.top/homepage/hero").then((response) => {
         setRightPart(response.data.pop())
         response.data.pop()
         setSlides(response.data);
