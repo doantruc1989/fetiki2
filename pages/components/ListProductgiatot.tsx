@@ -5,11 +5,12 @@ import React, { useEffect, useRef, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import { useCart } from "react-use-cart";
 
-const ListProductgiatot = ({ prop }:any) => {
+const ListProductgiatot = ({ prop }: any) => {
   const { addItem } = useCart();
   const [products, setProducts] = useState([]);
   const [modals, setModals] = useState(false);
   const [productDetail, setProductDetail] = useState([] as any);
+  const [path,setPath] = useState('/')
   const clickref: any = useRef();
 
   useEffect(() => {
@@ -22,7 +23,7 @@ const ListProductgiatot = ({ prop }:any) => {
     return () => {
       document.removeEventListener("mousedown", handler);
     };
-  },[]);
+  }, []);
 
   useEffect(() => {
     try {
@@ -32,6 +33,7 @@ const ListProductgiatot = ({ prop }:any) => {
         )
         .then((response) => {
           setProducts(response.data);
+          setPath(prop.route)
         });
     } catch (error) {
       console.log(error);
@@ -43,13 +45,15 @@ const ListProductgiatot = ({ prop }:any) => {
       <ToastContainer />
       <div className="grid gap-3 grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 mx-3">
         {products
-          ? products.map((product:any) => {
+          ? products.map((product: any) => {
               return (
                 <div className="rounded-lg bg-white mb-1.5" key={product?.id}>
                   <img
                     onClick={() => {
                       axios
-                        .get(`https://quocson.fatcatweb.top/product/${product?.id}`)
+                        .get(
+                          `https://quocson.fatcatweb.top/product/${product?.id}`
+                        )
                         .then((response) => {
                           setProductDetail(response.data);
                           setModals(!modals);
@@ -62,7 +66,9 @@ const ListProductgiatot = ({ prop }:any) => {
                   <a
                     onClick={() => {
                       axios
-                        .get(`https://quocson.fatcatweb.top/product/${product?.id}`)
+                        .get(
+                          `https://quocson.fatcatweb.top/product/${product?.id}`
+                        )
                         .then((response) => {
                           setProductDetail(response.data);
                           setModals(!modals);
@@ -128,7 +134,7 @@ const ListProductgiatot = ({ prop }:any) => {
                       <p className="ml-2 text-sm font-bold text-gray-900 dark:text-white mr-4">
                         4.95
                       </p>
-                
+
                       <a
                         href="#"
                         className="text-sm font-medium text-gray-900 underline hover:no-underline dark:text-white"
@@ -156,7 +162,7 @@ const ListProductgiatot = ({ prop }:any) => {
           </Modal.Body>
         </Modal>
       </div>
-      <Link href={prop.path} className="flex justify-center items-center mt-2">
+      <Link href={path} className="flex justify-center items-center mt-2">
         <p className="w-fit mb-5 border border-blue-600 py-2 rounded-xl px-3 font-medium text-base text-white bg-blue-500">
           Xem thêm
         </p>

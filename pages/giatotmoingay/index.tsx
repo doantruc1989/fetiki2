@@ -9,37 +9,37 @@ function Index() {
     category: "dienthoai",
     sortBy: "price",
     search: "phobien",
-    path: "/dienthoaimaytinhbang"
+    route: "dienthoaimaytinhbang",
   };
   const asc = {
     category: "diengiadung",
     sortBy: "price",
     search: "asc",
-    path: "/diengiadung"
+    route: "diengiadung",
   };
   const desc = {
     category: "sach",
     sortBy: "price",
     search: "desc",
-    path: "/nhasachtiki"
+    route: "nhasachtiki",
   };
   const phobien2 = {
     category: "donam",
     sortBy: "price",
     search: "phobien",
-    path: "/thoitrangnam"
+    route: "thoitrangnam",
   };
   const asc2 = {
     category: "donu",
     sortBy: "price",
     search: "asc",
-    path: "/thoitrangnu"
+    route: "thoitrangnu",
   };
   const desc2 = {
     category: "giaynu",
     sortBy: "price",
     search: "desc",
-    path: "/giaydepnu"
+    route: "giaydepnu",
   };
   return (
     <div className="mb-5">
