@@ -4,6 +4,7 @@ import Footera from "../components/Footer";
 import Nav2 from "../components/Nav2";
 import Login from "../login";
 import router from "next/router";
+import HeadSeo from "../components/HeadSeo";
 
 const Index = () => {
   const [logged, setLogged] = useState(false);
@@ -16,8 +17,15 @@ const Index = () => {
     }
   }, []);
 
+  const prop = {
+    title: "tiki delivery đăng nhập địa chỉ giao hàng",
+    keywords: "delivery tiki đăng nhập địa chỉ giao hàng",
+    description: "làm trang đăng nhập địa chỉ giao hàng delivery đơn giản easy",
+  }
+
   return (
     <>
+    <HeadSeo prop={prop}/>
       {logged ? (router.push('/diachigiaohang/giaohang')) : 
     (
       <Login />

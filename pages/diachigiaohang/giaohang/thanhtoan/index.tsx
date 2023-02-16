@@ -2,19 +2,25 @@ import { Button, Label, Radio } from "flowbite-react";
 import Link from "next/link";
 import React, { ReactElement } from "react";
 import { CartProvider, useCart } from "react-use-cart";
+import HeadSeo from "../../../components/HeadSeo";
 import NestedLayout from "../../../components/NestedLayout";
 
 const Index = () => {
   const {
-    totalUniqueItems,
     totalItems,
     items,
-    updateItemQuantity,
-    removeItem,
     cartTotal,
   } = useCart();
+
+  const prop = {
+    title: "tiki payment thanh toán đăng nhập địa chỉ giao hàng",
+    keywords: "payment thanh toán tiki đăng nhập địa chỉ giao hàng",
+    description: "làm trang đăng nhập địa chỉ giao hàng payment thanh toán đơn giản easy",
+  }
+
   return (
     <React.Fragment>
+      <HeadSeo prop={prop}/>
       <div className="sticky top-0 z-50 w-full mx-auto">
         <nav className="navbar flex items-center justify-between py-5 h-fit px-4">
           <Link href="/">

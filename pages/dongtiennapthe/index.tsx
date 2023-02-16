@@ -7,6 +7,7 @@ import Dongtienhero from "../components/Dongtienhero";
 import { ToastContainer } from "react-toastify";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import HeadSeo from "../components/HeadSeo";
 
 function Index() {
   const responsive = {
@@ -26,8 +27,16 @@ function Index() {
       slidesToSlide: 1 // optional, default to 1.
     }
   };
+
+  const prop = {
+    title: "tiki đóng tiền payment card money nạp",
+    keywords: "tiki đóng tiền payment card money nạp",
+    description: "tiki làm trang đóng tiền payment card money nạp đơn giản easy",
+  }
+
   return (
     <div className="w-full md:w-10/12 mx-auto my-6">
+      <HeadSeo prop={prop}/>
             <ToastContainer />
       
         <Carousel 

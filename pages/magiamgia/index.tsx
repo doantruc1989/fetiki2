@@ -1,11 +1,18 @@
 import { Carousel } from "flowbite-react";
 import React, { ReactElement } from "react";
 import { CartProvider } from "react-use-cart";
+import HeadSeo from "../components/HeadSeo";
 import Layout from "../components/Layout";
 
 function Index() {
+  const prop = {
+    title: "tiki voucher mã săn mỗi ngày everyday sales off giá rẻ",
+    keywords: "tiki voucher mã săn mỗi ngày everyday sales off giá rẻ",
+    description: "tiki làm trang voucher mã săn mỗi ngày everyday sales off giá rẻ đơn giản easy",
+  }
   return (
     <div className="w-9/12 mx-auto mb-5 mt-5">
+      <HeadSeo prop={prop}/>
       <img
         src="/image/other/magiamgia.png"
         alt="magiamgia"

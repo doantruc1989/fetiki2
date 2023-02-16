@@ -1,6 +1,7 @@
 import axios from "axios";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
+import HeadSeo from "../components/HeadSeo";
 
 function Index() {
   useEffect(() => {
@@ -21,8 +22,15 @@ function Index() {
     }
   }, []);
 
+  const prop = {
+    title: "tiki thoát signout đăng ký đăng nhập sales off giá rẻ",
+    keywords: "tiki thoát signout đăng ký đăng nhập sales off giá rẻ",
+    description: "tiki làm trang thoát signout đăng ký đăng nhập sales off giá rẻ đơn giản easy",
+  }
+
   return (
     <div className="flex flex-col justify-center items-center my-10">
+      <HeadSeo prop={prop}/>
       <p className="text-md">Signout successfully</p>
       <Link href="/" className="font-medium text-blue-700 text-md mt-4">
         Back to Home page

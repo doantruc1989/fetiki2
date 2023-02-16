@@ -4,6 +4,7 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { toast, ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
+import HeadSeo from "../components/HeadSeo";
 
 const Register = () => {
   const [email, setEmail] = useState("");
@@ -52,8 +53,15 @@ const Register = () => {
     setValidMatch(password === matchPwd);
 }, [password, matchPwd])
 
+const prop = {
+  title: "tiki đăng ký register signup nhanh chóng fast sales off giá rẻ",
+  keywords: "tiki đăng ký register signup nhanh chóng fast sales off giá rẻ",
+  description: "tiki làm trang đăng ký register signup nhanh chóng fast sales off giá rẻ đơn giản easy",
+}
+
   return (
     <div className="my-10 md:flex items-center justify-center w-11/12 mx-auto">
+      <HeadSeo prop={prop}/>
       {success ? (
         <section className="text-lg text-center uppercase font-semibold">
           <h1>Success!</h1>

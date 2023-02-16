@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { toast, ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import axios from 'axios';
+import HeadSeo from '../components/HeadSeo';
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -42,8 +43,15 @@ const Login = () => {
         setPassword(e.target.value)
     }
 
+    const prop = {
+        title: "tiki đăng nhập login signin build dựng sales off giá rẻ",
+        keywords: "tiki đăng nhập login signin build dựng sales off giá rẻ",
+        description: "tiki làm trang đăng nhập login signin build dựng sales off giá rẻ đơn giản easy",
+      }
+
     return (
         <React.Fragment>
+            <HeadSeo prop={prop}/>
             <ToastContainer />
             {success ? 
             (<section className="text-lg text-center uppercase font-semibold">

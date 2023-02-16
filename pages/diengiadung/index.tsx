@@ -6,6 +6,7 @@ import { HiHome } from "react-icons/hi";
 import "react-toastify/dist/ReactToastify.css";
 import Tab from "./Tab";
 import TabSearch from "./TabSearch";
+import HeadSeo from "../components/HeadSeo";
 
 
 const Index = () => {
@@ -53,9 +54,14 @@ const Index = () => {
       search: "danhmuc2",
     };
 
-
+    const prop = {
+      title: "tiki electronic điện gia dụng máy hút bụi",
+      keywords: "electronic điện gia dụng tiki máy hút bụi",
+      description: "làm trang electronic điện gia dụng đơn giản easy máy hút bụi",
+    }
   return (
     <div className="my-5">
+      <HeadSeo prop={prop}/>
       <Breadcrumb aria-label="Default breadcrumb example" className="mx-3 my-5">
         <Breadcrumb.Item href="/" icon={HiHome}>
           Trang chủ

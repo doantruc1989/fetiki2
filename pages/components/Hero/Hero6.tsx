@@ -15,6 +15,25 @@ const Hero6 = () => {
   const [modals, setModals] = useState(false);
   const [productDetail, setProductDetail] = useState([] as any);
   const clickref: any = useRef();
+  // const [isFetching, setIsFetching] = useState(false);
+
+  // useEffect(() => {
+  //   window.addEventListener('scroll', handleScroll);
+  //   return () => window.removeEventListener('scroll', handleScroll);
+  // }, []);
+
+  // useEffect(() => {
+  //   if (!isFetching) return;
+  //   setPage(page + 1);
+  //   loadMoredata();
+  // }, [isFetching]);
+
+  // function handleScroll() {
+  //   const list = document.getElementById('list')
+  //   if (window.scrollY + window.innerHeight === list?.clientHeight + list?.offsetTop || isFetching) return;
+  //   setIsFetching(true);
+  // }
+
 
   useEffect(() => {
     let handler = (e: any) => {
@@ -38,10 +57,11 @@ const Hero6 = () => {
     }
   }, []);
 
-  const loadMore = () => {
+  const loadMoredata = () => {
     try {
       axios.get(`https://quocson.fatcatweb.top/product?page=${page}`).then((response) => {
         setProducts([...products, ...response.data]);
+        // setIsFetching(false);
       });
     } catch (error) {
       console.log(error);
@@ -224,7 +244,7 @@ const Hero6 = () => {
       </div>
 
       {/* <div className=" flex flex-wrap content-around justify-between"> */}
-      <div className="grid xl:grid-cols-4 gap-3 grid-cols-2 md:grid-cols-3">
+      <div className="grid xl:grid-cols-4 gap-3 grid-cols-2 md:grid-cols-3" id="list">
         {products.map((product : any) => {
           return (
             <div className="rounded-lg bg-white mb-1" key={product?.id}>
@@ -347,14 +367,15 @@ const Hero6 = () => {
         </Modal>
       </div>
       <Button
-        className="w-fit flex self-center"
+        className="w-fit self-center"
         onClick={() => {
           setPage(page + 1);
-          loadMore();
+          loadMoredata();
         }}
       >
         Load more
       </Button>
+      {/* {isFetching && 'Fetching more list items...'} */}
     </Card>
   );
 };

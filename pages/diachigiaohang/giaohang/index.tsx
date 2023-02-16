@@ -2,6 +2,7 @@ import axios from "axios";
 import { Button, Label, Radio, Select, TextInput } from "flowbite-react";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
+import HeadSeo from "../../components/HeadSeo";
 
 const Index = () => {
   const [users, setUsers] = useState([] as any);
@@ -19,6 +20,12 @@ const Index = () => {
       console.log(error);
     }
   };
+
+  const prop = {
+    title: "tiki delivery đăng nhập địa chỉ giao hàng",
+    keywords: "delivery tiki đăng nhập địa chỉ giao hàng",
+    description: "làm trang đăng nhập địa chỉ giao hàng delivery đơn giản easy",
+  }
 
   useEffect(() => {
     try {
@@ -51,6 +58,7 @@ const Index = () => {
 
   return (
     <React.Fragment>
+      <HeadSeo prop={prop}/>
       <div className="sticky top-0 z-50 w-full mx-auto">
         <nav className="navbar flex items-center justify-between py-5 h-fit px-4">
           <Link href="/">

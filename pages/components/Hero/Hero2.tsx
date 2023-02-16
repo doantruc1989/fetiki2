@@ -45,7 +45,7 @@ const Hero2 = () => {
         <Carousel
           swipeable={false}
           draggable={true}
-          showDots={true}
+          showDots={false}
           responsive={responsive}
           ssr={true} // means to render carousel on server-side.
           infinite={true}

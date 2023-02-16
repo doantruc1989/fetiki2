@@ -1,6 +1,7 @@
 import { Tabs } from "flowbite-react";
 import React, { ReactElement } from "react";
 import { CartProvider } from "react-use-cart";
+import HeadSeo from "../components/HeadSeo";
 import Layout from "../components/Layout";
 import ListProductgiatot from "../components/ListProductgiatot";
 
@@ -41,8 +42,16 @@ function Index() {
     search: "desc",
     route: "giaydepnu",
   };
+
+  const prop = {
+    title: "tiki giá rẻ cheap fast low price sales off giảm giá",
+    keywords: "tiki giá rẻ cheap fast low price sales off giảm giá",
+    description: "tiki làm trang giá rẻ cheap fast low price sales off giảm giá đơn giản easy",
+  }
+
   return (
     <div className="mb-5">
+      <HeadSeo prop={prop}/>
       <img
         className="mx-auto pt-5"
         src="/image/other/giatotmoingay.png"

@@ -7,13 +7,20 @@ import {
   HiChevronRight,
 } from "react-icons/hi";
 import Link from "next/link";
+import HeadSeo from "../components/HeadSeo";
 
 
 const Index = () => {
   const { totalUniqueItems, items, updateItemQuantity, removeItem, cartTotal } =
     useCart();
+    const prop = {
+      title: "tiki cart giỏ hàng",
+      keywords: "cart tiki giỏ hàng",
+      description: "làm trang giỏ hàng cart đơn giản easy",
+    }
   return (
     <div className="w-full">
+      <HeadSeo prop={prop}/>
       <h1 className="text-2xl font-medium flex justify-center py-6 mb-6">
             Giỏ hàng
           </h1>
