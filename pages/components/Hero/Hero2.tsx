@@ -55,7 +55,7 @@ const Hero2 = () => {
           customTransition="all .5"
           transitionDuration={2000}
           containerClass="carousel-container"
-          // removeArrowOnDeviceType={["tablet", "mobile"]}
+          removeArrowOnDeviceType={["tablet", "mobile", "desktop"]}
           deviceType={"desktop"}
           dotListClass="custom-dot-list-style"
           itemClass="carousel-item-margin-40-px"

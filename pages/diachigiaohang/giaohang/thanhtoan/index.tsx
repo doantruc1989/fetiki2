@@ -155,7 +155,7 @@ const Index = () => {
               <h1>Giao tới</h1>
               <Link
                 href="#"
-                className="text-blue-700 font-medium cursor-pointer"
+                className="text-blue-700 font-medium cursor-pointer text-xs"
               >
                 thay đổi
               </Link>
@@ -177,7 +177,7 @@ const Index = () => {
               <h1 className="font-medium">Đơn hàng</h1>
               <Link
                 href="/cart"
-                className="text-blue-700 font-medium cursor-pointer"
+                className="text-blue-700 font-medium cursor-pointer text-xs"
               >
                 thay đổi
               </Link>

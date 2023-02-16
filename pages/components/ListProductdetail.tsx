@@ -37,7 +37,7 @@ const ListProductdetail = ({prop}: any) => {
   return (
     <React.Fragment>
       <ToastContainer />
-      <div className="grid gap-1 grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 mx-3">
+      <div className="grid gap-1 grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 mx-3">
         {products
           ? products.map((product: any) => {
               return (
@@ -65,7 +65,7 @@ const ListProductdetail = ({prop}: any) => {
                         });
                     }}
                   >
-                    <h5 className="cursor-pointer text-sm sm:text-xs font-semibold text-gray-900 dark:text-white mx-1 mt-3 h-20 text-ellipsis">
+                    <h5 className="cursor-pointer text-xs md:text-sn font-semibold text-gray-900 dark:text-white mx-1 mt-3 h-20 text-ellipsis">
                       {product?.productName}
                     </h5>
                   </a>

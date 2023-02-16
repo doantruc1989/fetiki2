@@ -77,7 +77,7 @@ const Nav = () => {
   };
 
   return (
-    <div className="sticky top-0 z-50 w-full mx-auto">
+    <div className="sticky top-0 h-20 z-50 w-full mx-auto">
       <Navbar className="navbar" fluid={true} rounded={true}>
         <Navbar.Brand href="/">
           <img
@@ -154,7 +154,7 @@ const Nav = () => {
               Search
             </button>
           </form>
-          <div className="hidden md:justify-start md:flex">
+          <div className="hidden lg:justify-start lg:flex">
             <Link href="/dienthoaimaytinhbang">iphone ,</Link>
             <Link href="/dienthoaimaytinhbang">android ,xiaomi ,</Link>
             <Link href="/dienthoaimaytinhbang">Oppo ,ios ,apple ,</Link>

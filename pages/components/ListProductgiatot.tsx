@@ -41,11 +41,11 @@ const ListProductgiatot = ({ prop }:any) => {
   return (
     <React.Fragment>
       <ToastContainer />
-      <div className="grid gap-1 grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 mx-3">
+      <div className="grid gap-3 grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 mx-3">
         {products
           ? products.map((product:any) => {
               return (
-                <div className="rounded-lg bg-white mb-4" key={product?.id}>
+                <div className="rounded-lg bg-white mb-1.5" key={product?.id}>
                   <img
                     onClick={() => {
                       axios
@@ -69,7 +69,7 @@ const ListProductgiatot = ({ prop }:any) => {
                         });
                     }}
                   >
-                    <h5 className="cursor-pointer text-sm sm:text-xs font-semibold text-gray-900 dark:text-white mx-1 mt-3 h-20 text-ellipsis">
+                    <h5 className="cursor-pointer text-xs md:text-sm font-semibold text-gray-900 dark:text-white mx-1 mt-3 h-20 text-ellipsis">
                       {product?.productName}
                     </h5>
                   </a>
@@ -156,11 +156,11 @@ const ListProductgiatot = ({ prop }:any) => {
           </Modal.Body>
         </Modal>
       </div>
-      {/* <Link href={prop.path} className="flex justify-center items-center mt-2">
+      <Link href={prop.path} className="flex justify-center items-center mt-2">
         <p className="w-fit mb-5 border border-blue-600 py-2 rounded-xl px-3 font-medium text-base text-white bg-blue-500">
           Xem thêm
         </p>
-      </Link> */}
+      </Link>
     </React.Fragment>
   );
 };

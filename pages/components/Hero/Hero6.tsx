@@ -1,8 +1,10 @@
-import { Button, Card, Modal, Rating } from "flowbite-react";
+import { Button, Card, Modal, Rating, Tabs } from "flowbite-react";
 import React, { useEffect, useRef, useState } from "react";
 import { useCart } from "react-use-cart";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
 
 const Hero6 = () => {
   const { addItem } = useCart();
@@ -58,36 +60,68 @@ const Hero6 = () => {
     }
   };
 
+  const responsive = {
+    desktop: {
+      breakpoint: { max: 3000, min: 768 },
+      items: 6,
+      slidesToSlide: 3, // optional, default to 1.
+    },
+    tablet: {
+      breakpoint: { max: 968, min: 464 },
+      items: 4,
+      slidesToSlide: 2, // optional, default to 1.
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 3,
+      slidesToSlide: 1, // optional, default to 1.
+    },
+  };
+
   return (
-    <Card className="bg-gray-200 my-6 md:ml-6">
-      <ToastContainer />
+    <Card className="bg-gray-200 mb-6 md:ml-6">
+      
       <h5 className="text-base md:text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
         Gợi ý hôm nay
+        <ToastContainer />
       </h5>
-      <div className="hidden md:flex md:flex-wrap content-around justify-between">
-        <Card className={"cursor-pointer w-1/6 h-auto hover "}>
+      
+      <div className="flex flex-wrap content-around justify-between sticky top-20 z-50">
+      <Carousel
+          swipeable={true}
+          draggable={true}
+          showDots={false}
+          responsive={responsive}
+          ssr={true} // means to render carousel on server-side.
+          infinite={true}
+          keyBoardControl={true}
+          customTransition="all .5"
+          transitionDuration={2000}
+          containerClass="carousel-container"
+          removeArrowOnDeviceType={["tablet", "mobile", "desktop"]}
+          deviceType={"desktop"}
+          >
+        <Card className={"cursor-pointer h-16 md:h-24 hover "}>
           <button
             className="flex flex-col items-center"
             onClick={() => {
               setPage(1);
-             
               setCategory("dochoi");
               setValue("danhchoban");
               danhchoban();
             }}
           >
             <img
-              className="mb-3 h-11 w-11 rounded-full shadow-lg"
+              className="h-11 w-11 md:w-8 md:h-8 lg:w-10 lg:h-10 rounded-full shadow-lg"
               src="image/danhchoban.png"
               alt="Bonnie image"
             />
-            <p className="text-sm text-gray-500 dark:text-gray-400">
+            <p className="text-xs h-4 lg:mt-3 text-gray-500 dark:text-gray-400 hidden lg:block">
               Dành cho bạn
             </p>
           </button>
         </Card>
-
-        <Card className={"cursor-pointer w-1/6 h-auto hover "}>
+        <Card className={"cursor-pointe h-16 md:h-24 hover"}>
           <button
             className="flex flex-col items-center"
             onClick={() => {
@@ -99,16 +133,16 @@ const Hero6 = () => {
             }}
           >
             <img
-              className="mb-3 h-11 w-11 rounded-full shadow-lg"
+              className="h-11 w-11 md:w-8 md:h-8 lg:w-10 lg:h-10 rounded-full shadow-lg"
               src="image/dichvuso.png"
               alt="Bonnie image"
             />
-            <p className="text-sm text-gray-500 dark:text-gray-400">
+            <p className="text-xs h-4 lg:mt-3 text-gray-500 dark:text-gray-400 hidden lg:block">
               Dịch vụ số
             </p>
           </button>
         </Card>
-        <Card className="cursor-pointer w-1/6 h-auto hover">
+        <Card className="cursor-pointer h-16 md:h-24 hover">
           <button
             className="flex flex-col items-center"
             onClick={() => {
@@ -119,16 +153,16 @@ const Hero6 = () => {
             }}
           >
             <img
-              className="mb-3 h-11 w-11 rounded-full shadow-lg"
+              className="h-11 w-11 md:w-8 md:h-8 lg:w-10 lg:h-10 rounded-full shadow-lg"
               src="image/dealsieuhot.png"
               alt="Bonnie image"
             />
-            <p className="text-sm text-gray-500 dark:text-gray-400">
+            <p className="text-xs h-4 lg:mt-3 text-gray-500 dark:text-gray-400 hidden lg:block">
               Deal siêu hot
             </p>
           </button>
         </Card>
-        <Card className="cursor-pointer w-1/6 h-auto hover">
+        <Card className="cursor-pointer h-16 md:h-24 hover">
           <button
             className="flex flex-col items-center"
             onClick={() => {
@@ -139,16 +173,16 @@ const Hero6 = () => {
             }}
           >
             <img
-              className="mb-3 h-11 w-11 rounded-full shadow-lg"
+              className="h-11 w-11 md:w-8 md:h-8 lg:w-10 lg:h-10 rounded-full shadow-lg"
               src="image/revodoi.png"
               alt="Bonnie image"
             />
-            <p className="text-sm text-gray-500 dark:text-gray-400">
+            <p className="text-xs h-4 lg:mt-3 text-gray-500 dark:text-gray-400 hidden lg:block">
               Rẻ vô đối
             </p>
           </button>
         </Card>
-        <Card className="cursor-pointer w-1/6 h-auto hover">
+        <Card className="cursor-pointer h-16 md:h-24 hover">
           <button
             className="flex flex-col items-center"
             onClick={() => {
@@ -159,16 +193,16 @@ const Hero6 = () => {
             }}
           >
             <img
-              className="mb-3 h-11 w-11 rounded-full shadow-lg"
+              className="h-11 w-11 md:w-8 md:h-8 lg:w-10 lg:h-10 rounded-full shadow-lg"
               src="image/thoitrang.png"
               alt="Bonnie image"
             />
-            <p className="text-sm text-gray-500 dark:text-gray-400">
+            <p className="text-xs h-4 lg:mt-3 text-gray-500 dark:text-gray-400 hidden lg:block">
               Thời trang
             </p>
           </button>
         </Card>
-        <Card className="cursor-pointer w-1/6 h-auto hover">
+        <Card className="cursor-pointer h-16 md:h-24 hover">
           <button className="flex flex-col items-center"
           onClick={() => {
             setPage(1);
@@ -177,21 +211,23 @@ const Hero6 = () => {
             danhchoban();
           }}>
             <img
-              className="mb-3 h-11 w-11 rounded-full shadow-lg"
+              className="h-11 w-11 md:w-8 md:h-8 lg:w-10 lg:h-10 rounded-full shadow-lg"
               src="image/trending.png"
               alt="Bonnie image"
             />
-            <p className="text-sm text-gray-500 dark:text-gray-400">
+            <p className="text-xs h-4 lg:mt-3 text-gray-500 dark:text-gray-400 hidden lg:block">
               Trending
             </p>
           </button>
         </Card>
+        </Carousel>
       </div>
+
       {/* <div className=" flex flex-wrap content-around justify-between"> */}
-      <div className="grid xl:grid-cols-6 gap-1 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
+      <div className="grid xl:grid-cols-4 gap-3 grid-cols-2 md:grid-cols-3">
         {products.map((product : any) => {
           return (
-            <div className="rounded-lg bg-white mb-4" key={product?.id}>
+            <div className="rounded-lg bg-white mb-1" key={product?.id}>
               <img
                 onClick={() => {
                   axios.get(`https://quocson.fatcatweb.top/product/${product?.id}`).then((response) => {
@@ -211,7 +247,7 @@ const Hero6 = () => {
                   });
                 }}
               >
-                <h5 className="cursor-pointer text-sm sm:text-xs font-semibold text-gray-900 dark:text-white mx-1 mt-3 h-24 text-ellipsis mb-4">
+                <h5 className="cursor-pointer text-xs lg:mt-3 sm:text-xs font-semibold text-gray-900 dark:text-white mx-1 mt-3 h-24 text-ellipsis mb-4">
                   {product?.productName}
                 </h5>
               </a>
