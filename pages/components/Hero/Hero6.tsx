@@ -227,7 +227,7 @@ const Hero6 = () => {
       <div className="grid xl:grid-cols-4 gap-3 grid-cols-2 md:grid-cols-3">
         {products.map((product : any) => {
           return (
-            <div className="rounded-lg bg-white mb-1 h-auto" key={product?.id}>
+            <div className="rounded-lg bg-white mb-1" key={product?.id}>
               <img
                 onClick={() => {
                   axios.get(`https://quocson.fatcatweb.top/product/${product?.id}`).then((response) => {
@@ -236,7 +236,7 @@ const Hero6 = () => {
                   });
                 }}
                 src={product?.image}
-                className="rounded-t-lg cursor-pointer w-full h-fit"
+                className="rounded-t-lg cursor-pointer w-full h-auto"
                 alt="..."
               />
               <a
