@@ -22,7 +22,6 @@ const Hero = () => {
         .get("https://quocson.fatcatweb.top/homepage/hero")
         .then((response) => {
           setRightPart(response.data.pop());
-          response.data.pop();
           setSlides(response.data);
         });
     } catch (error) {
