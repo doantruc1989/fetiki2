@@ -53,7 +53,7 @@ const ListProductdetail = ({prop}: any) => {
                     }}
                     src={product?.image}
                     alt="..."
-                    className="rounded-t-lg cursor-pointer w-full h-fit"
+                    className="rounded-t-lg cursor-pointer w-full h-auto"
                   />
                   <a
                     onClick={() => {
@@ -65,7 +65,7 @@ const ListProductdetail = ({prop}: any) => {
                         });
                     }}
                   >
-                    <h5 className="cursor-pointer text-xs md:text-sn font-semibold text-gray-900 dark:text-white mx-1 mt-3 h-20 text-ellipsis">
+                    <h5 className="cursor-pointer text-xs lg:text-sm font-semibold text-gray-900 dark:text-white mx-1 mt-3 h-20 text-ellipsis">
                       {product?.productName}
                     </h5>
                   </a>
