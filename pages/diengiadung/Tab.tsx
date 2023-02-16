@@ -21,7 +21,9 @@ const Tab = () => {
   return (
     <div className="bg-gray-200 rounded-xl">
       <div className="mt-3">
-        <Tabs.Group aria-label="Tabs with underline" style="underline">
+        <Tabs.Group aria-label="Tabs with underline" style="underline"
+        className="flex justify-center md:justify-start"
+        >
           <Tabs.Item active={true} title="Phổ biến">
             <ListProductdetail prop={phobien}/>
           </Tabs.Item>

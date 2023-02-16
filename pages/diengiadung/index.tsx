@@ -63,9 +63,9 @@ const Index = () => {
         <Breadcrumb.Item>Điện Gia Dụng</Breadcrumb.Item>
       </Breadcrumb>
       <div className="grid gap-6 grid-cols-4 w-11/12 mx-auto mt-5">
-        <div className="md:col-start-1 md:col-end-2 hidden md:block">
+        <div className="text-xs lg:text-sm md:col-start-1 md:col-end-2 hidden md:block">
           <div className=" bg-gray-200 mt-3 rounded-xl p-4 leading-loose">
-            <h2 className="font-medium">Danh mục sản phẩm</h2>
+            <h2 className="font-medium text-sm mb-2">Danh mục sản phẩm</h2>
             <button className="ml-2 mb-2 px-2 rounded-xl bg-gray-300 w-fit"
             onClick={() => {
                 setChangeTab(true);
@@ -84,7 +84,7 @@ const Index = () => {
           </div>
 
           <div className="flex flex-col bg-gray-200 mt-3 rounded-xl p-4 leading-loose">
-            <h2 className="font-medium">Giá</h2>
+            <h2 className="font-medium text-sm mb-2">Giá</h2>
             <button className="ml-2 mb-2 px-2 rounded-xl bg-gray-300 w-fit"
             onClick={() => {
                 setChangeTab(true);
@@ -119,8 +119,8 @@ const Index = () => {
             </button>
           </div>
           
-          <div className=" bg-gray-200 mt-3 rounded-xl p-4 leading-loose">
-            <h2 className="font-medium mb-2">Dịch vụ</h2>
+          <div className=" bg-gray-200 text-xs mt-3 rounded-xl p-4 leading-loose">
+            <h2 className="font-medium text-sm mb-2">Dịch vụ</h2>
             <div className="flex items-center mb-4">
               <input
                 id="default-checkbox"
@@ -130,7 +130,7 @@ const Index = () => {
               />
               <label
                 htmlFor="default-checkbox"
-                className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                className="ml-2 font-medium text-gray-900 dark:text-gray-300"
               >
                 Giao Siêu Tốc 2H
               </label>
@@ -145,7 +145,7 @@ const Index = () => {
               />
               <label
                 htmlFor="checked-checkbox"
-                className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                className="ml-2 font-medium text-gray-900 dark:text-gray-300"
               >
                 Thưởng thêm Astra
               </label>
@@ -160,7 +160,7 @@ const Index = () => {
               />
               <label
                 htmlFor="checked-checkbox"
-                className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                className="ml-2 font-medium text-gray-900 dark:text-gray-300"
               >
                 Freeship không giới hạn
               </label>
@@ -175,7 +175,7 @@ const Index = () => {
               />
               <label
                 htmlFor="checked-checkbox"
-                className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                className="ml-2 font-medium text-gray-900 dark:text-gray-300"
               >
                 Trả góp 0%
               </label>
@@ -190,7 +190,7 @@ const Index = () => {
               />
               <label
                 htmlFor="checked-checkbox"
-                className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                className="ml-2 font-medium text-gray-900 dark:text-gray-300"
               >
                 Giảm sâu
               </label>

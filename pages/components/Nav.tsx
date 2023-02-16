@@ -338,19 +338,20 @@ const Nav = () => {
           </Modal>
         </div>
 
-        <Navbar.Collapse className="md:hidden">
-          <div className="grid grid-cols-2">
+        <Navbar.Collapse className="md:hidden relative">
+          <div className="grid grid-cols-2 absolute z-50 bg-gray-200 w-full top-6 rounded-xl">
             {items
               ? items.map((item: any) => {
                   return (
-                    <Navbar.Link href={item.path} key={item.id}>
-                      <div className="flex items-center">
+                    <Navbar.Link href={item.path} key={item.id}
+                    >
+                      <div className="flex items-center ">
                         <img
-                          className="h-6 w-6 rounded-lg shadow-lg mr-1"
+                          className="h-4 w-4 rounded-lg shadow-lg mr-1"
                           src={item.image}
                           alt={item.category}
                         />
-                        <p className="capitalize text-sm">{item.category}</p>
+                        <p className="capitalize text-xs">{item.category}</p>
                       </div>
                     </Navbar.Link>
                   );

@@ -65,7 +65,7 @@ const ListProductdetail = ({prop}: any) => {
                         });
                     }}
                   >
-                    <h5 className="cursor-pointer text-xs lg:text-sm font-semibold text-gray-900 dark:text-white mx-1 mt-3 h-20 text-ellipsis">
+                    <h5 className="cursor-pointer text-xs lg:text-sm font-semibold text-gray-900 dark:text-white mx-1 mt-3 h-24 lg:mb-3 text-ellipsis">
                       {product?.productName}
                     </h5>
                   </a>
