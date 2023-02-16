@@ -2,7 +2,6 @@ import axios from "axios";
 import {
   Button,
   Card,
-  Carousel,
   Modal,
   Progress,
   Rating,
@@ -13,13 +12,12 @@ import { HiChevronRight } from "react-icons/hi";
 import { toast, ToastContainer } from "react-toastify";
 import { useCart } from "react-use-cart";
 import CountdownComp from "../Countdown";
-
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
 
 const Hero3 = () => {
   const { addItem } = useCart();
   const [products, setProducts] = useState([]);
-  const [products2, setProducts2] = useState([]);
-  const [products3, setProducts3] = useState([]);
   const [modals, setModals] = useState(false);
   const [productDetail, setProductDetail] = useState([] as any);
   const clickref: any = useRef();
@@ -46,25 +44,23 @@ const Hero3 = () => {
     }
   }, []);
 
-  useEffect(() => {
-    try {
-      axios.get("https://quocson.fatcatweb.top/product/all?search=random").then((res) => {
-        setProducts2(res.data);
-      });
-    } catch (error) {
-      console.log(error);
+  const responsive = {
+    desktop: {
+      breakpoint: { max: 3000, min: 968 },
+      items: 6,
+      slidesToSlide: 3 // optional, default to 1.
+    },
+    tablet: {
+      breakpoint: { max: 968, min: 464 },
+      items: 3,
+      slidesToSlide: 2 // optional, default to 1.
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 2,
+      slidesToSlide: 1 // optional, default to 1.
     }
-  }, []);
-
-  useEffect(() => {
-    try {
-      axios.get("https://quocson.fatcatweb.top/product/all?search=random").then((res) => {
-        setProducts3(res.data);
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  }, []);
+  };
 
   return (
     <Card className="bg-gray-200 my-6 md:ml-6">
@@ -81,20 +77,34 @@ const Hero3 = () => {
           href="/giatotmoingay"
           className="flex text-blue-700 flex-wrap items-center"
         >
-          <div className="text-base md:text-xl font-bold tracking-tight dark:text-white">
+          <div className="text-sm font-bold tracking-tight dark:text-white">
             Xem thêm{" "}
           </div>
           <HiChevronRight className="text-xl md:text-3xl" />
         </Link>
       </div>
 
-      <div className="gap-4 h-80 2xl:h-96">
-        <Carousel slide={true} indicators={false}
+        <Carousel 
+        swipeable={false}
+        draggable={true}
+        showDots={false}
+        responsive={responsive}
+        ssr={true} // means to render carousel on server-side.
+        infinite={true}
+        autoPlay={true}
+        autoPlaySpeed={4000}
+        keyBoardControl={true}
+        customTransition="all .5"
+        transitionDuration={2000}
+        containerClass="carousel-container"
+        removeArrowOnDeviceType={["tablet", "mobile", "desktop"]}
+        deviceType={"desktop"}
+        dotListClass="custom-dot-list-style"
+        itemClass="carousel-item-margin-40-px"
         >
-          <div className="grid h-auto grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6 2xl:h-96">
             {products.map((product : any) => {
               return (
-                <div className="rounded-lg bg-white mb-4 relative" key={product?.id}>
+                <div className="rounded-lg mx-2 bg-white relative" key={product?.id}>
                   <img
                     onClick={() => {
                       axios
@@ -105,10 +115,10 @@ const Hero3 = () => {
                         });
                     }}
                     src={product?.image}
-                    className="rounded-t-lg cursor-pointer w-fit h-fit relative"
+                    className="rounded-t-lg cursor-pointer w-full h-auto mx-auto relative"
                     alt="..."
                   /> 
-                             <p className="absolute top-4 text-xs left-2 bg-red-400 text-red-700 p-0.5 rounded-md">
+                             <p className="absolute top-0 px-1 text-xs left-0 bg-red-400 text-red-700 p-0.5 rounded-lg">
                       -{Math.floor(Math.random() * 80)}%
                     </p>
                   <div className="flex items-center flex-col justify-between">
@@ -116,7 +126,7 @@ const Hero3 = () => {
                       {Intl.NumberFormat().format(product?.price)} đ
                     </p>
                     <Button
-                      className="w-fit mb-3"
+                      className="w-fit mb-3 text-xs lg:text-sm"
                       onClick={() => {
                         addItem(product);
                         toast("Add product successfully", {
@@ -140,111 +150,6 @@ const Hero3 = () => {
                 </div>
               );
             })}
-
-          </div>
-          <div className="grid h-auto grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6 2xl:h-96">
-            {products2.map((product: any) => {
-              return (
-                <div className="rounded-lg bg-white mb-4 relative" key={product?.id}>
-                  <img
-                    onClick={() => {
-                      axios
-                        .get(`https://quocson.fatcatweb.top/product/${product?.id}`)
-                        .then((response) => {
-                          setProductDetail(response.data);
-                          setModals(!modals);
-                        });
-                    }}
-                    src={product?.image}
-                    className="rounded-t-lg cursor-pointer w-fit h-fit relative"
-                    alt="..."
-                  /> 
-                             <p className="absolute top-4 text-xs left-2 bg-red-400 text-red-700 p-0.5 rounded-md">
-                      -{Math.floor(Math.random() * 80)}%
-                    </p>
-                  <div className="flex items-center flex-col justify-between">
-                    <p className="text-sm md:my-3 font-bold text-gray-900 dark:text-white">
-                      {Intl.NumberFormat().format(product?.price)} đ
-                    </p>
-                    <Button
-                      className="w-fit mb-3"
-                      onClick={() => {
-                        addItem(product);
-                        toast("Add product successfully", {
-                          position: toast.POSITION.BOTTOM_RIGHT,
-                          type: toast.TYPE.SUCCESS,
-                          className: "toast-message",
-                        });
-                      }}
-                    >
-                      Add to cart
-                    </Button>
-                    <Progress
-                      className="mt-2 mb-5 text-xs"
-                      progress={Math.floor(Math.random() * 100)}
-                      size="lg"
-                      color="red"
-                      label={"Đã bán" + " " + Math.floor(Math.random() * 100)}
-                      labelPosition="outside"
-                    />
-                  </div>
-                </div>
-              );
-            })}
-            
-          </div>
-
-          <div className="grid h-auto grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6 2xl:h-96">
-            {products3.map((product: any) => {
-              return (
-                <div className="rounded-lg bg-white mb-4 relative" key={product?.id}>
-                  <img
-                    onClick={() => {
-                      axios
-                        .get(`https://quocson.fatcatweb.top/product/${product?.id}`)
-                        .then((response) => {
-                          setProductDetail(response.data);
-                          setModals(!modals);
-                        });
-                    }}
-                    src={product?.image}
-                    className="rounded-t-lg cursor-pointer w-fit h-fit relative"
-                    alt="..."
-                  /> 
-                             <p className="absolute top-4 text-xs left-2 bg-red-400 text-red-700 p-0.5 rounded-md">
-                      -{Math.floor(Math.random() * 80)}%
-                    </p>
-                  <div className="flex items-center flex-col justify-between">
-                    <p className="text-sm md:my-3 font-bold text-gray-900 dark:text-white">
-                      {Intl.NumberFormat().format(product?.price)} đ
-                    </p>
-                    <Button
-                      className="w-fit mb-3"
-                      onClick={() => {
-                        addItem(product);
-                        toast("Add product successfully", {
-                          position: toast.POSITION.BOTTOM_RIGHT,
-                          type: toast.TYPE.SUCCESS,
-                          className: "toast-message",
-                        });
-                      }}
-                    >
-                      Add to cart
-                    </Button>
-                    <Progress
-                      className="mt-2 mb-5 text-xs"
-                      progress={Math.floor(Math.random() * 100)}
-                      size="lg"
-                      color="red"
-                      label={"Đã bán" + " " + Math.floor(Math.random() * 100)}
-                      labelPosition="outside"
-                    />
-                  </div>
-                </div>
-              );
-            })}
-            
-          </div>
         </Carousel>
         <Modal
               show={modals}
@@ -307,7 +212,7 @@ const Hero3 = () => {
                 </div>
               </Modal.Body>
             </Modal>
-      </div>
+
     </Card>
   );
 };

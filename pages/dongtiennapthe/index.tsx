@@ -1,37 +1,64 @@
-import { Carousel } from "flowbite-react";
+
 import React, { ReactElement } from "react";
 import { CartProvider } from "react-use-cart";
 import Layout from "../components/Layout";
 import { HiPuzzle } from "react-icons/hi";
 import Dongtienhero from "../components/Dongtienhero";
 import { ToastContainer } from "react-toastify";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
 
 function Index() {
-
+  const responsive = {
+    desktop: {
+      breakpoint: { max: 3000, min: 968 },
+      items: 2,
+      slidesToSlide: 3 // optional, default to 1.
+    },
+    tablet: {
+      breakpoint: { max: 968, min: 464 },
+      items: 1,
+      slidesToSlide: 2 // optional, default to 1.
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 1,
+      slidesToSlide: 1 // optional, default to 1.
+    }
+  };
   return (
-    <div className="w-11/12 md:w-9/12 mx-auto">
+    <div className="w-full md:w-10/12 mx-auto my-6">
             <ToastContainer />
-      <div className="h-56 sm:h-64 xl:h-80 2xl:h-96">
-        <Carousel slideInterval={5000} indicators={true}>
-          <div className="grid grid-cols-2 gap-2">
+      
+        <Carousel 
+                swipeable={false}
+                draggable={true}
+                showDots={false}
+                responsive={responsive}
+                ssr={true} // means to render carousel on server-side.
+                infinite={true}
+                autoPlay={true}
+                autoPlaySpeed={4000}
+                keyBoardControl={true}
+                customTransition="all .5"
+                transitionDuration={2000}
+                containerClass="carousel-container"
+                removeArrowOnDeviceType={["tablet", "mobile", "desktop"]}
+                deviceType={"desktop"}
+                dotListClass="custom-dot-list-style"
+                itemClass="carousel-item-margin-40-px"
+        >
             <img src="/image/other/napthe1.png" alt="napthe1" />
             <img src="/image/other/napthe2.png" alt="napthe2" />
-          </div>
-          <div className="grid grid-cols-2 gap-2">
             <img src="/image/other/napthe3.png" alt="napthe3" />
             <img src="/image/other/napthe4.png" alt="napthe4" />
-          </div>
-          <div className="grid grid-cols-2 gap-2">
             <img src="/image/other/napthe5.png" alt="napthe5" />
             <img src="/image/other/napthe6.png" alt="napthe6" />
-          </div>
-          <div className="grid grid-cols-2 gap-2">
             <img src="/image/other/napthe7.png" alt="napthe7" />
             <img src="/image/other/napthe8.png" alt="napthe8" />
-          </div>
         </Carousel>
-      </div>
-      <div className="mb-5">
+    
+      <div className="my-6">
         <div className="bg-gray-200 rounded-md mb-1 flex justify-center md:justify-start items-center gap-2 p-2">
           <HiPuzzle className="text-2xl text-green-500" />
           <h2 className="text-lg font-medium">Dịch vụ tiện ích</h2>
@@ -234,7 +261,7 @@ function Index() {
       </div>
 
       <img
-        className="mb-10"
+        className="mb-6"
         src="/image/dongtien/uudaidanhchoban.png"
         alt="uudaidanhchoban"
       />
