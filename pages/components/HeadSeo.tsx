@@ -6,9 +6,9 @@ function HeadSeo({ prop }: any) {
   useEffect(() => {
     setSeo(prop)
   },[])
-
+console.log(seo)
   return (
-    <div>
+
       <Head>
         <meta
           name="viewport"
@@ -23,7 +23,7 @@ function HeadSeo({ prop }: any) {
         <meta charSet="utf-8"></meta>
         <title>{seo.title || 'tiki'}</title>
       </Head>
-    </div>
+
   );
 }
 

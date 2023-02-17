@@ -163,7 +163,7 @@ const Hero3 = () => {
                 <div className="grid grid-cols-1 items-center align-center md:grid-cols-2 md:items-start gap-4 mx-3">
                   <img
                     src={productDetail?.image}
-                    className="w-80 h-fit rounded-lg"
+                    className="w-full h-auto rounded-lg"
                     alt="..."
                   />
                   <div>
