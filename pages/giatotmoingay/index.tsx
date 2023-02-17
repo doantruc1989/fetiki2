@@ -1,9 +1,10 @@
-import { Tabs } from "flowbite-react";
+import { Breadcrumb, Tabs } from "flowbite-react";
 import React, { ReactElement } from "react";
 import { CartProvider } from "react-use-cart";
 import HeadSeo from "../components/HeadSeo";
 import Layout from "../components/Layout";
 import ListProductgiatot from "../components/ListProductgiatot";
+import { HiHome } from "react-icons/hi";
 
 function Index() {
   const phobien = {
@@ -52,6 +53,12 @@ function Index() {
   return (
     <div className="mb-5">
       <HeadSeo prop={prop}/>
+      <Breadcrumb aria-label="Default breadcrumb example" className="mx-3 my-5">
+        <Breadcrumb.Item href="/" icon={HiHome}>
+          Trang chủ
+        </Breadcrumb.Item>
+        <Breadcrumb.Item>Giá tốt mỗi ngày</Breadcrumb.Item>
+      </Breadcrumb>
       <img
         className="mx-auto pt-5"
         src="/image/other/giatotmoingay.png"

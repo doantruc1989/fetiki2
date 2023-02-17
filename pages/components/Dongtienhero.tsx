@@ -114,22 +114,11 @@ function Dongtienhero() {
                   className="rounded-t-lg cursor-pointer w-full mx-auto h-auto"
                   alt="..."
                 />
-                <a
-                  onClick={() => {
-                    axios
-                      .get(
-                        `https://quocson.fatcatweb.top/product/${product?.id}`
-                      )
-                      .then((response) => {
-                        setProductDetail(response.data);
-                        setModals(!modals);
-                      });
-                  }}
-                >
+                <Link href={"/products/" + product?.id}>
                   <h5 className="cursor-pointer text-xs lg:text-sm font-semibold text-gray-900 dark:text-white mx-1 mt-3 h-24 mb-4 text-ellipsis">
                     {product?.productName}
                   </h5>
-                </a>
+                </Link>
                 <div className="flex items-center flex-col justify-between">
                   <p className="text-sm md:my-3 font-bold text-gray-900 dark:text-white">
                     {Intl.NumberFormat().format(product?.price)} đ
@@ -164,7 +153,7 @@ function Dongtienhero() {
           <Modal.Body>
             <div className="grid grid-cols-1 items-center align-center md:grid-cols-2 md:items-start gap-4 mx-3">
               <img
-                src={productDetail?.image}
+                src={productDetail[0]?.image}
                 className="w-full h-auto rounded-lg"
                 alt="..."
               />
@@ -172,11 +161,11 @@ function Dongtienhero() {
                 <div className="text-xs mb-3 flex">
                   <h5>Thương hiệu: </h5>
                   <a href="#" className="text-blue-600 underline ml-2">
-                    {productDetail?.brand}
+                    {productDetail[0]?.brand}
                   </a>
                 </div>
                 <h3 className="text-lg md:text-2xl font-medium mb-3">
-                  {productDetail?.productName}
+                  {productDetail[0]?.productName}
                 </h3>
                 <div className="flex flex-col items-start gap-2 md:flex-row md:items-center md:justify-between">
                   <div>
@@ -198,7 +187,9 @@ function Dongtienhero() {
                 </div>
 
                 <div className="bg-gray-100 font-bold rounded-md p-4 my-4 text-red-700 text-xl md:text-3xl">
-                  <h2>{Intl.NumberFormat().format(productDetail?.price)} đ</h2>
+                  <h2>
+                    {Intl.NumberFormat().format(productDetail[0]?.price)} đ
+                  </h2>
                 </div>
               </div>
             </div>
@@ -207,7 +198,7 @@ function Dongtienhero() {
                 Mô tả sản phẩm:
               </h2>
               <div className="text-sm md:text-base text-justify">
-                {productDetail?.content}
+                {productDetail[0]?.content}
               </div>
             </div>
           </Modal.Body>

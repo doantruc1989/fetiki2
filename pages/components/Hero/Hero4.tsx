@@ -51,7 +51,7 @@ const Hero4 = () => {
               className="rounded-xl"
               alt="..."
             />
-            <div className="grid grid-row-2 gap-1">
+            <div className="grid grid-row-2">
               <img
                 src="image/sale2.png"
                 className="rounded-xl"
@@ -71,7 +71,7 @@ const Hero4 = () => {
               className="rounded-xl"
               alt="..."
             />
-            <div className="grid grid-row-2 gap-1">
+            <div className="grid grid-row-2">
               <img
                 src="image/sale5.png"
                 className="rounded-xl"
@@ -91,7 +91,7 @@ const Hero4 = () => {
               className="rounded-xl"
               alt="..."
             />
-            <div className="grid grid-row-2 gap-1">
+            <div className="grid grid-row-2">
               <img
                 src="image/sale8.png"
                 className="rounded-xl"
@@ -111,7 +111,7 @@ const Hero4 = () => {
               className="rounded-xl"
               alt="..."
             />
-            <div className="grid grid-row-2 gap-1">
+            <div className="grid grid-row-2">
               <img
                 src="image/sale11.png"
                 className="rounded-xl"
@@ -131,7 +131,7 @@ const Hero4 = () => {
               className="rounded-xl"
               alt="..."
             />
-            <div className="grid grid-row-2 gap-1">
+            <div className="grid grid-row-2">
               <img
                 src="image/sale14.png"
                 className="rounded-xl"
@@ -151,7 +151,7 @@ const Hero4 = () => {
               className="rounded-xl"
               alt="..."
             />
-            <div className="grid grid-row-2 gap-1">
+            <div className="grid grid-row-2">
               <img
                 src="image/sale17.png"
                 className="rounded-xl"

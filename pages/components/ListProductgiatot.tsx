@@ -10,7 +10,7 @@ const ListProductgiatot = ({ prop }: any) => {
   const [products, setProducts] = useState([]);
   const [modals, setModals] = useState(false);
   const [productDetail, setProductDetail] = useState([] as any);
-  const [path,setPath] = useState('/')
+  const [path, setPath] = useState("/");
   const clickref: any = useRef();
 
   useEffect(() => {
@@ -33,7 +33,7 @@ const ListProductgiatot = ({ prop }: any) => {
         )
         .then((response) => {
           setProducts(response.data);
-          setPath(prop.route)
+          setPath(prop.route);
         });
     } catch (error) {
       console.log(error);
@@ -63,22 +63,11 @@ const ListProductgiatot = ({ prop }: any) => {
                     className="rounded-t-lg cursor-pointer w-full h-auto"
                     alt="..."
                   />
-                  <a
-                    onClick={() => {
-                      axios
-                        .get(
-                          `https://quocson.fatcatweb.top/product/${product?.id}`
-                        )
-                        .then((response) => {
-                          setProductDetail(response.data);
-                          setModals(!modals);
-                        });
-                    }}
-                  >
+                  <Link href={"/products/" + product?.id}>
                     <h5 className="cursor-pointer text-xs lg:text-sm font-semibold text-gray-900 dark:text-white mx-1 mt-3 h-20 text-ellipsis">
                       {product?.productName}
                     </h5>
-                  </a>
+                  </Link>
                   <div className="flex items-center flex-col justify-between">
                     <p className="text-sm font-bold text-gray-900 dark:text-white my-1">
                       {Intl.NumberFormat().format(product?.price)} đ
@@ -113,7 +102,7 @@ const ListProductgiatot = ({ prop }: any) => {
           <Modal.Body>
             <div className="grid grid-cols-1 items-center align-center md:grid-cols-2 md:items-start gap-4 mx-3">
               <img
-                src={productDetail?.image}
+                src={productDetail[0]?.image}
                 className="w-full h-auto rounded-lg"
                 alt="..."
               />
@@ -121,11 +110,11 @@ const ListProductgiatot = ({ prop }: any) => {
                 <div className="text-xs mb-3 flex">
                   <h5>Thương hiệu: </h5>
                   <a href="#" className="text-blue-600 underline ml-2">
-                    {productDetail?.brand}
+                    {productDetail[0]?.brand}
                   </a>
                 </div>
                 <h3 className="text-lg md:text-2xl font-medium mb-3">
-                  {productDetail?.productName}
+                  {productDetail[0]?.productName}
                 </h3>
                 <div className="flex flex-col items-start gap-2 md:flex-row md:items-center md:justify-between">
                   <div>
@@ -147,7 +136,7 @@ const ListProductgiatot = ({ prop }: any) => {
                 </div>
 
                 <div className="bg-gray-100 font-bold rounded-md p-4 my-4 text-red-700 text-xl md:text-3xl">
-                  <h2>{Intl.NumberFormat().format(productDetail?.price)} đ</h2>
+                  <h2>{Intl.NumberFormat().format(productDetail[0]?.price)} đ</h2>
                 </div>
               </div>
             </div>
@@ -156,7 +145,7 @@ const ListProductgiatot = ({ prop }: any) => {
                 Mô tả sản phẩm:
               </h2>
               <div className="text-sm md:text-base text-justify">
-                {productDetail?.content}
+                {productDetail[0]?.content}
               </div>
             </div>
           </Modal.Body>

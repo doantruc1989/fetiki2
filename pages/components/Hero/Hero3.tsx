@@ -64,7 +64,6 @@ const Hero3 = () => {
 
   return (
     <Card className="bg-gray-200 my-6 md:ml-6">
-      <ToastContainer />
       <div className="flex justify-between">
         <div className="flex contents-start items-center">
           <h5 className="text-base md:text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
@@ -162,7 +161,7 @@ const Hero3 = () => {
               <Modal.Body>
                 <div className="grid grid-cols-1 items-center align-center md:grid-cols-2 md:items-start gap-4 mx-3">
                   <img
-                    src={productDetail?.image}
+                    src={productDetail[0]?.image}
                     className="w-full h-auto rounded-lg"
                     alt="..."
                   />
@@ -170,11 +169,11 @@ const Hero3 = () => {
                     <div className="text-xs mb-3 flex">
                       <h5>Thương hiệu: </h5>
                       <a href="#" className="text-blue-600 underline ml-2">
-                        {productDetail?.brand}
+                        {productDetail[0]?.brand}
                       </a>
                     </div>
                     <h3 className="text-lg md:text-2xl font-medium mb-3">
-                      {productDetail?.productName}
+                      {productDetail[0]?.productName}
                     </h3>
                     <div className="flex flex-col items-start gap-2 md:flex-row md:items-center md:justify-between">
                       <div>
@@ -197,7 +196,7 @@ const Hero3 = () => {
 
                     <div className="bg-gray-100 font-bold rounded-md p-4 my-4 text-red-700 text-xl md:text-3xl">
                       <h2>
-                        {Intl.NumberFormat().format(productDetail?.price)} đ
+                        {Intl.NumberFormat().format(productDetail[0]?.price)} đ
                       </h2>
                     </div>
                   </div>
@@ -207,7 +206,7 @@ const Hero3 = () => {
                     Mô tả sản phẩm:
                   </h2>
                   <div className="text-sm md:text-base text-justify">
-                    {productDetail?.content}
+                    {productDetail[0]?.content}
                   </div>
                 </div>
               </Modal.Body>

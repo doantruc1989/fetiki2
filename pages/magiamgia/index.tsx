@@ -1,8 +1,9 @@
-import { Carousel } from "flowbite-react";
+import { Breadcrumb, Carousel } from "flowbite-react";
 import React, { ReactElement } from "react";
 import { CartProvider } from "react-use-cart";
 import HeadSeo from "../components/HeadSeo";
 import Layout from "../components/Layout";
+import { HiHome } from "react-icons/hi";
 
 function Index() {
   const prop = {
@@ -13,6 +14,12 @@ function Index() {
   return (
     <div className="w-9/12 mx-auto mb-5 mt-5">
       <HeadSeo prop={prop}/>
+      <Breadcrumb aria-label="Default breadcrumb example" className="mx-3 my-5">
+        <Breadcrumb.Item href="/" icon={HiHome}>
+          Trang chủ
+        </Breadcrumb.Item>
+        <Breadcrumb.Item>Mã giảm giá</Breadcrumb.Item>
+      </Breadcrumb>
       <img
         src="/image/other/magiamgia.png"
         alt="magiamgia"

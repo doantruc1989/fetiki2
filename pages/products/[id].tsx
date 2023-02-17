@@ -1,24 +1,52 @@
-import { Breadcrumb, Rating } from "flowbite-react";
-import React, { ReactElement } from "react";
-import { CartProvider } from "react-use-cart";
+import { Breadcrumb, Button, Rating } from "flowbite-react";
+import React, { ReactElement, useEffect, useState } from "react";
+import { CartProvider, useCart } from "react-use-cart";
 import Layout from "../components/Layout";
 import { HiHome, HiOutlineShoppingBag } from "react-icons/hi";
 import axios from "axios";
+import { toast, ToastContainer } from "react-toastify";
+import { useRouter } from "next/router";
 
-const Index = ({ productDetail }: any) => {
+const Index = () => {
+  const [productDetail, setProductDetail] = useState([] as any);
+  const router = useRouter();
+  const productId = router.query;
+  const { addItem } = useCart();
+
+  useEffect(() => {
+    try {
+      axios
+        .get(`https://quocson.fatcatweb.top/product/${productId.id}`)
+        .then((res) => {
+          setProductDetail(res.data);
+        });
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
+
   return (
     <div className="my-5">
+      <ToastContainer />
       <Breadcrumb aria-label="Default breadcrumb example" className="mx-3 my-5">
         <Breadcrumb.Item href="/" icon={HiHome}>
           Trang chủ
         </Breadcrumb.Item>
-        <Breadcrumb.Item href="/products" icon={HiOutlineShoppingBag}>Sản phẩm</Breadcrumb.Item>
-        <Breadcrumb.Item>{productDetail?.brand}</Breadcrumb.Item>
+        <Breadcrumb.Item
+          href={"/" + productDetail[0]?.categoryID.path}
+          icon={HiOutlineShoppingBag}
+          className="capitalize"
+        >
+          {productDetail[0]?.categoryID.category}
+        </Breadcrumb.Item>
+        <Breadcrumb.Item className="hidden lg:flex">
+          {productDetail[0]?.productName}
+        </Breadcrumb.Item>
       </Breadcrumb>
       <div>
         <div className="grid grid-cols-1 items-center align-center md:grid-cols-2 md:items-start gap-5 mx-3">
           <img
-            src={productDetail?.image}
+            src={productDetail[0]?.image}
             className="w-full h-auto rounded-lg"
             alt="..."
           />
@@ -26,11 +54,11 @@ const Index = ({ productDetail }: any) => {
             <div className="text-xs mb-3 flex">
               <h5>Thương hiệu: </h5>
               <a href="#" className="text-blue-600 underline ml-2">
-                {productDetail?.brand}
+                {productDetail[0]?.brand}
               </a>
             </div>
             <h1 className="text-lg md:text-2xl font-medium mb-3">
-              {productDetail?.productName}
+              {productDetail[0]?.productName}
             </h1>
             <div className="flex flex-col items-start gap-2 md:flex-row md:items-center md:justify-between">
               <div>
@@ -52,14 +80,30 @@ const Index = ({ productDetail }: any) => {
             </div>
 
             <div className="bg-gray-100 font-bold rounded-md p-4 my-4 text-red-700 text-xl md:text-3xl">
-              <h2>{Intl.NumberFormat().format(productDetail?.price)} đ</h2>
+              <h2>{Intl.NumberFormat().format(productDetail[0]?.price)} đ</h2>
+            </div>
+
+            <div className=" flex items-center justify-center">
+              <Button
+                className="mb-5 mt-2"
+                onClick={() => {
+                  addItem(productDetail[0]);
+                  toast("Add product successfully", {
+                    position: toast.POSITION.BOTTOM_RIGHT,
+                    type: toast.TYPE.SUCCESS,
+                    className: "toast-message",
+                  });
+                }}
+              >
+                Add to cart
+              </Button>
             </div>
           </div>
         </div>
         <div className="bg-gray-100 rounded-md p-3 mx-3 mt-4">
           <h2 className="font-bold text-sm md:text-base">Mô tả sản phẩm:</h2>
           <div className="text-sm md:text-base text-justify">
-            {productDetail?.content}
+            {productDetail[0]?.content}
           </div>
         </div>
       </div>
@@ -67,35 +111,36 @@ const Index = ({ productDetail }: any) => {
   );
 };
 
-export async function getStaticProps({ params }: any) {
-  // const router = useRouter();
-  // const { id } = router.query;
-  const productId = params.id;
-  const res = await axios.get(`https://quocson.fatcatweb.top/product/${productId}`);
-  const productDetail = res.data;
+// export async function getStaticProps({ params }: any) {
+//   // const router = useRouter();
+//   // const { id } = router.query;
+//   const productId = params.id;
+//   const res = await axios.get(
+//     `https://quocson.fatcatweb.top/product/${productId}`
+//   );
+//   const productDetail = res.data;
+//   return {
+//     props: {
+//       productDetail,
+//     },
+//   };
+// }
 
-  return {
-    props: {
-      productDetail,
-    },
-  };
-}
-
-export async function getStaticPaths() {
-  const res = await axios.get(`https://quocson.fatcatweb.top/product/`);
-  const data = res.data;
-  const paths = data.map((product: any) => {
-    return {
-      params: { 
-        id: product.id,
-      },
-    };
-  });
-  return {
-    paths,
-    fallback: true,
-  };
-}
+// export async function getStaticPaths() {
+//   const res = await axios.get(`https://quocson.fatcatweb.top/product/`);
+//   const data = res.data;
+//   const paths = data.map((product: any) => {
+//     return {
+//       params: {
+//         id: product.id,
+//       },
+//     };
+//   });
+//   return {
+//     paths,
+//     fallback: true,
+//   };
+// }
 
 Index.getLayout = function getLayout(page: ReactElement) {
   return (

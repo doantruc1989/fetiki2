@@ -1,10 +1,11 @@
-import { Button, Table } from "flowbite-react";
+import { Breadcrumb, Button, Table } from "flowbite-react";
 import React, { ReactElement } from "react";
 import { CartProvider, useCart } from "react-use-cart";
 import Layout from "../components/Layout";
 import {
   HiChevronLeft,
   HiChevronRight,
+  HiHome,
 } from "react-icons/hi";
 import Link from "next/link";
 import HeadSeo from "../components/HeadSeo";
@@ -21,6 +22,12 @@ const Index = () => {
   return (
     <div className="w-full">
       <HeadSeo prop={prop}/>
+      <Breadcrumb aria-label="Default breadcrumb example" className="mx-3 my-5">
+        <Breadcrumb.Item href="/" icon={HiHome}>
+          Trang chủ
+        </Breadcrumb.Item>
+        <Breadcrumb.Item>Giỏ hàng</Breadcrumb.Item>
+      </Breadcrumb>
       <h1 className="text-2xl font-medium flex justify-center py-6 mb-6">
             Giỏ hàng
           </h1>
