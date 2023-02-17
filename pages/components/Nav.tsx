@@ -81,7 +81,7 @@ const Nav = () => {
       <Navbar className="navbar" fluid={true} rounded={true}>
         <Navbar.Brand href="/">
           <img
-            src="image/logotiki.png"
+            src="/image/logotiki.png"
             className="mr-3 h-10 md:h-14"
             alt="tiki Logo"
           />
@@ -348,7 +348,7 @@ const Nav = () => {
                       <div className="flex items-center ">
                         <img
                           className="h-4 w-4 rounded-lg shadow-lg mr-1"
-                          src={item.image}
+                          src={"/" + item.image}
                           alt={item.category}
                         />
                         <p className="capitalize text-xs">{item.category}</p>

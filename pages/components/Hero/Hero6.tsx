@@ -260,12 +260,13 @@ const Hero6 = () => {
                 alt="..."
               />
               <a
-                onClick={() => {
-                  axios.get(`https://quocson.fatcatweb.top/product/${product?.id}`).then((response) => {
-                    setProductDetail(response.data);
-                    setModals(!modals);
-                  });
-                }}
+                // onClick={() => {
+                //   axios.get(`https://quocson.fatcatweb.top/product/${product?.id}`).then((response) => {
+                //     setProductDetail(response.data);
+                //     setModals(!modals);
+                //   });
+                // }}
+                href={"/products/" + product?.id}
               >
                 <h5 className="cursor-pointer text-xs lg:mt-3 lg:text-sm font-semibold text-gray-900 dark:text-white mx-1 mt-3 h-24 text-ellipsis mb-4">
                   {product?.productName}

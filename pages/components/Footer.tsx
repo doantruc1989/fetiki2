@@ -59,7 +59,7 @@ const Footera = () => {
             <Footer.LinkGroup col={true}>
               <Footer.Link href="#">
                 <div className="flex items-center gap-3">
-                  <img src="image/bocongthuong.png" className="h-10 w-10" alt="..."/>
+                  <img src="/image/bocongthuong.png" className="h-10 w-10" alt="..."/>
                   <p>Bộ công thương</p>
                 </div>
               </Footer.Link>
@@ -70,25 +70,25 @@ const Footera = () => {
             <Footer.LinkGroup col={true} className="mb-10">
               <Footer.Link href="#">
                 <div className="grid grid-cols-3 gap-1">
-                  <img src="image/footer/tttiki.png" className="w-10" alt="..."/>
-                  <img src="image/footer/ttvisa.jpg" className=" w-10" alt="..."/>
-                  <img src="image/footer/ttmastercard.png" className=" w-10" alt="..."/>
-                  <img src="image/footer/ttjcb.png" className=" w-10" alt="..."/>
-                  <img src="image/footer/ttmoca.png" className=" w-10" alt="..."/>
-                  <img src="image/footer/ttmomo.png" className=" w-10" alt="..."/>
-                  <img src="image/footer/ttatm.png" className=" w-10" alt="..."/>
-                  <img src="image/footer/ttviettel.jpg" className=" w-10" alt="..." />
-                  <img src="image/footer/ttvnpay.png" className=" w-10" alt="..."/>
-                  <img src="image/footer/ttzalo.png" className=" w-10" alt="..."/>
-                  <img src="image/footer/ttcash.png" className=" w-10" alt="..."/>
-                  <img src="image/footer/tttragop.jpg" className=" w-10" alt="..."/>
+                  <img src="/image/footer/tttiki.png" className="w-10" alt="..."/>
+                  <img src="/image/footer/ttvisa.jpg" className=" w-10" alt="..."/>
+                  <img src="/image/footer/ttmastercard.png" className=" w-10" alt="..."/>
+                  <img src="/image/footer/ttjcb.png" className=" w-10" alt="..."/>
+                  <img src="/image/footer/ttmoca.png" className=" w-10" alt="..."/>
+                  <img src="/image/footer/ttmomo.png" className=" w-10" alt="..."/>
+                  <img src="/image/footer/ttatm.png" className=" w-10" alt="..."/>
+                  <img src="/image/footer/ttviettel.jpg" className=" w-10" alt="..." />
+                  <img src="/image/footer/ttvnpay.png" className=" w-10" alt="..."/>
+                  <img src="/image/footer/ttzalo.png" className=" w-10" alt="..."/>
+                  <img src="/image/footer/ttcash.png" className=" w-10" alt="..."/>
+                  <img src="/image/footer/tttragop.jpg" className=" w-10" alt="..."/>
                 </div>
               </Footer.Link>
             </Footer.LinkGroup>
             <Footer.Title title="Dịch vụ giao hàng" />
             <Footer.LinkGroup col={true}>
               <Footer.Link href="#">
-                <img src="image/footer/tikinow.jpg" className="w-30" alt="..."/>
+                <img src="/image/footer/tikinow.jpg" className="w-30" alt="..."/>
               </Footer.Link>
             </Footer.LinkGroup>
           </div>
@@ -97,9 +97,9 @@ const Footera = () => {
             <Footer.LinkGroup col={true} className="mb-10">
               <Footer.Link href="#">
                 <div className="grid grid-cols-3 gap-1">
-                  <img src="image/footer/facebook.png" className="w-10" alt="..."/>
-                  <img src="image/footer/youtube.png" className="w-10" alt="..." />
-                  <img src="image/footer/zalo.png" className="w-10" alt="..."/>
+                  <img src="/image/footer/facebook.png" className="w-10" alt="..."/>
+                  <img src="/image/footer/youtube.png" className="w-10" alt="..." />
+                  <img src="/image/footer/zalo.png" className="w-10" alt="..."/>
                 </div>
               </Footer.Link>
             </Footer.LinkGroup>
@@ -108,10 +108,10 @@ const Footera = () => {
             <Footer.LinkGroup col={true}>
               <Footer.Link href="#">
                 <div className="grid grid-cols-2">
-                  <img src="image/footer/qrcode.png" className="w-20 h-20" alt="..."/>
+                  <img src="/image/footer/qrcode.png" className="w-20 h-20" alt="..."/>
                   <div className="grid grid-rows-2">
-                    <img src="image/footer/appstore.png" className="h-10" alt="..."/>
-                    <img src="image/footer/playstore.png" className="h-10" alt="..."/>
+                    <img src="/image/footer/appstore.png" className="h-10" alt="..."/>
+                    <img src="/image/footer/playstore.png" className="h-10" alt="..."/>
                   </div>
                 </div>
               </Footer.Link>
