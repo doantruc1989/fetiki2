@@ -40,7 +40,7 @@ function Search() {
   }, []);
 
   return (
-    <div className="md:flex md:items-center md:flex-col w-8/12 md:w-5/12 lg:w-7/12 relative">
+    <div className="flex justify-around md:items-center md:flex-col w-6/12 md:w-5/12 lg:w-7/12 relative">
       <form className="flex items-center w-full">
         <label className="sr-only">Search</label>
         <div className="relative w-full">
@@ -116,7 +116,7 @@ function Search() {
         <Link href="/dienthoaimaytinhbang">máy tính bảng ,</Link>
         <Link href="/dienthoaimaytinhbang">realme </Link>
       </div>
-     {search === "" ? null : (<div className="w-full bg-gray-100 text-black h-auto absolute top-11 z-50 rounded-lg pb-1" ref={searchref}>
+     {search === "" ? null : (<div className="text-xs w-[380px] -left-5 md:w-full md:left-0 bg-gray-100 text-black h-auto absolute top-11 z-50 rounded-lg pb-1" ref={searchref}>
         {result ?
           result.map((res: any) => {
             return (

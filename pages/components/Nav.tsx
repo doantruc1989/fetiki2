@@ -111,7 +111,7 @@ const Nav = () => {
               <Dropdown
                 arrowIcon={false}
                 inline={true}
-                className="hidden md:flex"
+                className="flex"
                 label={
                   <Avatar
                     alt={users.username}
@@ -144,7 +144,7 @@ const Nav = () => {
                 </Dropdown.Item>
               </Dropdown>
             ) : (
-              <Button href={"/login"} className="navbutton hidden md:flex">
+              <Button href={"/login"} className="navbutton flex">
                 <HiUser className="text-xl" />
                 <p className="font-medium text-md hidden md:block">Đăng nhập</p>
               </Button>
@@ -272,7 +272,7 @@ const Nav = () => {
             {items
               ? items.map((item: any) => {
                   return (
-                    <Navbar.Link href={item.path} key={item.id}
+                    <Navbar.Link href={'/' + item.path} key={item.id}
                     >
                       <div className="flex items-center ">
                         <img

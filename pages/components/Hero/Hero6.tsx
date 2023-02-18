@@ -109,7 +109,7 @@ const Hero6 = () => {
         <ToastContainer />
       </h5>
 
-      <div className="flex flex-wrap content-around justify-between sticky top-16 md:top-20 z-40">
+      <div className="flex flex-wrap content-around justify-between sticky top-[62px] md:top-20 lg:top-[86px] xl:top-[86px] z-40">
         <Carousel
           swipeable={true}
           draggable={true}

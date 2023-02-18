@@ -23,7 +23,7 @@ const Index = () => {
     } catch (error) {
       console.log(error);
     }
-  }, []);
+  }, [productDetail]);
 
   return (
     <div className="my-5">
