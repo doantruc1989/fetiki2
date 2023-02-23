@@ -6,7 +6,7 @@ function HeadSeo({ prop }: any) {
   useEffect(() => {
     setSeo(prop)
   },[])
-console.log(seo)
+
   return (
 
       <Head>

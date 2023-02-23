@@ -9,7 +9,7 @@ function Index() {
       const stored = localStorage.getItem("user");
       const user = stored ? JSON.parse(stored) : "";
       const config = {
-        baseURL: "https://quocson.fatcatweb.top/",
+        baseURL: "http://localhost:3006/",
         headers: { Authorization: "Bearer " + user.tokens.accessToken },
       };
       const axiosHeader = axios.create(config);

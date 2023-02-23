@@ -13,7 +13,7 @@ const Index = () => {
 
   const handleClick = () => {
     try {
-      axios.get("https://quocson.fatcatweb.top/homepage/provinces").then((response) => {
+      axios.get("http://localhost:3006/homepage/provinces").then((response) => {
         setProvinces(response.data);
       });
     } catch (error) {
@@ -33,7 +33,7 @@ const Index = () => {
       const user = stored ? JSON.parse(stored) : "";
       const id = user.id;
       const config = {
-        baseURL: "https://quocson.fatcatweb.top/",
+        baseURL: "http://localhost:3006/",
         headers: { Authorization: "Bearer " + user.tokens.accessToken },
       };
 
@@ -48,7 +48,7 @@ const Index = () => {
 
   useEffect(() => {
     try {
-      axios.get(`https://quocson.fatcatweb.top/homepage/provinces/${city}`).then((response) => {
+      axios.get(`http://localhost:3006/homepage/provinces/${city}`).then((response) => {
         setStates(response.data ? JSON.parse(response.data.districts) : null);
       });
     } catch (error) {

@@ -28,7 +28,7 @@ const Nav = () => {
 
   useEffect(() => {
     try {
-      axios.get("https://quocson.fatcatweb.top/listcategory").then((response) => {
+      axios.get("http://localhost:3006/listcategory").then((response) => {
         setItems(response.data);
       });
     } catch (error) {
@@ -46,7 +46,7 @@ const Nav = () => {
 
   useEffect(() => {
     try {
-      axios.get("https://quocson.fatcatweb.top/homepage/provinces").then((response) => {
+      axios.get("http://localhost:3006/homepage/provinces").then((response) => {
         setProvinces(response.data);
       });
     } catch (error) {
@@ -56,7 +56,7 @@ const Nav = () => {
 
   useEffect(() => {
     try {
-      axios.get(`https://quocson.fatcatweb.top/homepage/provinces/${city}`).then((response) => {
+      axios.get(`http://localhost:3006/homepage/provinces/${city}`).then((response) => {
         setStates(response.data ? JSON.parse(response.data.districts) : null);
       });
     } catch (error) {

@@ -1,34 +1,43 @@
 import { Breadcrumb, Button, Rating } from "flowbite-react";
-import React, { ReactElement, useEffect, useState } from "react";
+import React, {
+  ReactElement,
+  useEffect,
+  useState,
+} from "react";
 import { CartProvider, useCart } from "react-use-cart";
 import Layout from "../components/Layout";
 import { HiHome, HiOutlineShoppingBag } from "react-icons/hi";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import { useRouter } from "next/router";
+import Cothebancungquantam from "../components/Cothebancungquantam";
 
 const Index = () => {
   const [productDetail, setProductDetail] = useState([] as any);
   const router = useRouter();
   const productId = router.query;
   const { addItem } = useCart();
+  const [props, setProps] = useState({
+    category: 'random',
+    sortBy: "price",
+    search: "random",
+  });
 
   useEffect(() => {
     try {
-      axios
-        .get(`https://quocson.fatcatweb.top/product/${productId.id}`)
-        .then((res) => {
-          setProductDetail(res.data);
-        });
+      axios.get(`http://localhost:3006/product/${productId.id}`).then((res) => {
+        setProductDetail(res.data);
+        
+      });
     } catch (error) {
       console.log(error);
     }
-  }, [productDetail]);
+  }, [productId.id]);
 
   return (
-    <div className="my-5">
+    <div className="my-5 mx-3">
       <ToastContainer />
-      <Breadcrumb aria-label="Default breadcrumb example" className="mx-3 my-5">
+      <Breadcrumb aria-label="Default breadcrumb example" className="my-5">
         <Breadcrumb.Item href="/" icon={HiHome}>
           Trang chủ
         </Breadcrumb.Item>
@@ -43,8 +52,8 @@ const Index = () => {
           {productDetail[0]?.productName}
         </Breadcrumb.Item>
       </Breadcrumb>
-      <div>
-        <div className="grid grid-cols-1 items-center align-center md:grid-cols-2 md:items-start gap-5 mx-3">
+      <div className="mb-6">
+        <div className="grid grid-cols-1 items-center align-center md:grid-cols-2 md:items-start gap-5">
           <img
             src={productDetail[0]?.image}
             className="w-full h-auto rounded-lg"
@@ -107,6 +116,7 @@ const Index = () => {
           </div>
         </div>
       </div>
+      <Cothebancungquantam prop={props} />
     </div>
   );
 };
@@ -116,7 +126,7 @@ const Index = () => {
 //   // const { id } = router.query;
 //   const productId = params.id;
 //   const res = await axios.get(
-//     `https://quocson.fatcatweb.top/product/${productId}`
+//     `http://localhost:3006/product/${productId}`
 //   );
 //   const productDetail = res.data;
 //   return {
@@ -127,7 +137,7 @@ const Index = () => {
 // }
 
 // export async function getStaticPaths() {
-//   const res = await axios.get(`https://quocson.fatcatweb.top/product/`);
+//   const res = await axios.get(`http://localhost:3006/product/`);
 //   const data = res.data;
 //   const paths = data.map((product: any) => {
 //     return {

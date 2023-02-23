@@ -11,6 +11,7 @@ const Register = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [matchPwd, setMatchPwd] = useState('');
+  const [agreed, setAgreed] =useState(false)
   const [validMatch, setValidMatch] = useState(false);
   const [success, setSuccess] = useState(false);
 
@@ -18,8 +19,8 @@ const Register = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "https://quocson.fatcatweb.top/auth/signup",
-        { email, password, name: username }
+        "http://localhost:3006/auth/signup",
+        { email, password, username }
       );
         setSuccess(true);
         setUsername("");
@@ -35,7 +36,6 @@ const Register = () => {
                   });}
     }
   };
-  console.log(validMatch);
 
   const handleChangeEmail = (e: any) => {
     setEmail(e.target.value);
@@ -50,8 +50,9 @@ const Register = () => {
   };
 
   useEffect(() => {
-    setValidMatch(password === matchPwd);
-}, [password, matchPwd])
+    setValidMatch(password === matchPwd && agreed=== true);
+
+}, [password, matchPwd, agreed])
 
 const prop = {
   title: "tiki đăng ký register signup nhanh chóng fast sales off giá rẻ",
@@ -130,11 +131,11 @@ const prop = {
             />
           </div>
           <div className="flex items-center gap-2">
-            <Checkbox id="agree" />
+            <Checkbox id="agree" onChange={() => {setAgreed(!agreed)}}/>
             <Label htmlFor="agree">
               I agree with the{" "}
               <a
-                href="/forms"
+                href="#"
                 className="text-blue-600 hover:underline dark:text-blue-500"
               >
                 terms and conditions

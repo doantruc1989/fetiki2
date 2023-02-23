@@ -5,7 +5,6 @@ import React, { useEffect, useRef, useState } from "react";
 function Search() {
   const [search, setSearch] = useState("");
   const [result, setResult] = useState([] as any);
-
   const searchref: any = useRef();
 
   const handleSearch = async (e: any) => {
@@ -14,7 +13,7 @@ function Search() {
       try {
         await axios
           .get(
-            `https://quocson.fatcatweb.top/product/all?search=searchall&sortBy=${e.target.value}`
+            `http://localhost:3006/product/all?search=searchall&sortBy=${e.target.value}`
           )
           .then((res) => {
             setResult(res.data);

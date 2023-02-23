@@ -1,14 +1,13 @@
+import axios from "axios";
 import { Button, Card, Modal, Rating } from "flowbite-react";
 import Link from "next/link";
-import React, { useEffect, useRef, useState } from "react";
-import { toast } from "react-toastify";
-import { HiChevronRight } from "react-icons/hi";
+import React, { memo, useEffect,useLayoutEffect, useRef, useState } from "react";
 import { useCart } from "react-use-cart";
-import axios from "axios";
 import Carousel from "react-multi-carousel";
+import { toast } from "react-toastify";
 import "react-multi-carousel/lib/styles.css";
 
-function Dongtienhero() {
+function Cothebancungquantam({ prop }: any) {
   const { addItem } = useCart();
   const [products, setProducts] = useState([]);
   const [modals, setModals] = useState(false);
@@ -30,55 +29,46 @@ function Dongtienhero() {
   useEffect(() => {
     try {
       axios
-        .get(`http://localhost:3006/product/all?search=random`)
+        .get(
+          `http://localhost:3006/product/all?category=${prop.category}&search=${prop.search}&sortBy=${prop.sortBy}`
+        )
         .then((res) => {
           setProducts(res.data);
         });
     } catch (error) {
       console.log(error);
     }
-  }, []);
+  },[]);
 
   const responsive = {
     desktop: {
       breakpoint: { max: 3000, min: 968 },
       items: 5,
-      slidesToSlide: 3, // optional, default to 1.
+      slidesToSlide: 4, // optional, default to 1.
     },
     tablet: {
       breakpoint: { max: 968, min: 464 },
       items: 3,
-      slidesToSlide: 2, // optional, default to 1.
+      slidesToSlide: 3, // optional, default to 1.
     },
     mobile: {
       breakpoint: { max: 464, min: 0 },
       items: 2,
-      slidesToSlide: 1, // optional, default to 1.
+      slidesToSlide: 2, // optional, default to 1.
     },
   };
 
   return (
-    <React.Fragment>
-      <Card className="bg-gray-200 w-full mb-6">
-        <div className="flex justify-between">
-          <div className="flex contents-start items-center">
-            <h5 className="text-base md:text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-              Dành cho bạn
-            </h5>
-          </div>
-
-          <Link
-            href="/giatotmoingay"
-            className="flex text-blue-700 flex-wrap items-center"
-          >
-            <div className="text-base md:text-xl font-bold tracking-tight dark:text-white">
-              Xem thêm{" "}
-            </div>
-            <HiChevronRight className="text-xl md:text-3xl" />
-          </Link>
+    <Card className="bg-gray-200 mx-3">
+      <div className="flex justify-between">
+        <div className="flex contents-start items-center">
+          <h5 className="text-base md:text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+            Có thể bạn đang tìm kiếm
+          </h5>
         </div>
+      </div>
 
-        <Carousel
+      <Carousel
           swipeable={false}
           draggable={true}
           showDots={false}
@@ -86,10 +76,10 @@ function Dongtienhero() {
           ssr={true} // means to render carousel on server-side.
           infinite={true}
           autoPlay={true}
-          autoPlaySpeed={4000}
+          autoPlaySpeed={3000}
           keyBoardControl={true}
           customTransition="all .5"
-          transitionDuration={2000}
+          transitionDuration={1000}
           containerClass="carousel-container"
           removeArrowOnDeviceType={["tablet", "mobile", "desktop"]}
           deviceType={"desktop"}
@@ -142,7 +132,7 @@ function Dongtienhero() {
           })}
         </Carousel>
 
-        <Modal
+      <Modal
           show={modals}
           position="center"
           onClose={() => {
@@ -203,9 +193,8 @@ function Dongtienhero() {
             </div>
           </Modal.Body>
         </Modal>
-      </Card>
-    </React.Fragment>
+    </Card>
   );
 }
 
-export default Dongtienhero;
+export default memo(Cothebancungquantam);

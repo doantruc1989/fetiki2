@@ -11,14 +11,16 @@ const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [success, setSuccess] = useState(false);
-    const [remember, setRemember] = useState(false)
+    // const [remember, setRemember] = useState(false)
     const [error, setError] = useState()
+
+    console.log( email, password )
 
     const handleSubmit = async (e: any) => {
         e.preventDefault();
         try {
-            const response = await axios.post('https://quocson.fatcatweb.top/auth/signin',
-               { email, password, remember },
+            const response = await axios.post('http://localhost:3006/auth/signin',
+               { email, password },
             );
             console.log(JSON.stringify(response?.data))
             localStorage.setItem("user", JSON.stringify(response?.data));
@@ -94,13 +96,13 @@ const Login = () => {
                             onChange={handleChangePassword}
                         />
                     </div>
-                    <div className="flex items-center gap-2">
+                    {/* <div className="flex items-center gap-2">
                         <Checkbox id="remember" onClick={()=> {setRemember(!remember)}}/>
                         <Label htmlFor="remember">
                             Remember me
                         </Label>
-                    </div>
-                    <Button type="submit">
+                    </div> */}
+                    <Button type="submit" className='mt-6'>
                         Submit
                     </Button>
                     <div className='flex items-center justify-center gap-4'>
