@@ -19,12 +19,15 @@ const Nav = () => {
   const [items, setItems] = useState([]);
   const [address, setAddress] = useState("Q. 1, P. Bến Nghé, Hồ Chí Minh");
   const [users, setUsers] = useState([] as any);
+  const [userAdd, setUserAdd] = useState('Q. 1, P. Bến Nghé, Hồ Chí Minh')
 
   useEffect(() => {
     const stored = localStorage.getItem("user");
     const user = stored ? JSON.parse(stored) : "";
+    setUserAdd(user.address)
     setUsers(user);
   }, []);
+
 
   useEffect(() => {
     try {
@@ -52,7 +55,7 @@ const Nav = () => {
     } catch (error) {
       console.log(error);
     }
-  }, []);
+  }, [users]);
 
   useEffect(() => {
     try {
@@ -66,16 +69,16 @@ const Nav = () => {
 
   const handlethisModal = () => {
     setModals(false);
-    // if(user) {
-    //   try {
-    //     axiosHeader.patch(`/users/${id}`, {id, address1: city, address2: address2})
-    //     .then(res => {
-    //       console.log(res?.data)
-    //     })
-    //   } catch (error) {
-    //     console.log(error)
-    //   }
-    // }
+    if(users) {
+      try {
+        axios.patch(`http://localhost:3006/users/${users.id}`, {id : users.id, address: `${city}, ${address2}` })
+        .then(res => {
+          console.log(res?.data)
+        })
+      } catch (error) {
+        console.log(error)
+      }
+    }
   };
 
   return (
@@ -159,7 +162,7 @@ const Nav = () => {
               onClick={handleModals}
               href={""}
             >
-              Giao đến: <b className="text-black text-xs">{address}</b>
+              Giao đến: <b className="text-black text-xs">{address || userAdd }</b>
             </Link>
           </div>
 
@@ -225,7 +228,7 @@ const Nav = () => {
                         value={city}
                         onChange={(e: any) => {
                           setCity(e.target.value);
-                          setAddress(e.target.value);
+                          // setAddress(e.target.value);
                         }}
                         className="border rounded-lg w-2/3"
                       >

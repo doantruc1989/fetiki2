@@ -1,9 +1,12 @@
 import Link from "next/link";
 import React from "react";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
 
 const Nav2 = () => {
   return (
     <div className="sticky top-0 z-50 w-full mx-auto">
+      <ToastContainer/>
       <nav className="navbar flex items-center justify-between py-5 h-fit px-4">
         <Link href="/">
         <img

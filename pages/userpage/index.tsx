@@ -14,6 +14,7 @@ function Index() {
   const [userPw, setUserPw] = useState("");
   const [userPw2, setUserPw2] = useState("");
   const [validPw, setValidPw] = useState(false);
+  const [orders, setOrders] = useState([] as any);
 
   useEffect(() => {
     setValidPw(userPw === userPw2);
@@ -33,6 +34,22 @@ function Index() {
       setUsers(res?.data);
     });
   }, []);
+
+  useEffect(() => {
+    try {
+      axios
+        .get(`http://localhost:3006/cart/admin/order/${users.id}`)
+        .then((res: any) => {
+          setOrders(res.data);
+        });
+    } catch (error) {
+      console.log(error);
+    }
+  }, [users]);
+
+  // useEffect(() => {
+  //   const
+  // },[orders])
 
   const handleChangePw = () => {
     try {
@@ -74,7 +91,7 @@ function Index() {
         <Breadcrumb.Item>User profile page</Breadcrumb.Item>
       </Breadcrumb>
       <div className="md:grid md:grid-cols-3 gap-5">
-        <div className="col-end-0 w-full bg-gray-200 rounded-xl">
+        <div className="col-end-0 w-full bg-gray-200 rounded-xl pt-2">
           <img
             src={users.image}
             alt={users.username}
@@ -88,6 +105,10 @@ function Index() {
           <div className="flex flex-col items-center text-center mb-3">
             <h1 className="font-medium">User name:</h1>
             <p>{users.username}</p>
+          </div>
+          <div className="flex flex-col items-center text-center mb-3">
+            <h1 className="font-medium">Address:</h1>
+            <p>{users.address}</p>
           </div>
           <div className="flex flex-col items-center text-center mb-3">
             <div className="flex gap-3 items-center mb-3">
@@ -120,8 +141,57 @@ function Index() {
           </div>
         </div>
         <div className="col-start-2 col-end-4 w-full bg-gray-200 rounded-xl">
-          <h1 className="mt-3 mx-3 text-center">{users.username}'s Orders</h1>
-          <div></div>
+          <h1 className="my-3 mx-3 text-center font-medium">
+            {users.username}'s Orders
+          </h1>
+          <div className="p-3">
+            {orders.map((order: any) => {
+              return (
+                <div key={order.id} className="my-5 p-2 border border-blue-500 rounded-xl">
+                  <div className="flex gap-2 items-center justify-center">
+                    <p className="font-medium text-sm">Order number:</p>
+                    <p>{order.id}</p>
+                  </div>
+                  <div className="text-xs p-2">
+                    {JSON.parse(order.orderItems).map((item: any) => {
+                      return (
+                        <div key={item.id} className="flex items-center justify-between">
+                          <div className="flex items-center gap-2">
+                            <img
+                              className="w-10 h-10 my-1"
+                              src={item.image}
+                              alt=""
+                            />
+                            <span className="flex items-center gap-2">
+                              <span>
+                                {item.productName} {" x "}
+                                <span className="font-medium">
+                                  {item.quantity}
+                                </span>
+                              </span>
+                            </span>
+                          </div>
+                          <div className="font-medium ml-5">
+                            {Intl.NumberFormat().format(item.price) + "đ"}
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                  <div className="flex justify-between items-center border-t border-gray-400 pt-2">
+                    <p className="font-medium">Tổng Tiền:</p>
+                    <p className="text-red-800 font-medium text-xl">
+                      {Intl.NumberFormat().format(order.cartTotal)}đ
+                    </p>
+                  </div>
+                  <div className="flex justify-center gap-1 text-xs">
+                    <p>Trạng thái:</p>
+                    <p className="font-medium">đã giao hàng</p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
     </div>

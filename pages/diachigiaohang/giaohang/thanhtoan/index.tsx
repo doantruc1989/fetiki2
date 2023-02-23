@@ -1,26 +1,57 @@
-import { Button, Label, Radio } from "flowbite-react";
+import axios from "axios";
+import { Button, Label, Radio, TextInput } from "flowbite-react";
 import Link from "next/link";
-import React, { ReactElement } from "react";
+import "react-multi-carousel/lib/styles.css";
+import React, { ReactElement, useEffect, useState } from "react";
+import { toast, ToastContainer } from "react-toastify";
 import { CartProvider, useCart } from "react-use-cart";
 import HeadSeo from "../../../components/HeadSeo";
 import NestedLayout from "../../../components/NestedLayout";
 
+
 const Index = () => {
-  const {
-    totalItems,
-    items,
-    cartTotal,
-  } = useCart();
+  const [users, setUsers] = useState([] as any);
+  const [cod, setCod] = useState(false);
+  const [creditCard, setCreditCard] = useState(false);
+  const [payment, setPayment] = useState(false);
+  const [paynow, setPaynow] = useState(false);
+
+  useEffect(() => {
+    setPayment(cod === true || paynow === true);
+  }, [cod, paynow]);
+
+  useEffect(() => {
+    try {
+      const stored = localStorage.getItem("user");
+      const user = stored ? JSON.parse(stored) : "";
+      const id = user.id;
+      const config = {
+        baseURL: "http://localhost:3006/",
+        headers: { Authorization: "Bearer " + user.tokens.accessToken },
+      };
+
+      const axiosHeader = axios.create(config);
+      axiosHeader.get(`/users/${id}`).then((res) => {
+        setUsers(res?.data);
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
+
+  const { totalItems, items, cartTotal } = useCart();
 
   const prop = {
     title: "tiki payment thanh toán đăng nhập địa chỉ giao hàng",
     keywords: "payment thanh toán tiki đăng nhập địa chỉ giao hàng",
-    description: "làm trang đăng nhập địa chỉ giao hàng payment thanh toán đơn giản easy",
-  }
+    description:
+      "làm trang đăng nhập địa chỉ giao hàng payment thanh toán đơn giản easy",
+  };
 
   return (
     <React.Fragment>
-      <HeadSeo prop={prop}/>
+      <HeadSeo prop={prop} />
+      
       <div className="sticky top-0 z-50 w-full mx-auto">
         <nav className="navbar flex items-center justify-between py-5 h-fit px-4">
           <Link href="/">
@@ -32,22 +63,22 @@ const Index = () => {
           </Link>
           <ol className="flex items-center w-1/2 text-sm font-medium text-center text-gray-500 dark:text-gray-400 sm:text-base">
             <li className="flex md:w-full items-center after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-200 after:border-1 after:hidden sm:after:inline-block after:mx-6 xl:after:mx-10 dark:after:border-gray-700">
-            <Link href={"/diachigiaohang"}>
-
-              <span className="flex items-center after:content-['/'] sm:after:hidden after:mx-2 after:font-light after:text-gray-200 dark:after:text-gray-500">
-                <span className="mr-2">1</span>
-                Đăng <span className="hidden sm:inline-flex sm:ml-2">nhập</span>
-              </span>
-            </Link>
+              <Link href={"/diachigiaohang"}>
+                <span className="flex items-center after:content-['/'] sm:after:hidden after:mx-2 after:font-light after:text-gray-200 dark:after:text-gray-500">
+                  <span className="mr-2">1</span>
+                  Đăng{" "}
+                  <span className="hidden sm:inline-flex sm:ml-2">nhập</span>
+                </span>
+              </Link>
             </li>
             <li className="flex md:w-full items-center after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-200 after:border-1 after:hidden sm:after:inline-block after:mx-6 xl:after:mx-10 dark:after:border-gray-700">
-            <Link href={"/diachigiaohang/giaohang"}>
-
-              <span className="flex items-center after:content-['/'] sm:after:hidden after:mx-2 after:font-light after:text-gray-200 dark:after:text-gray-500">
-                <span className="mr-2">2</span>
-                Giao <span className="hidden sm:inline-flex sm:ml-2">hàng</span>
-              </span>
-            </Link>
+              <Link href={"/diachigiaohang/giaohang"}>
+                <span className="flex items-center after:content-['/'] sm:after:hidden after:mx-2 after:font-light after:text-gray-200 dark:after:text-gray-500">
+                  <span className="mr-2">2</span>
+                  Giao{" "}
+                  <span className="hidden sm:inline-flex sm:ml-2">hàng</span>
+                </span>
+              </Link>
             </li>
             <li className="flex md:w-full items-center text-blue-600 dark:text-blue-500 sm:after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-200 after:border-1 after:hidden sm:after:inline-block after:mx-6 xl:after:mx-10 dark:after:border-gray-700">
               <span className="flex items-center after:content-['/'] sm:after:hidden after:mx-2 after:font-light after:text-gray-200 dark:after:text-gray-500">
@@ -71,10 +102,15 @@ const Index = () => {
             </li>
           </ol>
           <div>
-            <img src="/image/hotline.png" alt="tiki Logo" />
+            <img
+              className="hidden md:block"
+              src="/image/hotline.png"
+              alt="tiki Logo"
+            />
           </div>
         </nav>
       </div>
+
       <div className="grid lg:grid-cols-4 lg:gap-4 w-11/12 mx-auto mt-8 mb-8">
         <div className="lg:col-start-1 lg:col-end-4 mb-4 ">
           <div className="p-2 bg-gray-200 rounded-lg">
@@ -126,7 +162,10 @@ const Index = () => {
                 <input
                   id="default-radio-1"
                   type="radio"
-                  value="Q. 1, P. Bến Nghé, Hồ Chí Minh"
+                  onChange={() => {
+                    setCreditCard(false);
+                    setCod(true);
+                  }}
                   name="default-radio"
                   className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                 />
@@ -141,7 +180,10 @@ const Index = () => {
                 <input
                   id="default-radio-1"
                   type="radio"
-                  value="Q. 1, P. Bến Nghé, Hồ Chí Minh"
+                  onChange={() => {
+                    setCod(false);
+                    setCreditCard(true);
+                  }}
                   name="default-radio"
                   className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                 />
@@ -152,6 +194,89 @@ const Index = () => {
                   Thanh toán bằng thẻ quốc tế Visa, Master, JCB
                 </label>
               </div>
+              {creditCard === false ? null : (
+                <>
+                <div className="border border-blue-600 rounded-xl p-4 w-full mt-3 md:w-2/3 lg:w-1/2 mx-auto">
+                  <div className="flex justify-center gap-2">
+                    <img
+                    className="w-auto h-8"
+                    src="/image/footer/ttvisa.jpg" alt="visa" />
+                    <img
+                    className="w-auto h-8"
+                    src="/image/footer/ttjcb.png" alt="visa" />
+                    <img
+                    className="w-auto h-8"
+                    src="/image/footer/ttmastercard.png" alt="visa" />
+                  </div>
+                  
+                  <div className="mt-3">
+                    <div className="mb-2 block">
+                      <Label htmlFor="email1" value="Name:" />
+                    </div>
+                    <TextInput
+                      id="email1"
+                      placeholder="Tên chủ thẻ"
+                      required={true}
+                    />
+                  </div>
+
+                  <div className="mt-3">
+                    <div className="mb-2 block">
+                      <Label htmlFor="email2" value="Card number:" />
+                    </div>
+                    <TextInput
+                      id="email2"
+                      placeholder="Số thẻ"
+                      required={true}
+                    />
+                  </div>
+
+                  <div className="flex w-full mt-3 gap-5">
+                    <div className="w-full">
+                      <div className="mb-2 block">
+                        <Label htmlFor="email3" value="Expiration (mm/yy):" />
+                      </div>
+                      <TextInput
+                        id="email3"
+                        placeholder="Ngày hết hạn"
+                        required={true}
+                        className="w-full"
+                      />
+                    </div>
+                    <div className="w-full">
+                      <div className="mb-2 block">
+                        <Label htmlFor="email4" value="Security Code:" />
+                      </div>
+                      <TextInput
+                        id="email4"
+                        placeholder="Mã số bí mật"
+                        required={true}
+                        className="w-full"
+                      />
+                    </div>
+                  </div>
+
+                </div>
+                <ToastContainer />
+                {paynow ? <div
+                className="mx-auto mb-3 text-green-500 font-medium text-lg"
+                >Pay successfully!!!</div> : null}
+                <Button
+                className="mb-3 mx-auto"
+                onClick={(e:any) => {
+                  e.preventDefault()
+                  setPaynow(true)
+                //   toast("Pay successfully", {
+                //     position: toast.POSITION.TOP_RIGHT,
+                //     type: toast.TYPE.SUCCESS,
+                //     className: 'toast-message'
+                // })
+                }}
+                >
+                      Pay now
+                  </Button>
+                  </>
+              )}
             </div>
           </div>
         </div>
@@ -167,14 +292,13 @@ const Index = () => {
               </Link>
             </div>
             <div className="flex gap-2">
-              <span className="font-medium">doan truc</span>
-              <span>0902932577</span>
+              <span className="font-medium">{users.username}</span>
+              <span>{users.phone}</span>
             </div>
             <div>
               <p className="text-xs">
                 <span className="font-medium text-xs text-yellow-400">Nhà</span>{" "}
-                đường 30, chung cư 4s Linh Đông nhà A01, Phường Linh Đông, Thành
-                phố Thủ Đức, Hồ Chí Minh
+                {users.address}
               </p>
             </div>
           </div>
@@ -217,7 +341,23 @@ const Index = () => {
               </p>
             </div>
           </div>
-          <Button>Đặt hàng</Button>
+          <Button
+            disabled={!payment}
+            onClick={(e: any) => {
+              axios
+                .post(`http://localhost:3006/cart/orderitem`, {
+                  userId: users.id,
+                  orderItems: JSON.stringify(items),
+                  cartTotal: cartTotal,
+                })
+                .then((res: any) => {
+                  console.log(res.data);
+                });
+            }}
+            href="/diachigiaohang/giaohang/thanhtoan/thanhcong"
+          >
+            Đặt hàng
+          </Button>
         </div>
       </div>
     </React.Fragment>

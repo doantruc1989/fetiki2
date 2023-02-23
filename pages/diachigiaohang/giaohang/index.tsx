@@ -10,6 +10,11 @@ const Index = () => {
   const [city, setCity] = useState();
   const [provinces, setProvinces] = useState([]);
   const [states, setStates] = useState([]);
+  const [address, setAddress] = useState("");
+  const [username, setUserName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [address2, setAddress2] = useState("");
+  const [newAdd, setNewAdd] =useState('')
 
   const handleClick = () => {
     try {
@@ -25,7 +30,7 @@ const Index = () => {
     title: "tiki delivery đăng nhập địa chỉ giao hàng",
     keywords: "delivery tiki đăng nhập địa chỉ giao hàng",
     description: "làm trang đăng nhập địa chỉ giao hàng delivery đơn giản easy",
-  }
+  };
 
   useEffect(() => {
     try {
@@ -46,11 +51,15 @@ const Index = () => {
     }
   }, []);
 
+  console.log(users);
+
   useEffect(() => {
     try {
-      axios.get(`http://localhost:3006/homepage/provinces/${city}`).then((response) => {
-        setStates(response.data ? JSON.parse(response.data.districts) : null);
-      });
+      axios
+        .get(`http://localhost:3006/homepage/provinces/${city}`)
+        .then((response) => {
+          setStates(response.data ? JSON.parse(response.data.districts) : null);
+        });
     } catch (error) {
       console.log(error);
     }
@@ -58,7 +67,7 @@ const Index = () => {
 
   return (
     <React.Fragment>
-      <HeadSeo prop={prop}/>
+      <HeadSeo prop={prop} />
       <div className="sticky top-0 z-50 w-full mx-auto">
         <nav className="navbar flex items-center justify-between py-5 h-fit px-4">
           <Link href="/">
@@ -72,10 +81,10 @@ const Index = () => {
           <ol className="flex items-center w-1/2 text-sm font-medium text-center text-gray-500 dark:text-gray-400 sm:text-base">
             <li className="flex md:w-full items-center after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-200 after:border-1 after:hidden sm:after:inline-block after:mx-6 xl:after:mx-10 dark:after:border-gray-700">
               <Link href={"/diachigiaohang"}>
-
-              <p className="flex items-center after:content-['/'] sm:after:hidden after:mx-2 after:font-light after:text-gray-200 dark:after:text-gray-500">
-                Đăng <span className="hidden sm:inline-flex sm:ml-2">nhập</span>
-              </p>
+                <p className="flex items-center after:content-['/'] sm:after:hidden after:mx-2 after:font-light after:text-gray-200 dark:after:text-gray-500">
+                  Đăng{" "}
+                  <span className="hidden sm:inline-flex sm:ml-2">nhập</span>
+                </p>
               </Link>
             </li>
             <li className="flex md:w-full items-center text-blue-600 dark:text-blue-500 sm:after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-200 after:border-1 after:hidden sm:after:inline-block after:mx-6 xl:after:mx-10 dark:after:border-gray-700">
@@ -97,12 +106,12 @@ const Index = () => {
               </p>
             </li>
             <li className="flex items-center">
-            <Link href={"/diachigiaohang/giaohang/thanhtoan"}>
-              <p className="flex items-center after:content-['/'] sm:after:hidden after:mx-2 after:font-light after:text-gray-200 dark:after:text-gray-500">
-                <span className="mr-2">3</span>
-                Thanh{" "}
-                <span className="hidden sm:inline-flex sm:ml-2">toán</span>
-              </p>
+              <Link href={"/diachigiaohang/giaohang/thanhtoan"}>
+                <p className="flex items-center after:content-['/'] sm:after:hidden after:mx-2 after:font-light after:text-gray-200 dark:after:text-gray-500">
+                  <span className="mr-2">3</span>
+                  Thanh{" "}
+                  <span className="hidden sm:inline-flex sm:ml-2">toán</span>
+                </p>
               </Link>
             </li>
           </ol>
@@ -114,7 +123,44 @@ const Index = () => {
       </div>
       <div className="w-11/12 md:w-3/5 mx-auto h-screen my-10">
         <div className="flex flex-col items-start">
-          <h2>2. Địa chỉ giao hàng</h2>
+          <div className="w-full mb-10">
+            <h2 className="font-medium mb-3">2. Địa chỉ giao hàng mặc định</h2>
+            <div className="flex flex-col items-center">
+              <p className="font-medium">{users.username}</p>
+              <p>{users.phone}</p>
+              <p>{users.address}</p>
+              <div className="my-2 flex justify-center items-center gap-10 w-full">
+                <Label htmlFor="diachi" color="info" value="Địa chỉ" />
+                <TextInput
+                  className="w-2/3"
+                  value={address}
+                  onChange={(e: any) => {
+                    setAddress(e.target.value);
+                  }}
+                />
+              </div>
+              <div className="mb-2 flex items-center justify-center w-full gap-10 mt-4">
+                <Button className="w-2/3 md:w-1/3">
+                  <Link href="/diachigiaohang/giaohang/thanhtoan"
+                  onClick={() => {
+                    return(
+                      axios.patch(`http://localhost:3006/users/${users.id}`,
+                      {
+                        address: `${users.address}, ${address}`
+                      }
+                      )
+                      .then((res: any) => {
+                        console.log(res.data)
+                      })
+                    )
+                  }}
+                  >
+                    Giao đến địa chỉ này
+                  </Link>
+                </Button>
+              </div>
+            </div>
+          </div>
           <h3>
             Bạn muốn giao hàng đến địa chỉ khác?{" "}
             <button
@@ -134,21 +180,24 @@ const Index = () => {
               <Label htmlFor="name" color="info" value="Họ tên" />
               <TextInput
                 id="name"
-                value={users.name}
-                placeholder="Doan Truc"
+                value={username}
+                placeholder={users.username}
                 required={true}
                 color="info"
                 className="w-2/3"
+                onChange={(e:any) => setUserName(e.target.value)}
               />
             </div>
             <div className="mb-2 flex items-center justify-between md:justify-end gap-10">
               <Label htmlFor="phone" color="info" value="Điện thoại" />
               <TextInput
                 id="phone"
-                placeholder="0902xxxxx"
+                value={phone}
+                placeholder={users.phone}
                 required={true}
                 color="info"
                 className="w-2/3"
+                onChange={(e:any) => setPhone(e.target.value)}
               />
             </div>
             <div className="mb-2 flex items-center justify-between md:justify-end gap-10">
@@ -175,6 +224,7 @@ const Index = () => {
                 id="district"
                 color="info"
                 required={true}
+                onChange={(e: any) => setAddress2(e.target.value)}
               >
                 {states
                   ? states.map((state: any) => (
@@ -189,13 +239,15 @@ const Index = () => {
               <Label htmlFor="diachi" color="info" value="Địa chỉ" />
               <TextInput
                 id="diachi"
-                placeholder=""
+                value={newAdd}
+                placeholder="địa chỉ cụ thể"
                 required={true}
                 color="info"
                 className="w-2/3"
+                onChange={(e: any) => setNewAdd(e.target.value)}
               />
             </div>
-            <div className="mb-2 flex items-center justify-between md:justify-end gap-10 mt-2">
+            {/* <div className="mb-2 flex items-center justify-between md:justify-end gap-10 mt-2">
               <Label htmlFor="loaidiachi" color="info" value="Loại địa chỉ" />
               <div className="w-2/3 flex gap-7">
                 <div className="flex items-center gap-2">
@@ -214,10 +266,25 @@ const Index = () => {
                   <Label htmlFor="germany" className="text-center">Cơ quan / Công ty</Label>
                 </div>
               </div>
-            </div>
+            </div> */}
             <div className="mb-2 flex items-center justify-center w-full gap-10 mt-4">
               <Button className="w-2/3 md:w-1/3">
-                <Link href="/diachigiaohang/giaohang/thanhtoan">
+                <Link href="/diachigiaohang/giaohang/thanhtoan"
+                onClick={() => {
+                  return(
+                    axios.patch(`http://localhost:3006/users/${users.id}`,
+                    {
+                      username: username || users.username,
+                      phone: phone || users.phone,
+                      address: `${city}, ${address2}, ${newAdd}`,        
+                    }
+                    )
+                    .then((res: any) => {
+                      console.log(res.data)
+                    })
+                  )
+                }}
+                >
                   Giao đến địa chỉ này
                 </Link>
               </Button>
