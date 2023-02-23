@@ -17,7 +17,7 @@ function Index() {
   const [orders, setOrders] = useState([] as any);
 
   useEffect(() => {
-    setValidPw(userPw === userPw2);
+    setValidPw(userPw === userPw2 && userPw !== "");
   }, [userPw, userPw2]);
 
   useEffect(() => {
@@ -69,7 +69,13 @@ function Index() {
           }
         });
     } catch (error: any) {
-      console.log(error);
+      toast(`${error?.response.data.message.map((err:any) =>{
+        err
+      })}. please try again`, {
+        position: toast.POSITION.TOP_RIGHT,
+        type: toast.TYPE.ERROR,
+        className: "toast-message",
+      });
     }
   };
 
@@ -124,12 +130,14 @@ function Index() {
               <div className="flex flex-col justify-center gap-3">
                 <TextInput
                   value={userPw}
+                  placeholder="New Password"
                   onChange={(e) => setUserPw(e.target.value)}
                   type="password"
                 />
 
                 <TextInput
                   value={userPw2}
+                  placeholder="Retype Password"
                   onChange={(e) => setUserPw2(e.target.value)}
                   type="password"
                 />
@@ -142,7 +150,7 @@ function Index() {
         </div>
         <div className="col-start-2 col-end-4 w-full bg-gray-200 rounded-xl">
           <h1 className="my-3 mx-3 text-center font-medium">
-            {users.username}'s Orders
+            {users.username + "'s Orders"}
           </h1>
           <div className="p-3">
             {orders.map((order: any) => {
