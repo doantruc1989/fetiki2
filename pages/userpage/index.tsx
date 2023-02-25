@@ -342,7 +342,7 @@ function Index() {
                                 </div>
 
                                 <>
-                                  <div className="border border-blue-600 rounded-xl p-4 w-full mt-3 md:w-2/3 lg:w-1/2 mx-auto">
+                                  <div className="border border-blue-600 rounded-xl p-4 w-full mt-3  mx-auto">
                                     <div className="flex justify-center gap-2">
                                       <img
                                         className="w-auto h-8"

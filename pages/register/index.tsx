@@ -2,7 +2,7 @@ import axios from "axios";
 import { Button, Checkbox, Label, TextInput } from "flowbite-react";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import { toast, ToastContainer } from 'react-toastify';
+import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import HeadSeo from "../components/HeadSeo";
 
@@ -10,30 +10,36 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [matchPwd, setMatchPwd] = useState('');
-  const [agreed, setAgreed] =useState(false)
+  const [matchPwd, setMatchPwd] = useState("");
+  const [agreed, setAgreed] = useState(false);
   const [validMatch, setValidMatch] = useState(false);
   const [success, setSuccess] = useState(false);
 
-  const handleSubmit = async (e :any) => {
+  console.log(email, password, username)
+
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
     try {
       const response = await axios.post(
         "https://quocson.fatcatweb.top/auth/signup",
-        { email, password, username }
+        {
+          email: email || "",
+          password: password || "",
+          username: username || "",
+        }
       );
-        setSuccess(true);
-        setUsername("");
-        setPassword("");
-        setEmail("");
-      
+      setSuccess(true);
+      setUsername("");
+      setPassword("");
+      setEmail("");
     } catch (error: any) {
-            if(error){
-                toast(`${error?.response.data.message}. Please try again`, {
-                    position: toast.POSITION.TOP_RIGHT,
-                    type: toast.TYPE.ERROR,
-                    className: "toast-message",
-                  });}
+      if (error) {
+        toast(`${error?.response.data.message}. Please try again`, {
+          position: toast.POSITION.TOP_RIGHT,
+          type: toast.TYPE.ERROR,
+          className: "toast-message",
+        });
+      }
     }
   };
 
@@ -50,19 +56,19 @@ const Register = () => {
   };
 
   useEffect(() => {
-    setValidMatch(password === matchPwd && agreed=== true);
+    setValidMatch(password === matchPwd && agreed === true);
+  }, [password, matchPwd, agreed]);
 
-}, [password, matchPwd, agreed])
-
-const prop = {
-  title: "tiki đăng ký register signup nhanh chóng fast sales off giá rẻ",
-  keywords: "tiki đăng ký register signup nhanh chóng fast sales off giá rẻ",
-  description: "tiki làm trang đăng ký register signup nhanh chóng fast sales off giá rẻ đơn giản easy",
-}
+  const prop = {
+    title: "tiki đăng ký register signup nhanh chóng fast sales off giá rẻ",
+    keywords: "tiki đăng ký register signup nhanh chóng fast sales off giá rẻ",
+    description:
+      "tiki làm trang đăng ký register signup nhanh chóng fast sales off giá rẻ đơn giản easy",
+  };
 
   return (
     <div className="my-10 md:flex items-center justify-center w-11/12 mx-auto">
-      <HeadSeo prop={prop}/>
+      <HeadSeo prop={prop} />
       {success ? (
         <section className="text-lg text-center uppercase font-semibold">
           <h1>Success!</h1>
@@ -127,11 +133,16 @@ const prop = {
               required={true}
               value={matchPwd}
               shadow={true}
-              onChange={(e:any) =>setMatchPwd(e.target.value)}
+              onChange={(e: any) => setMatchPwd(e.target.value)}
             />
           </div>
           <div className="flex items-center gap-2">
-            <Checkbox id="agree" onChange={() => {setAgreed(!agreed)}}/>
+            <Checkbox
+              id="agree"
+              onChange={() => {
+                setAgreed(!agreed);
+              }}
+            />
             <Label htmlFor="agree">
               I agree with the{" "}
               <a
@@ -145,10 +156,12 @@ const prop = {
           <Button type="submit" onClick={handleSubmit} disabled={!validMatch}>
             Register new account
           </Button>
-          <div className='flex items-center justify-center gap-4'>
-                    <p>Already have an account?</p>
-                    <Link href={'/login'} className="font-medium text-blue-700">Login here</Link>
-                </div>
+          <div className="flex items-center justify-center gap-4">
+            <p>Already have an account?</p>
+            <Link href={"/login"} className="font-medium text-blue-700">
+              Login here
+            </Link>
+          </div>
         </form>
       )}
     </div>
