@@ -3,7 +3,7 @@ import React, { ReactElement, useEffect, useState } from "react";
 import { CartProvider } from "react-use-cart";
 import HeadSeo from "../components/HeadSeo";
 import Layout from "../components/Layout";
-import { HiHome } from "react-icons/hi";
+import { HiHome, HiPencilAlt } from "react-icons/hi";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -14,6 +14,8 @@ function Index() {
   const [userPw, setUserPw] = useState("");
   const [userPw2, setUserPw2] = useState("");
   const [validPw, setValidPw] = useState(false);
+  const [editAvt, setEditAvt] = useState(false);
+  const [avatar, setAvatar] = useState("");
 
   useEffect(() => {
     setValidPw(userPw === userPw2 && userPw !== "");
@@ -33,6 +35,26 @@ function Index() {
       setUsers(res?.data);
     });
   }, []);
+
+  const handleChangeAvt = () => {
+    try {
+      axios
+        .patch(`http://localhost:3006/users/${users.id}`, {
+          image: avatar || users.image,
+        })
+        .then((res: any) => {
+          if (res.data) {
+            toast("Update user avatar successfully", {
+              position: toast.POSITION.TOP_RIGHT,
+              type: toast.TYPE.SUCCESS,
+              className: "toast-message",
+            });
+          }
+        });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const handleChangePw = () => {
     try {
@@ -69,7 +91,9 @@ function Index() {
           Trang chủ
         </Breadcrumb.Item>
         <Breadcrumb.Item>Admin profile page</Breadcrumb.Item>
-        <Breadcrumb.Item href="http://localhost:3001">Admin page</Breadcrumb.Item>
+        <Breadcrumb.Item href="http://localhost:3001">
+          Admin page
+        </Breadcrumb.Item>
       </Breadcrumb>
       <ToastContainer />
       <div className="md:grid md:grid-cols-3 gap-5 mb-6">
@@ -79,6 +103,26 @@ function Index() {
             alt={users.username}
             className="w-8/12 md:w-10/12 mx-auto mb-6 mt-3 rounded-lg"
           />
+
+          <a
+            onClick={() => {
+              setEditAvt(!editAvt);
+            }}
+            className="flex cursor-pointer mx-auto justify-center text-blue-600 mb-3 items-center"
+          >
+            <HiPencilAlt className="text-xl" />
+            <p className="text-sm">edit avatar</p>
+          </a>
+          {editAvt ? (
+            <div className="flex justify-center items-center gap-1 mb-3">
+              <TextInput
+                value={avatar}
+                placeholder="new link avatar"
+                onChange={(e: any) => setAvatar(e.target.value)}
+              />
+              <Button onClick={handleChangeAvt}>OK</Button>
+            </div>
+          ) : null}
 
           <div className="flex flex-col items-center text-center mb-3">
             <h1 className="font-medium">Email:</h1>
@@ -125,7 +169,7 @@ function Index() {
           </div>
         </div>
         <div className="col-start-2 col-end-4 w-full bg-gray-200 rounded-xl">
-          alo
+          chưa có ý tưởng để làm
         </div>
       </div>
     </div>

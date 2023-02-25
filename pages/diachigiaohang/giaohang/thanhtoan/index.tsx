@@ -8,17 +8,18 @@ import { CartProvider, useCart } from "react-use-cart";
 import HeadSeo from "../../../components/HeadSeo";
 import NestedLayout from "../../../components/NestedLayout";
 
-
 const Index = () => {
   const [users, setUsers] = useState([] as any);
   const [cod, setCod] = useState(false);
   const [creditCard, setCreditCard] = useState(false);
-  const [payment, setPayment] = useState(false);
-  const [paynow, setPaynow] = useState(false);
+  const [payment, setPayment] = useState("cod");
+  const [isPayyed, setIsPayyed] = useState(false);
+  const [fee, setFee] = useState(14000);
+  const [total, setTotal] = useState(0);
 
   useEffect(() => {
-    setPayment(cod === true || paynow === true);
-  }, [cod, paynow]);
+    setIsPayyed(cod === true || creditCard===true);
+  }, [cod, creditCard]);
 
   useEffect(() => {
     try {
@@ -40,6 +41,13 @@ const Index = () => {
   }, []);
 
   const { totalItems, items, cartTotal } = useCart();
+  
+  useEffect(() => {
+return setTotal(cartTotal + fee - 14000)
+
+  },[fee])
+
+  console.log(total);
 
   const prop = {
     title: "tiki payment thanh toán đăng nhập địa chỉ giao hàng",
@@ -51,7 +59,7 @@ const Index = () => {
   return (
     <React.Fragment>
       <HeadSeo prop={prop} />
-      
+
       <div className="sticky top-0 z-50 w-full mx-auto">
         <nav className="navbar flex items-center justify-between py-5 h-fit px-4">
           <Link href="/">
@@ -115,19 +123,54 @@ const Index = () => {
         <div className="lg:col-start-1 lg:col-end-4 mb-4 ">
           <div className="p-2 bg-gray-200 rounded-lg">
             <h1 className="text-base font-medium">Chọn hình thức giao hàng</h1>
-            <div className="flex items-center gap-2 mt-3 w-fit lg:w-1/2 p-2 border border-blue-600 rounded-xl">
-              <Radio
-                id="united-state"
-                name="countries"
-                value="USA"
-                defaultChecked={true}
-              />
-              <Label htmlFor="united-state" className="flex items-center gap-1">
-                <span className="font-bold text-yellow-300">FAST</span>
-                <span>Giao Tiết Kiệm</span>
-                <span className="font-bold text-green-500">-14k</span>
-                <img alt="freeship" src="/image/freeship.png" />
-              </Label>
+            <div className="flex gap-2 justify-between">
+              <div className="flex items-center gap-2 mt-3 w-full lg:w-1/2 pl-2 py-1 border border-blue-600 rounded-xl">
+                <Radio
+                  id="united-state"
+                  name="countries"
+                  value={fee}
+                  defaultChecked={true}
+                  onClick={(e: any) => {setFee(14000)}}
+                />
+                <Label
+                  htmlFor="united-state"
+                  // className="flex items-center gap-1"
+                >
+                  <div className="flex gap-2 items-center">
+                    <span className="font-bold text-yellow-300">FAST</span>
+                    <span className="hidden lg:block">Giao Tiết Kiệm</span>
+                    <span className="font-bold text-green-500">-14k</span>
+                  </div>
+                  <div className="flex gap-1 items-center mt-1">
+                    <img
+                     className="h-7 w-auto"
+                    alt="freeship" src="/image/freeship.png" />
+                  </div>
+                </Label>
+              </div>
+              <div className="flex items-center gap-2 mt-3 w-full lg:w-1/2 pl-2 py-1 border border-blue-600 rounded-xl">
+                <Radio
+                  id="united-state"
+                  name="countries"
+                  value={fee}
+                  onClick={(e: any) => {setFee(30000)}}
+                />
+                <Label
+                  htmlFor="united-state"
+                  // className="flex items-center gap-1"
+                >
+                  <div className="flex gap-2 items-center">
+                    <span className="font-bold text-yellow-300">EXPRESS</span>
+                    <span className="hidden lg:block">Giao Hoả Tốc</span>
+                    <span className="font-bold text-green-500">-30k</span>
+                  </div>
+                  <div className="flex gap-1 items-center mt-1">
+                    <img
+                    className="h-7 w-auto"
+                     alt="freeship" src="/image/express.png" />
+                  </div>
+                </Label>
+              </div>
             </div>
             <div className="text-xs border border-blue-600 mt-4 p-2 rounded-xl">
               {items.map((item: any) => {
@@ -162,9 +205,11 @@ const Index = () => {
                 <input
                   id="default-radio-1"
                   type="radio"
+                  value={payment}
                   onChange={() => {
-                    setCreditCard(false);
                     setCod(true);
+                    setCreditCard(false)
+                    setPayment('cod')
                   }}
                   name="default-radio"
                   className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
@@ -180,9 +225,11 @@ const Index = () => {
                 <input
                   id="default-radio-1"
                   type="radio"
+                  value={payment}
                   onChange={() => {
                     setCod(false);
-                    setCreditCard(true);
+                    setCreditCard(true)
+                    setPayment('credit card')
                   }}
                   name="default-radio"
                   className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
@@ -194,89 +241,6 @@ const Index = () => {
                   Thanh toán bằng thẻ quốc tế Visa, Master, JCB
                 </label>
               </div>
-              {creditCard === false ? null : (
-                <>
-                <div className="border border-blue-600 rounded-xl p-4 w-full mt-3 md:w-2/3 lg:w-1/2 mx-auto">
-                  <div className="flex justify-center gap-2">
-                    <img
-                    className="w-auto h-8"
-                    src="/image/footer/ttvisa.jpg" alt="visa" />
-                    <img
-                    className="w-auto h-8"
-                    src="/image/footer/ttjcb.png" alt="visa" />
-                    <img
-                    className="w-auto h-8"
-                    src="/image/footer/ttmastercard.png" alt="visa" />
-                  </div>
-                  
-                  <div className="mt-3">
-                    <div className="mb-2 block">
-                      <Label htmlFor="email1" value="Name:" />
-                    </div>
-                    <TextInput
-                      id="email1"
-                      placeholder="Tên chủ thẻ"
-                      required={true}
-                    />
-                  </div>
-
-                  <div className="mt-3">
-                    <div className="mb-2 block">
-                      <Label htmlFor="email2" value="Card number:" />
-                    </div>
-                    <TextInput
-                      id="email2"
-                      placeholder="Số thẻ"
-                      required={true}
-                    />
-                  </div>
-
-                  <div className="flex w-full mt-3 gap-5">
-                    <div className="w-full">
-                      <div className="mb-2 block">
-                        <Label htmlFor="email3" value="Expiration (mm/yy):" />
-                      </div>
-                      <TextInput
-                        id="email3"
-                        placeholder="Ngày hết hạn"
-                        required={true}
-                        className="w-full"
-                      />
-                    </div>
-                    <div className="w-full">
-                      <div className="mb-2 block">
-                        <Label htmlFor="email4" value="Security Code:" />
-                      </div>
-                      <TextInput
-                        id="email4"
-                        placeholder="Mã số bí mật"
-                        required={true}
-                        className="w-full"
-                      />
-                    </div>
-                  </div>
-
-                </div>
-                <ToastContainer />
-                {paynow ? <div
-                className="mx-auto mb-3 text-green-500 font-medium text-lg"
-                >Pay successfully!!!</div> : null}
-                <Button
-                className="mb-3 mx-auto"
-                onClick={(e:any) => {
-                  e.preventDefault()
-                  setPaynow(true)
-                //   toast("Pay successfully", {
-                //     position: toast.POSITION.TOP_RIGHT,
-                //     type: toast.TYPE.SUCCESS,
-                //     className: 'toast-message'
-                // })
-                }}
-                >
-                      Pay now
-                  </Button>
-                  </>
-              )}
             </div>
           </div>
         </div>
@@ -285,7 +249,7 @@ const Index = () => {
             <div className="flex justify-between gap-2">
               <h1>Giao tới</h1>
               <Link
-                href="#"
+                href="/diachigiaohang/giaohang"
                 className="text-blue-700 font-medium cursor-pointer text-xs"
               >
                 thay đổi
@@ -328,7 +292,7 @@ const Index = () => {
             </div>
             <div className="flex justify-between items-center">
               <p>Phí vận chuyển</p>
-              <p>14,000đ</p>
+              <p>{Intl.NumberFormat().format(fee)}đ</p>
             </div>
             <div className="flex justify-between items-center">
               <p>Khuyến mại vận chuyển</p>
@@ -337,18 +301,23 @@ const Index = () => {
             <div className="flex justify-between items-center border-t border-gray-400 pt-2">
               <p>Tổng Tiền</p>
               <p className="text-red-800 font-medium text-2xl">
-                {Intl.NumberFormat().format(cartTotal)}đ
+                {Intl.NumberFormat().format(total)}đ
               </p>
             </div>
           </div>
           <Button
-            disabled={!payment}
+            disabled={!isPayyed}
             onClick={(e: any) => {
               axios
                 .post(`http://localhost:3006/cart/orderitem`, {
                   userId: users.id,
                   orderItems: JSON.stringify(items),
-                  cartTotal: cartTotal,
+                  cartTotal: total,
+                  address: users.address,
+                  phone: users.phone,
+                  username: users.username,
+                  payment: payment,
+                  trans: fee === 14000 ? 'fast' : 'express',
                 })
                 .then((res: any) => {
                   console.log(res.data);
