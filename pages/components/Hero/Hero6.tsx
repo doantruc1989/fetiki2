@@ -49,7 +49,7 @@ const Hero6 = () => {
 
   useEffect(() => {
     try {
-      axios.get(`https://quocson.fatcatweb.top//product?page=1`).then((response) => {
+      axios.get(`https://quocson.fatcatweb.top/product?page=1`).then((response) => {
         setProducts(response.data);
       });
     } catch (error) {
@@ -60,7 +60,7 @@ const Hero6 = () => {
   const loadMoredata = () => {
     try {
       axios
-        .get(`https://quocson.fatcatweb.top//product?page=${page}`)
+        .get(`https://quocson.fatcatweb.top/product?page=${page}`)
         .then((response) => {
           setProducts([...products, ...response.data]);
           // setIsFetching(false);
@@ -74,7 +74,7 @@ const Hero6 = () => {
     try {
       axios
         .get(
-          `https://quocson.fatcatweb.top//product/all?search=${value}&category=${category}`
+          `https://quocson.fatcatweb.top/product/all?search=${value}&category=${category}`
         )
         .then((res) => {
           setProducts(res.data);
@@ -259,7 +259,7 @@ const Hero6 = () => {
               <img
                 onClick={() => {
                   axios
-                    .get(`https://quocson.fatcatweb.top//product/${product?.id}`)
+                    .get(`https://quocson.fatcatweb.top/product/${product?.id}`)
                     .then((response) => {
                       setProductDetail(response.data);
                       setModals(!modals);

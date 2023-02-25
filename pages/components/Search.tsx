@@ -13,7 +13,7 @@ function Search() {
       try {
         await axios
           .get(
-            `https://quocson.fatcatweb.top//product/all?search=searchall&sortBy=${e.target.value}`
+            `https://quocson.fatcatweb.top/product/all?search=searchall&sortBy=${e.target.value}`
           )
           .then((res) => {
             setResult(res.data);

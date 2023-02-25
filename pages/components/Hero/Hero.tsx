@@ -19,7 +19,7 @@ const Hero = () => {
   useEffect(() => {
     try {
       axios
-        .get("https://quocson.fatcatweb.top//homepage/hero")
+        .get("https://quocson.fatcatweb.top/homepage/hero")
         .then((response) => {
           setRightPart(response.data.pop());
           setSlides(response.data);

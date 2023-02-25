@@ -30,7 +30,7 @@ function Cothebancungquantam({ prop }: any) {
     try {
       axios
         .get(
-          `https://quocson.fatcatweb.top//product/all?category=${prop.category}&search=${prop.search}&sortBy=${prop.sortBy}`
+          `https://quocson.fatcatweb.top/product/all?category=${prop.category}&search=${prop.search}&sortBy=${prop.sortBy}`
         )
         .then((res) => {
           setProducts(res.data);
@@ -93,7 +93,7 @@ function Cothebancungquantam({ prop }: any) {
                   onClick={() => {
                     axios
                       .get(
-                        `https://quocson.fatcatweb.top//product/${product?.id}`
+                        `https://quocson.fatcatweb.top/product/${product?.id}`
                       )
                       .then((response) => {
                         setProductDetail(response.data);
