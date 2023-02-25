@@ -13,7 +13,7 @@ const Homepage = () => {
 
   useEffect(() => {
     try {
-      axios.get("http://localhost:3006/listcategory").then((response) => {
+      axios.get("https://quocson.fatcatweb.top//listcategory").then((response) => {
         setItems(response.data);
       });
     } catch (error) {

@@ -29,7 +29,7 @@ const ListProductgiatot = ({ prop }: any) => {
     try {
       axios
         .get(
-          `http://localhost:3006/product/all?category=${prop.category}&search=${prop.search}&sortBy=${prop.sortBy}&fromPrice=${prop.fromPrice}&toPrice=${prop.toPrice}`
+          `https://quocson.fatcatweb.top//product/all?category=${prop.category}&search=${prop.search}&sortBy=${prop.sortBy}&fromPrice=${prop.fromPrice}&toPrice=${prop.toPrice}`
         )
         .then((response) => {
           setProducts(response.data);
@@ -52,7 +52,7 @@ const ListProductgiatot = ({ prop }: any) => {
                     onClick={() => {
                       axios
                         .get(
-                          `http://localhost:3006/product/${product?.id}`
+                          `https://quocson.fatcatweb.top//product/${product?.id}`
                         )
                         .then((response) => {
                           setProductDetail(response.data);

@@ -32,7 +32,7 @@ function Index() {
     const user = stored ? JSON.parse(stored) : "";
     const id = user.id;
     const config = {
-      baseURL: "http://localhost:3006/",
+      baseURL: "https://quocson.fatcatweb.top//",
       headers: { Authorization: "Bearer " + user.tokens.accessToken },
     };
 
@@ -45,7 +45,7 @@ function Index() {
   useEffect(() => {
     try {
       axios
-        .get(`http://localhost:3006/cart/admin/order/${users.id}`)
+        .get(`https://quocson.fatcatweb.top//cart/admin/order/${users.id}`)
         .then((res: any) => {
           setOrders(res.data);
         });
@@ -58,7 +58,7 @@ function Index() {
   const handleChangeAvt = () => {
     try {
       axios
-        .patch(`http://localhost:3006/users/${users.id}`, {
+        .patch(`https://quocson.fatcatweb.top//users/${users.id}`, {
           image: avatar || users.image,
         })
         .then((res: any) => {
@@ -78,7 +78,7 @@ function Index() {
   const handleChangePw = () => {
     try {
       axios
-        .patch(`http://localhost:3006/users/profile/${users.id}`, {
+        .patch(`https://quocson.fatcatweb.top//users/profile/${users.id}`, {
           password: userPw,
         })
         .then((res: any) => {
@@ -214,7 +214,7 @@ function Index() {
                             setPayment(true);
                             setPaynow(false);
                             setIsPaid(false)
-                            axios.patch(`http://localhost:3006/cart/admin/listorder/${order.id}`,
+                            axios.patch(`https://quocson.fatcatweb.top//cart/admin/listorder/${order.id}`,
                                       {
                                         isPaid: true,
                                       })

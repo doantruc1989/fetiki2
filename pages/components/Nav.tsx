@@ -31,7 +31,7 @@ const Nav = () => {
 
   useEffect(() => {
     try {
-      axios.get("http://localhost:3006/listcategory").then((response) => {
+      axios.get("https://quocson.fatcatweb.top//listcategory").then((response) => {
         setItems(response.data);
       });
     } catch (error) {
@@ -49,7 +49,7 @@ const Nav = () => {
 
   useEffect(() => {
     try {
-      axios.get("http://localhost:3006/homepage/provinces").then((response) => {
+      axios.get("https://quocson.fatcatweb.top//homepage/provinces").then((response) => {
         setProvinces(response.data);
       });
     } catch (error) {
@@ -59,7 +59,7 @@ const Nav = () => {
 
   useEffect(() => {
     try {
-      axios.get(`http://localhost:3006/homepage/provinces/${city}`).then((response) => {
+      axios.get(`https://quocson.fatcatweb.top//homepage/provinces/${city}`).then((response) => {
         setStates(response.data ? JSON.parse(response.data.districts) : null);
       });
     } catch (error) {
@@ -71,7 +71,7 @@ const Nav = () => {
     setModals(false);
     if(users) {
       try {
-        axios.patch(`http://localhost:3006/users/${users.id}`, {id : users.id, address: `${city}, ${address2}` })
+        axios.patch(`https://quocson.fatcatweb.top//users/${users.id}`, {id : users.id, address: `${city}, ${address2}` })
         .then(res => {
           console.log(res?.data)
         })

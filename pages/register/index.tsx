@@ -19,7 +19,7 @@ const Register = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:3006/auth/signup",
+        "https://quocson.fatcatweb.top//auth/signup",
         { email, password, username }
       );
         setSuccess(true);

@@ -27,7 +27,7 @@ const Index = () => {
       const user = stored ? JSON.parse(stored) : "";
       const id = user.id;
       const config = {
-        baseURL: "http://localhost:3006/",
+        baseURL: "https://quocson.fatcatweb.top//",
         headers: { Authorization: "Bearer " + user.tokens.accessToken },
       };
 
@@ -309,7 +309,7 @@ return setTotal(cartTotal + fee - 14000)
             disabled={!isPayyed}
             onClick={(e: any) => {
               axios
-                .post(`http://localhost:3006/cart/orderitem`, {
+                .post(`https://quocson.fatcatweb.top//cart/orderitem`, {
                   userId: users.id,
                   orderItems: JSON.stringify(items),
                   cartTotal: total,

@@ -9,7 +9,7 @@ const Hero5 = () => {
 
   useEffect(() => {
     try {
-      axios.get("http://localhost:3006/homepage/bosuutap").then((response) => {
+      axios.get("https://quocson.fatcatweb.top//homepage/bosuutap").then((response) => {
         setCollections(response.data);
 
       });

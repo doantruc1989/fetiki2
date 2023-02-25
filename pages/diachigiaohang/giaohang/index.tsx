@@ -18,7 +18,7 @@ const Index = () => {
 
   const handleClick = () => {
     try {
-      axios.get("http://localhost:3006/homepage/provinces").then((response) => {
+      axios.get("https://quocson.fatcatweb.top//homepage/provinces").then((response) => {
         setProvinces(response.data);
       });
     } catch (error) {
@@ -38,7 +38,7 @@ const Index = () => {
       const user = stored ? JSON.parse(stored) : "";
       const id = user.id;
       const config = {
-        baseURL: "http://localhost:3006/",
+        baseURL: "https://quocson.fatcatweb.top//",
         headers: { Authorization: "Bearer " + user.tokens.accessToken },
       };
 
@@ -56,7 +56,7 @@ const Index = () => {
   useEffect(() => {
     try {
       axios
-        .get(`http://localhost:3006/homepage/provinces/${city}`)
+        .get(`https://quocson.fatcatweb.top//homepage/provinces/${city}`)
         .then((response) => {
           setStates(response.data ? JSON.parse(response.data.districts) : null);
         });
@@ -144,7 +144,7 @@ const Index = () => {
                   <Link href="/diachigiaohang/giaohang/thanhtoan"
                   onClick={() => {
                     return(
-                      axios.patch(`http://localhost:3006/users/${users.id}`,
+                      axios.patch(`https://quocson.fatcatweb.top//users/${users.id}`,
                       {
                         address: `${users.address}, ${address}`
                       }
@@ -272,7 +272,7 @@ const Index = () => {
                 <Link href="/diachigiaohang/giaohang/thanhtoan"
                 onClick={() => {
                   return(
-                    axios.patch(`http://localhost:3006/users/${users.id}`,
+                    axios.patch(`https://quocson.fatcatweb.top//users/${users.id}`,
                     {
                       username: username || users.username,
                       phone: phone || users.phone,

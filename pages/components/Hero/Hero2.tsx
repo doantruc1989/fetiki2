@@ -8,7 +8,7 @@ const Hero2 = () => {
   const [brands, setBrands] = useState([]);
   useEffect(() => {
     try {
-      axios.get("http://localhost:3006/homepage/chinhhang").then((response) => {
+      axios.get("https://quocson.fatcatweb.top//homepage/chinhhang").then((response) => {
         setBrands(response.data);
       });
     } catch (error) {
