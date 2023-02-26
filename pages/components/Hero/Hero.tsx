@@ -19,7 +19,7 @@ const Hero = () => {
   useEffect(() => {
     try {
       axios
-        .get("https://quocson.fatcatweb.top/homepage/hero")
+        .get("http://localhost:3006/homepage/hero")
         .then((response) => {
           setRightPart(response.data.pop());
           setSlides(response.data);
@@ -31,14 +31,14 @@ const Hero = () => {
 
   const responsive = {
     desktop: {
-      breakpoint: { max: 3000, min: 768 },
+      breakpoint: { max: 3000, min: 968 },
       items: 1,
-      slidesToSlide: 3, // optional, default to 1.
+      slidesToSlide: 1, // optional, default to 1.
     },
     tablet: {
-      breakpoint: { max: 768, min: 464 },
+      breakpoint: { max: 968, min: 464 },
       items: 1,
-      slidesToSlide: 2, // optional, default to 1.
+      slidesToSlide: 1, // optional, default to 1.
     },
     mobile: {
       breakpoint: { max: 464, min: 0 },
@@ -48,8 +48,7 @@ const Hero = () => {
   };
 
   return (
-    <Card className="bg-gray-200 my-6 md:ml-6">
-      <div className="flex items-center">
+      <div className="flex items-center mt-8 bg-[#F5F5FA] rounded-xl">
         <Carousel
           swipeable={false}
           draggable={true}
@@ -62,11 +61,11 @@ const Hero = () => {
           keyBoardControl={true}
           customTransition="all .5"
           transitionDuration={2000}
-          containerClass="carousel-container lg:w-3/4"
+          containerClass="carousel-container w-full"
           removeArrowOnDeviceType={["tablet", "mobile", "desktop"]}
           deviceType={"desktop"}
           dotListClass="custom-dot-list-style"
-          itemClass="carousel-item-margin-40-px"
+          // itemClass="carousel-item-margin-40-px"
         >
           {slides
             ? slides.map((newSlide: any) => {
@@ -83,7 +82,7 @@ const Hero = () => {
               })
             : null}
         </Carousel>
-        <div className="hidden lg:block lg:ml-2">
+        <div className="hidden lg:block w-80">
           {rightPart ? (
             <a href={rightPart.path}>
               <img
@@ -96,7 +95,7 @@ const Hero = () => {
           ) : null}
         </div>
       </div>
-    </Card>
+
   );
 };
 

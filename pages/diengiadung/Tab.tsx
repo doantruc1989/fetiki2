@@ -19,7 +19,7 @@ const Tab = () => {
     search: "desc",
   };
   return (
-    <div className="bg-gray-200 rounded-xl">
+    <div className="bg-white rounded-xl mb-6">
       <div className="mt-3">
         <Tabs.Group aria-label="Tabs with underline" style="underline"
         className="flex justify-center md:justify-start"

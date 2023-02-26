@@ -13,7 +13,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
     <React.Fragment>
       <HeadSeo prop={prop}/>
       <Nav />
-        <main className=" w-full md:w-11/12 mx-auto">{children}</main>
+        <main className="w-full mx-auto bg-[#F5F5FA]">{children}</main>
       <Footera />
     </React.Fragment>
   );

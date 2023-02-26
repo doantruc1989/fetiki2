@@ -9,7 +9,7 @@ const Hero5 = () => {
 
   useEffect(() => {
     try {
-      axios.get("https://quocson.fatcatweb.top/homepage/bosuutap").then((response) => {
+      axios.get("http://localhost:3006/homepage/bosuutap").then((response) => {
         setCollections(response.data);
 
       });
@@ -20,25 +20,25 @@ const Hero5 = () => {
 
   const responsive = {
     desktop: {
-      breakpoint: { max: 3000, min: 768 },
-      items: 4,
-      slidesToSlide: 3 // optional, default to 1.
+      breakpoint: { max: 3000, min: 968 },
+      items: 6,
+      slidesToSlide: 6 // optional, default to 1.
     },
     tablet: {
-      breakpoint: { max: 768, min: 464 },
+      breakpoint: { max: 968, min: 464 },
       items: 3,
-      slidesToSlide: 2 // optional, default to 1.
+      slidesToSlide: 3 // optional, default to 1.
     },
     mobile: {
       breakpoint: { max: 464, min: 0 },
       items: 2,
-      slidesToSlide: 1 // optional, default to 1.
+      slidesToSlide: 2 // optional, default to 1.
     }
   };
 
   return (
-    <Card className="bg-gray-200 my-6 md:ml-6">
-      <h5 className="text-base md:text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+    <Card className="bg-white mt-6">
+      <h5 className="text-base ml-1 md:text-xl font-bold text-gray-900 dark:text-white">
         Bộ sưu tập nổi bật
       </h5>
 
@@ -63,13 +63,15 @@ const Hero5 = () => {
             {collections.map((collection : any) => {
               return (
                 <a href={collection.path} key={collection.id}>
+<div className="border border-gray-200 rounded-md mx-1">
 
                   <img
                     src={collection.image}
                     alt="..."
-                    className="rounded-xl w-11/12 mx-auto"
+                    className="rounded-md mx-auto "
                    
                   />
+</div>
                 </a>
               );
             })}

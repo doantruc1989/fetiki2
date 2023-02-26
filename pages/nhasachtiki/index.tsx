@@ -68,40 +68,40 @@ const Index = () => {
     }
 
   return (
-    <div className="my-5">
+    <div>
        <HeadSeo prop={prop}/>
-      <Breadcrumb aria-label="Default breadcrumb example" className="mx-3 my-5">
+      <Breadcrumb className="w-full lg:w-11/12 mx-auto pt-5">
         <Breadcrumb.Item href="/" icon={HiHome}>
           Trang chủ
         </Breadcrumb.Item>
         <Breadcrumb.Item>Nhà Sách Tiki</Breadcrumb.Item>
       </Breadcrumb>
-      <div className="grid gap-6 grid-cols-4 w-11/12 mx-auto mt-5">
+      <div className="grid gap-6 grid-cols-4 w-full lg:w-11/12 mx-auto mt-2">
         <div className="text-xs lg:text-sm md:col-start-1 md:col-end-2 hidden md:block">
-          <div className=" bg-gray-200 mt-3 rounded-xl p-4 leading-loose">
+          <div className=" bg-white mt-3 rounded-xl p-4 leading-loose">
             <h2 className="font-medium text-sm mb-2">Danh mục sản phẩm</h2>
-            <button className="ml-2 mb-2 px-2 rounded-xl bg-gray-300 w-fit"
+            <button className="ml-2 mb-2 px-2 rounded-xl border border-gray-200 hover:bg-gray-200 bg-white w-fit"
             onClick={() => {
                 setChangeTab(true);
                 setSearchs(danhmuc1);
               }}>
               English Books
             </button>
-            <button className="ml-2 mb-2 px-2 rounded-xl bg-gray-300 w-fit"
+            <button className="ml-2 mb-2 px-2 rounded-xl border border-gray-200 hover:bg-gray-200 bg-white w-fit"
             onClick={() => {
                 setChangeTab(true);
                 setSearchs(danhmuc2);
               }}>
               Sách tiếng Việt
             </button>
-            <button className="ml-2 mb-2 px-2 rounded-xl bg-gray-300 w-fit"
+            <button className="ml-2 mb-2 px-2 rounded-xl border border-gray-200 hover:bg-gray-200 bg-white w-fit"
             onClick={() => {
                 setChangeTab(true);
                 setSearchs(danhmuc3);
               }}>
               Văn phòng phẩm
             </button>
-            <button className="ml-2 mb-2 px-2 rounded-xl bg-gray-300 w-fit"
+            <button className="ml-2 mb-2 px-2 rounded-xl border border-gray-200 hover:bg-gray-200 bg-white w-fit"
             onClick={() => {
                 setChangeTab(true);
                 setSearchs(danhmuc4);
@@ -112,9 +112,9 @@ const Index = () => {
             
           </div>
 
-          <div className="flex flex-col bg-gray-200 mt-3 rounded-xl p-4 leading-loose">
+          <div className="flex flex-col bg-white mt-3 rounded-xl p-4 leading-loose">
             <h2 className="font-medium text-sm mb-2">Giá</h2>
-            <button className="ml-2 mb-2 px-2 rounded-xl bg-gray-300 w-fit"
+            <button className="ml-2 mb-2 px-2 rounded-xl border border-gray-200 hover:bg-gray-200 bg-white w-fit"
             onClick={() => {
                 setChangeTab(true);
                 setSearchs(price1);
@@ -122,7 +122,7 @@ const Index = () => {
             >
               Dưới 20.000
             </button>
-            <button className="ml-2 mb-2 px-2 rounded-xl bg-gray-300 w-fit"
+            <button className="ml-2 mb-2 px-2 rounded-xl border border-gray-200 hover:bg-gray-200 bg-white w-fit"
              onClick={() => {
                 setChangeTab(true);
                 setSearchs(price2);
@@ -130,7 +130,7 @@ const Index = () => {
               >
               20.000 to 60.000
             </button>
-            <button className="ml-2 mb-2 px-2 rounded-xl bg-gray-300 w-fit"
+            <button className="ml-2 mb-2 px-2 rounded-xl border border-gray-200 hover:bg-gray-200 bg-white w-fit"
             onClick={() => {
                 setChangeTab(true);
                 setSearchs(price3);
@@ -138,7 +138,7 @@ const Index = () => {
               >
               60.000 to 210.000
             </button>
-            <button className="ml-2 mb-2 px-2 rounded-xl bg-gray-300 w-fit"
+            <button className="ml-2 mb-2 px-2 rounded-xl border border-gray-200 hover:bg-gray-200 bg-white w-fit"
             onClick={() => {
                 setChangeTab(true);
                 setSearchs(price4);
@@ -148,7 +148,7 @@ const Index = () => {
             </button>
           </div>
 
-          <div className=" bg-gray-200 mt-3 rounded-xl p-4 leading-loose">
+          <div className=" bg-white mt-3 rounded-xl p-4 leading-loose">
             <h2 className="font-medium text-sm mb-2">Dịch vụ</h2>
             <div className="flex items-center mb-4">
               <input
@@ -227,10 +227,10 @@ const Index = () => {
           </div>
         </div>
         <div className="col-start-1 md:col-start-2 col-end-5 ">
-          <div className="bg-gray-200 rounded-xl">
-            <div className="mx-3 mt-3 font-medium text-xl">
-              <h1 className="mb-3 pt-3">Nhà Sách Tiki</h1>
-              <div className="h-56 gap-4 sm:h-64 xl:h-80 2xl:h-96 pb-3 px-3">
+          <div className="bg-white rounded-xl p-2 mt-3">
+            <div className="font-medium text-xl">
+              <h1 className="ml-1">Nhà Sách Tiki</h1>
+              <div className="h-56 gap-4 sm:h-64 xl:h-80 2xl:h-9 px-1">
                 <Carousel
                   slide={true}
                   indicators={false}

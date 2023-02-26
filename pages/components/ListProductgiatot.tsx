@@ -29,7 +29,7 @@ const ListProductgiatot = ({ prop }: any) => {
     try {
       axios
         .get(
-          `https://quocson.fatcatweb.top/product/all?category=${prop.category}&search=${prop.search}&sortBy=${prop.sortBy}&fromPrice=${prop.fromPrice}&toPrice=${prop.toPrice}`
+          `http://localhost:3006/product/all?category=${prop.category}&search=${prop.search}&sortBy=${prop.sortBy}&fromPrice=${prop.fromPrice}&toPrice=${prop.toPrice}`
         )
         .then((response) => {
           setProducts(response.data);
@@ -43,7 +43,7 @@ const ListProductgiatot = ({ prop }: any) => {
   return (
     <React.Fragment>
       <ToastContainer />
-      <div className="grid gap-3 grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 mx-3">
+      <div className="grid gap-2 grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 bg-white">
         {products
           ? products.map((product: any) => {
               return (
@@ -52,7 +52,7 @@ const ListProductgiatot = ({ prop }: any) => {
                     onClick={() => {
                       axios
                         .get(
-                          `https://quocson.fatcatweb.top/product/${product?.id}`
+                          `http://localhost:3006/product/${product?.id}`
                         )
                         .then((response) => {
                           setProductDetail(response.data);
@@ -64,15 +64,17 @@ const ListProductgiatot = ({ prop }: any) => {
                     alt="..."
                   />
                   <Link href={"/products/" + product?.id}>
-                    <h5 className="cursor-pointer text-xs lg:text-sm font-semibold text-gray-900 dark:text-white mx-1 mt-3 h-20 text-ellipsis">
-                      {product?.productName}
-                    </h5>
+                  <h5 className="cursor-pointer text-center text-xs lg:mt-3 font-medium text-gray-900 dark:text-white mx-1 mt-2 h-16 lg:h-24 text-ellipsis">
+                    {product?.productName.substring(0, 70)}
+                  </h5>
                   </Link>
                   <div className="flex items-center flex-col justify-between">
-                    <p className="text-sm font-bold text-gray-900 dark:text-white my-1">
-                      {Intl.NumberFormat().format(product?.price)} đ
-                    </p>
+                  <p className="text-sm font-medium text-gray-800 dark:text-white my-1">
+                    {Intl.NumberFormat().format(product?.price)} đ
+                  </p>
                     <Button
+                     color="failure"
+                     size="xs"
                       className="mb-5 mt-2"
                       onClick={() => {
                         addItem(product);
@@ -83,7 +85,7 @@ const ListProductgiatot = ({ prop }: any) => {
                         });
                       }}
                     >
-                      Add to cart
+                          Chọn Mua
                     </Button>
                   </div>
                 </div>
@@ -100,12 +102,12 @@ const ListProductgiatot = ({ prop }: any) => {
         >
           <Modal.Header>Product Details</Modal.Header>
           <Modal.Body>
-            <div className="grid grid-cols-1 items-center align-center md:grid-cols-2 md:items-start gap-4 mx-3">
-              <img
-                src={productDetail[0]?.image}
-                className="w-full h-auto rounded-lg"
-                alt="..."
-              />
+          <div className="grid grid-cols-1 items-center align-center md:grid-cols-2 md:items-start gap-4 mx-3">
+                <img
+                  src={productDetail[0]?.image}
+                  className="w-full h-auto rounded-lg"
+                  alt="..."
+                />
               <div>
                 <div className="text-xs mb-3 flex">
                   <h5>Thương hiệu: </h5>
@@ -136,23 +138,25 @@ const ListProductgiatot = ({ prop }: any) => {
                 </div>
 
                 <div className="bg-gray-100 font-bold rounded-md p-4 my-4 text-red-700 text-xl md:text-3xl">
-                  <h2>{Intl.NumberFormat().format(productDetail[0]?.price)} đ</h2>
-                </div>
+                    <h2>
+                      {Intl.NumberFormat().format(productDetail[0]?.price)} đ
+                    </h2>
+                  </div>
               </div>
             </div>
             <div className="bg-gray-100 rounded-md p-3 mx-3 mt-4">
-              <h2 className="font-bold text-sm md:text-base">
-                Mô tả sản phẩm:
-              </h2>
-              <div className="text-sm md:text-base text-justify">
-                {productDetail[0]?.content}
+                <h2 className="font-bold text-sm md:text-base">
+                  Mô tả sản phẩm:
+                </h2>
+                <div className="text-sm md:text-base text-justify">
+                  {productDetail[0]?.content}
+                </div>
               </div>
-            </div>
           </Modal.Body>
         </Modal>
       </div>
-      <Link href={path} className="flex justify-center items-center mt-2">
-        <p className="w-fit mb-5 border border-blue-600 py-2 rounded-xl px-3 font-medium text-base text-white bg-blue-500">
+      <Link href={path} className="flex justify-center items-center mt-6 pb-6">
+        <p  className="w-fit border-2 border-blue-500 rounded-md py-2 px-16 hover:bg-blue-100 text-blue-700">
           Xem thêm
         </p>
       </Link>

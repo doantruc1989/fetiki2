@@ -12,9 +12,9 @@ function Index() {
     description: "tiki làm trang voucher mã săn mỗi ngày everyday sales off giá rẻ đơn giản easy",
   }
   return (
-    <div className="w-9/12 mx-auto mb-5 mt-5">
+    <div className="w-full lg:w-11/12 mx-auto pb-6">
       <HeadSeo prop={prop}/>
-      <Breadcrumb aria-label="Default breadcrumb example" className="mx-3 my-5">
+      <Breadcrumb aria-label="Default breadcrumb example" className="py-6">
         <Breadcrumb.Item href="/" icon={HiHome}>
           Trang chủ
         </Breadcrumb.Item>

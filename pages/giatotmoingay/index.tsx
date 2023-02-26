@@ -51,9 +51,9 @@ function Index() {
   }
 
   return (
-    <div className="mb-5">
+    <div className="w-full lg:w-11/12 mx-auto mb-5">
       <HeadSeo prop={prop}/>
-      <Breadcrumb aria-label="Default breadcrumb example" className="mx-3 my-5">
+      <Breadcrumb aria-label="Default breadcrumb example" className="mx-auto py-5">
         <Breadcrumb.Item href="/" icon={HiHome}>
           Trang chủ
         </Breadcrumb.Item>
@@ -64,23 +64,23 @@ function Index() {
         src="/image/other/giatotmoingay.png"
         alt="giatotmoingay"
       />
-      <div className="w-full md:w-11/12 mx-auto">
+      <div className="w-full mx-auto">
         <div className="mt-3">
           <Tabs.Group aria-label="Tabs with underline" style="underline"
           className="flex justify-evenly"
           >
             <Tabs.Item active={true} title="Điện thoại - máy tính bảng">
-              <div className="bg-gray-200 rounded-xl pt-3">
+              <div className="bg-white rounded-xl pt-3">
                 <ListProductgiatot prop={phobien} />
               </div>
             </Tabs.Item>
             <Tabs.Item title="Điện gia dụng">
-            <div className="bg-gray-200 rounded-xl pt-3">
+            <div className="bg-white rounded-xl pt-3">
               <ListProductgiatot prop={asc} />
               </div>
             </Tabs.Item>
             <Tabs.Item title="Nhà sách tiki">
-            <div className="bg-gray-200 rounded-xl pt-3">
+            <div className="bg-white rounded-xl pt-3">
               <ListProductgiatot prop={desc} />
               </div>
             </Tabs.Item>
@@ -88,23 +88,23 @@ function Index() {
         </div>
       </div>
 
-      <div className="w-full md:w-11/12 mx-auto">
+      <div className="w-full mx-auto">
         <div className="mt-3">
           <Tabs.Group aria-label="Tabs with underline" style="underline"
           className="flex justify-evenly"
           >
             <Tabs.Item active={true} title="Đồ nam" >
-              <div className="bg-gray-200 rounded-xl pt-3">
+              <div className="bg-white rounded-xl pt-3">
                 <ListProductgiatot prop={phobien2} />
               </div>
             </Tabs.Item>
             <Tabs.Item title="Đồ nữ">
-            <div className="bg-gray-200 rounded-xl pt-3">
+            <div className="bg-white rounded-xl pt-3">
               <ListProductgiatot prop={asc2} />
               </div>
             </Tabs.Item>
             <Tabs.Item title="Giày nữ">
-            <div className="bg-gray-200 rounded-xl pt-3">
+            <div className="bg-white rounded-xl pt-3">
               <ListProductgiatot prop={desc2} />
               </div>
             </Tabs.Item>

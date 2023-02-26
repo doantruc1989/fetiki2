@@ -5,7 +5,7 @@ import ListProductdetail from "../components/ListProductdetail";
 const TabSearch = ({ prop }: any) => {
   return (
     <div>
-      <div className="bg-gray-200 rounded-xl">
+    <div className="bg-white rounded-xl mb-6">
         <div className="mt-3">
           <Tabs.Group aria-label="Tabs with underline" style="underline">
             <Tabs.Item active={true} title="Search">

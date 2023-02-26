@@ -31,7 +31,7 @@ const Index = () => {
   const handleClick = () => {
     try {
       axios
-        .get("https://quocson.fatcatweb.top/homepage/provinces")
+        .get("http://localhost:3006/homepage/provinces")
         .then((response) => {
           setProvinces(response.data);
         });
@@ -52,7 +52,7 @@ const Index = () => {
       const user = stored ? JSON.parse(stored) : "";
       const id = user.id;
       const config = {
-        baseURL: "https://quocson.fatcatweb.top/",
+        baseURL: "http://localhost:3006/",
         headers: { Authorization: "Bearer " + user.tokens.accessToken },
       };
 
@@ -70,7 +70,7 @@ const Index = () => {
   useEffect(() => {
     try {
       axios
-        .get(`https://quocson.fatcatweb.top/homepage/provinces/${city}`)
+        .get(`http://localhost:3006/homepage/provinces/${city}`)
         .then((response) => {
           setStates(response.data ? JSON.parse(response.data.districts) : null);
         });
@@ -80,7 +80,7 @@ const Index = () => {
   }, [city]);
 
   return (
-    <React.Fragment>
+    <div className="bg-[#F5F5FA] h-screen">
       <HeadSeo prop={prop} />
       <div className="sticky top-0 z-50 w-full mx-auto">
         <nav className="navbar flex items-center justify-between py-5 h-fit px-4">
@@ -133,8 +133,8 @@ const Index = () => {
           </div>
         </nav>
       </div>
-      <div className="w-11/12 md:w-3/5 mx-auto h-screen my-10">
-        <div className="flex flex-col items-start">
+      <div className="pt-6">
+        <div className="flex flex-col items-start w-11/12 md:w-3/5 mx-auto">
           <div className="w-full mb-10">
             <h2 className="font-medium mb-3">2. Địa chỉ giao hàng mặc định</h2>
             <div className="flex flex-col items-center">
@@ -158,7 +158,7 @@ const Index = () => {
                   onClick={() => {
                     return axios
                       .patch(
-                        `https://quocson.fatcatweb.top/users/${users.id}`,
+                        `http://localhost:3006/users/${users.id}`,
                         {
                           address: `${users.address}, ${address}`,
                         }
@@ -186,9 +186,8 @@ const Index = () => {
               Thêm địa chỉ giao hàng mới
             </button>{" "}
           </h3>
-        </div>
-        {isOpen && (
-          <div className="flex flex-col w-full mt-5">
+          {isOpen && (
+          <div className="flex flex-col w-full mx-auto mt-5 bg-[#F5F5FA]">
             <div className="mb-2 flex items-center justify-between md:justify-end gap-10">
               <Label htmlFor="name" color="info" value="Họ tên" />
               <TextInput
@@ -266,7 +265,7 @@ const Index = () => {
                 disabled={!disable2}
                 onClick={() => {
                   return axios
-                    .patch(`https://quocson.fatcatweb.top/users/${users.id}`, {
+                    .patch(`http://localhost:3006/users/${users.id}`, {
                       username: username || users.username,
                       phone: phone || users.phone,
                       address: `${city}, ${address2}, ${newAdd}`,
@@ -282,8 +281,10 @@ const Index = () => {
             </div>
           </div>
         )}
+        </div>
+        
       </div>
-    </React.Fragment>
+      </div>
   );
 };
 

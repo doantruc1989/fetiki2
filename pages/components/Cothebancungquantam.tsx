@@ -30,7 +30,7 @@ function Cothebancungquantam({ prop }: any) {
     try {
       axios
         .get(
-          `https://quocson.fatcatweb.top/product/all?category=${prop.category}&search=${prop.search}&sortBy=${prop.sortBy}`
+          `http://localhost:3006/product/all?category=${prop.category}&search=${prop.search}&sortBy=${prop.sortBy}`
         )
         .then((res) => {
           setProducts(res.data);
@@ -43,13 +43,13 @@ function Cothebancungquantam({ prop }: any) {
   const responsive = {
     desktop: {
       breakpoint: { max: 3000, min: 968 },
-      items: 5,
-      slidesToSlide: 4, // optional, default to 1.
+      items: 6,
+      slidesToSlide: 6, // optional, default to 1.
     },
     tablet: {
       breakpoint: { max: 968, min: 464 },
-      items: 3,
-      slidesToSlide: 3, // optional, default to 1.
+      items: 4,
+      slidesToSlide: 4, // optional, default to 1.
     },
     mobile: {
       breakpoint: { max: 464, min: 0 },
@@ -59,10 +59,10 @@ function Cothebancungquantam({ prop }: any) {
   };
 
   return (
-    <Card className="bg-gray-200 mx-3">
+    <Card className="bg-white w-full lg:w-11/12 mx-auto">
       <div className="flex justify-between">
         <div className="flex contents-start items-center">
-          <h5 className="text-base md:text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+          <h5 className="text-base ml-1 md:text-xl font-bold text-gray-900 dark:text-white">
             Có thể bạn đang tìm kiếm
           </h5>
         </div>
@@ -88,12 +88,12 @@ function Cothebancungquantam({ prop }: any) {
         >
           {products?.map((product: any) => {
             return (
-              <div className="rounded-lg bg-white mx-1" key={product?.id}>
+              <div className="rounded-md border mx-1 border-gray-200 shadow-md bg-white mb-1" key={product?.id}>
                 <img
                   onClick={() => {
                     axios
                       .get(
-                        `https://quocson.fatcatweb.top/product/${product?.id}`
+                        `http://localhost:3006/product/${product?.id}`
                       )
                       .then((response) => {
                         setProductDetail(response.data);
@@ -101,19 +101,21 @@ function Cothebancungquantam({ prop }: any) {
                       });
                   }}
                   src={product?.image}
-                  className="rounded-t-lg cursor-pointer w-full mx-auto h-auto"
+                  className="rounded-t-md cursor-pointer w-full h-auto"
                   alt="..."
                 />
                 <Link href={"/products/" + product?.id}>
-                  <h5 className="cursor-pointer text-xs lg:text-sm font-semibold text-gray-900 dark:text-white mx-1 mt-3 h-24 mb-4 text-ellipsis">
-                    {product?.productName}
-                  </h5>
+                <h5 className="cursor-pointer text-center text-xs lg:mt-3 font-medium text-gray-900 dark:text-white mx-1 mt-2 h-16 lg:h-24 text-ellipsis">
+                  {product?.productName.substring(0,70)}
+                </h5>
                 </Link>
                 <div className="flex items-center flex-col justify-between">
-                  <p className="text-sm md:my-3 font-bold text-gray-900 dark:text-white">
-                    {Intl.NumberFormat().format(product?.price)} đ
-                  </p>
+                    <p className="text-sm font-bold text-gray-900 dark:text-white my-1">
+                      {Intl.NumberFormat().format(product?.price)} đ
+                    </p>
                   <Button
+                   color="failure"
+                   size="xs"
                     className="mb-5 mt-2"
                     onClick={() => {
                       addItem(product);
@@ -124,7 +126,7 @@ function Cothebancungquantam({ prop }: any) {
                       });
                     }}
                   >
-                    Add to cart
+                     Chọn Mua
                   </Button>
                 </div>
               </div>

@@ -9,15 +9,15 @@ body html {
 }
 
 .hover:hover {
-  background-color: #d1d5db;
+  background-color: white;
 }
 
 .navbar {
-  background-color: #efefef;
+  background-color: white;
 }
 
 .navbutton {
-  background-color: #efefef;
+  background-color: white;
   color: #0a68ff;
   font-size: 20px;
 }

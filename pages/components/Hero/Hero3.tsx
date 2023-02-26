@@ -36,7 +36,7 @@ const Hero3 = () => {
 
   useEffect(() => {
     try {
-      axios.get("https://quocson.fatcatweb.top/product/all?search=random").then((res) => {
+      axios.get("http://localhost:3006/product/all?search=random").then((res) => {
         setProducts(res.data);
       });
     } catch (error) {
@@ -48,25 +48,25 @@ const Hero3 = () => {
     desktop: {
       breakpoint: { max: 3000, min: 968 },
       items: 6,
-      slidesToSlide: 3 // optional, default to 1.
+      slidesToSlide: 6 // optional, default to 1.
     },
     tablet: {
       breakpoint: { max: 968, min: 464 },
       items: 3,
-      slidesToSlide: 2 // optional, default to 1.
+      slidesToSlide: 3 // optional, default to 1.
     },
     mobile: {
       breakpoint: { max: 464, min: 0 },
       items: 2,
-      slidesToSlide: 1 // optional, default to 1.
+      slidesToSlide: 2 // optional, default to 1.
     }
   };
 
   return (
-    <Card className="bg-gray-200 my-6 md:ml-6">
+    <Card className="bg-white mt-6">
       <div className="flex justify-between">
-        <div className="flex contents-start items-center">
-          <h5 className="text-base md:text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+        <div className="flex contents-start items-center ml-1">
+          <h5 className="text-base md:text-xl font-bold text-gray-900 dark:text-white">
             Giá sốc hôm nay
           </h5>
           <CountdownComp />
@@ -103,11 +103,11 @@ const Hero3 = () => {
         >
             {products.map((product : any) => {
               return (
-                <div className="rounded-lg mx-2 bg-white relative" key={product?.id}>
+                <div className="rounded-md border-gray-200 border shadow-md mx-1 bg-white relative" key={product?.id}>
                   <img
                     onClick={() => {
                       axios
-                        .get(`https://quocson.fatcatweb.top/product/${product?.id}`)
+                        .get(`http://localhost:3006/product/${product?.id}`)
                         .then((response) => {
                           setProductDetail(response.data);
                           setModals(!modals);
@@ -117,15 +117,17 @@ const Hero3 = () => {
                     className="rounded-t-lg cursor-pointer w-full h-auto mx-auto relative"
                     alt="..."
                   /> 
-                             <p className="absolute top-0 px-1 text-xs left-0 bg-red-400 text-red-700 p-0.5 rounded-lg">
+                             <p className="absolute top-0 px-1 text-xs left-0 bg-red-700 text-white p-0.5 rounded-md">
                       -{Math.floor(Math.random() * 80)}%
                     </p>
-                  <div className="flex items-center flex-col justify-between">
-                    <p className="text-sm md:my-3 font-bold text-gray-900 dark:text-white">
+                  <div className="flex items-center flex-col justify-between mb-2">
+                    <p className="text-sm my-3 font-bold text-gray-900 dark:text-white">
                       {Intl.NumberFormat().format(product?.price)} đ
                     </p>
                     <Button
-                      className="w-fit mb-3 text-xs lg:text-sm"
+                    color='failure'
+                    size='xs'
+                      className="w-fit my-2 text-xs lg:text-sm"
                       onClick={() => {
                         addItem(product);
                         toast("Add product successfully", {
@@ -135,12 +137,12 @@ const Hero3 = () => {
                         });
                       }}
                     >
-                      Add to cart
+                      Chọn Mua
                     </Button>
                     <Progress
-                      className="mt-2 mb-5 text-xs"
+                      className="my-2 text-xs"
                       progress={Math.floor(Math.random() * 100)}
-                      size="lg"
+                      size="md"
                       color="red"
                       label={"Đã bán" + " " + Math.floor(Math.random() * 100)}
                       labelPosition="outside"

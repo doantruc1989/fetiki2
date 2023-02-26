@@ -11,11 +11,11 @@ const CountdownComp = () => {
       // Render a countdown
       return (
         <div className="flex items-center text-base md:text-xl md:ml-4 mx-1 text-white">
-          <p className="bg-red-500 px-2 rounded-md ">0{hours}</p>
+          <p className="bg-red-700 px-2 rounded-md ">0{hours}</p>
           <p className="mx-1 text-gray-800">:</p>
-          <p className="bg-red-500 px-2 rounded-md ">{minutes}</p>
+          <p className="bg-red-700 px-2 rounded-md ">{minutes}</p>
           <p className="mx-1 text-gray-800">:</p>
-          <p className="bg-red-500 px-2 rounded-md ">{seconds}</p>
+          <p className="bg-red-700 px-2 rounded-md ">{seconds}</p>
         </div>
       );
     }

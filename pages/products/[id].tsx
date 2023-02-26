@@ -25,7 +25,7 @@ const Index = () => {
 
   useEffect(() => {
     try {
-      axios.get(`https://quocson.fatcatweb.top/product/${productId.id}`).then((res) => {
+      axios.get(`http://localhost:3006/product/${productId.id}`).then((res) => {
         setProductDetail(res.data);
         
       });
@@ -35,9 +35,9 @@ const Index = () => {
   }, [productId.id]);
 
   return (
-    <div className="my-5 mx-3">
+    <div className="pb-6 pt-3">
       <ToastContainer />
-      <Breadcrumb aria-label="Default breadcrumb example" className="my-5">
+      <Breadcrumb className="w-full lg:w-11/12 mx-auto pt-5">
         <Breadcrumb.Item href="/" icon={HiHome}>
           Trang chủ
         </Breadcrumb.Item>
@@ -52,14 +52,16 @@ const Index = () => {
           {productDetail[0]?.productName}
         </Breadcrumb.Item>
       </Breadcrumb>
-      <div className="mb-6">
+      <div className="my-6 w-full lg:w-11/12 mx-auto">
         <div className="grid grid-cols-1 items-center align-center md:grid-cols-2 md:items-start gap-5">
+          <div className="bg-white rounded-lg">
           <img
             src={productDetail[0]?.image}
-            className="w-full h-auto rounded-lg"
+            className="w-11/12 h-auto rounded-lg"
             alt="..."
           />
-          <div>
+          </div>
+          <div className="bg-white rounded-lg p-3">
             <div className="text-xs mb-3 flex">
               <h5>Thương hiệu: </h5>
               <a href="#" className="text-blue-600 underline ml-2">
@@ -94,6 +96,8 @@ const Index = () => {
 
             <div className=" flex items-center justify-center">
               <Button
+                  color="failure"
+                  size="xs"
                 className="mb-5 mt-2"
                 onClick={() => {
                   addItem(productDetail[0]);
@@ -104,14 +108,14 @@ const Index = () => {
                   });
                 }}
               >
-                Add to cart
+                 Chọn Mua
               </Button>
             </div>
           </div>
         </div>
-        <div className="bg-gray-100 rounded-md p-3 mx-3 mt-4">
+        <div className="bg-white rounded-md p-3 mt-4">
           <h2 className="font-bold text-sm md:text-base">Mô tả sản phẩm:</h2>
-          <div className="text-sm md:text-base text-justify">
+          <div className="text-sm md:text-base text-justify mt-3">
             {productDetail[0]?.content}
           </div>
         </div>
@@ -126,7 +130,7 @@ const Index = () => {
 //   // const { id } = router.query;
 //   const productId = params.id;
 //   const res = await axios.get(
-//     `https://quocson.fatcatweb.top/product/${productId}`
+//     `http://localhost:3006/product/${productId}`
 //   );
 //   const productDetail = res.data;
 //   return {
@@ -137,7 +141,7 @@ const Index = () => {
 // }
 
 // export async function getStaticPaths() {
-//   const res = await axios.get(`https://quocson.fatcatweb.top/product/`);
+//   const res = await axios.get(`http://localhost:3006/product/`);
 //   const data = res.data;
 //   const paths = data.map((product: any) => {
 //     return {

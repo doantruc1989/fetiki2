@@ -28,7 +28,7 @@ const ListProductdetail = ({ prop }: any) => {
     try {
       axios
         .get(
-          `https://quocson.fatcatweb.top/product/all?category=${prop.category}&search=${prop.search}&sortBy=${prop.sortBy}&fromPrice=${prop.fromPrice}&toPrice=${prop.toPrice}`
+          `http://localhost:3006/product/all?category=${prop.category}&search=${prop.search}&sortBy=${prop.sortBy}&fromPrice=${prop.fromPrice}&toPrice=${prop.toPrice}`
         )
         .then((response) => {
           setProducts(response.data);
@@ -41,17 +41,15 @@ const ListProductdetail = ({ prop }: any) => {
   return (
     <React.Fragment>
       <ToastContainer />
-      <div className="grid gap-1 grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 mx-3">
+      <div className="grid gap-1 grid-cols-2 md:grid-cols-4 lg:grid-cols-6">
         {products
           ? products.map((product: any) => {
               return (
-                <div className="rounded-lg bg-white mb-4" key={product?.id}>
+                <div className="rounded-md border border-gray-200 shadow-md bg-white mb-1" key={product?.id}>
                   <img
                     onClick={() => {
                       axios
-                        .get(
-                          `https://quocson.fatcatweb.top/product/${product?.id}`
-                        )
+                        .get(`http://localhost:3006/product/${product?.id}`)
                         .then((response) => {
                           setProductDetail(response.data);
                           setModals(!modals);
@@ -59,18 +57,20 @@ const ListProductdetail = ({ prop }: any) => {
                     }}
                     src={product?.image}
                     alt="..."
-                    className="rounded-t-lg cursor-pointer w-full h-auto"
+                    className="rounded-t-md cursor-pointer w-full h-auto"
                   />
                   <Link href={"/products/" + product?.id}>
-                    <h5 className="cursor-pointer text-xs lg:text-sm font-semibold text-gray-900 dark:text-white mx-1 mt-3 h-24 lg:mb-3 text-ellipsis">
-                      {product?.productName}
-                    </h5>
+                  <h5 className="cursor-pointer text-center text-xs lg:mt-3 font-medium text-gray-900 dark:text-white mx-1 mt-2 h-16 lg:h-24 text-ellipsis">
+                  {product?.productName.substring(0,70)}
+                </h5>
                   </Link>
                   <div className="flex items-center flex-col justify-between">
                     <p className="text-sm font-bold text-gray-900 dark:text-white my-1">
                       {Intl.NumberFormat().format(product?.price)} đ
                     </p>
                     <Button
+                      color="failure"
+                      size="xs"
                       className="mb-5 mt-2"
                       onClick={() => {
                         addItem(product);
@@ -81,7 +81,7 @@ const ListProductdetail = ({ prop }: any) => {
                         });
                       }}
                     >
-                      Add to cart
+                      Chọn Mua
                     </Button>
                   </div>
                 </div>
@@ -133,7 +133,9 @@ const ListProductdetail = ({ prop }: any) => {
                 </div>
 
                 <div className="bg-gray-100 font-bold rounded-md p-4 my-4 text-red-700 text-xl md:text-3xl">
-                  <h2>{Intl.NumberFormat().format(productDetail[0]?.price)} đ</h2>
+                  <h2>
+                    {Intl.NumberFormat().format(productDetail[0]?.price)} đ
+                  </h2>
                 </div>
               </div>
             </div>

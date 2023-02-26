@@ -6,7 +6,7 @@ import "react-multi-carousel/lib/styles.css";
 const Hero4 = () => {
   const responsive = {
     desktop: {
-      breakpoint: { max: 3000, min: 768 },
+      breakpoint: { max: 3000, min: 968 },
       items: 3,
       slidesToSlide: 3, // optional, default to 1.
     },
@@ -22,8 +22,8 @@ const Hero4 = () => {
     },
   };
   return (
-    <Card className="bg-gray-200 my-6 md:ml-6">
-      <h5 className="text-base md:text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+    <Card className="bg-white mt-6">
+      <h5 className="text-base md:text-xl font-bold text-gray-900 dark:text-white">
         Thương Hiệu Sale Tết
       </h5>
       <div className="">

@@ -13,7 +13,7 @@ const Homepage = () => {
 
   useEffect(() => {
     try {
-      axios.get("https://quocson.fatcatweb.top/listcategory").then((response) => {
+      axios.get("http://localhost:3006/listcategory").then((response) => {
         setItems(response.data);
       });
     } catch (error) {
@@ -21,14 +21,14 @@ const Homepage = () => {
     }
   }, []);
   return (
-    <div className="flex">
-      <div className="w-fit hidden md:block mt-2">
+    <div className="flex w-full mx-auto gap-6">
+      <div className="w-fit hidden lg:block mt-8 rounded-xl ml-10">
         <Sidebar
-          // className=" md:sticky md:left-0"
+          className=" bg-[#F5F5FA] rounded-xl"
           aria-label="Sidebar with logo branding example"
         >
           <Sidebar.Items>
-            <Sidebar.ItemGroup className="bg-gray-200 rounded-lg">
+            <Sidebar.ItemGroup className='rounded-lg'>
               {items
                 ? items.map((item: any) => {
                     return (
@@ -51,7 +51,7 @@ const Homepage = () => {
           </Sidebar.Items>
         </Sidebar>
       </div>
-      <div className="w-full md:w-8/12 lg:w-9/12 mx-auto">
+      <div className="w-full lg:w-9/12 mx-auto mr-10">
         <Hero />
         <Hero2 />
         <Hero3 />

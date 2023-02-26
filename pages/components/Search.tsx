@@ -13,7 +13,7 @@ function Search() {
       try {
         await axios
           .get(
-            `https://quocson.fatcatweb.top/product/all?search=searchall&sortBy=${e.target.value}`
+            `http://localhost:3006/product/all?search=searchall&sortBy=${e.target.value}`
           )
           .then((res) => {
             setResult(res.data);
@@ -62,7 +62,7 @@ function Search() {
             value={search}
             type="text"
             id="voice-search"
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-white dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="Bạn tìm gì hôm nay?"
             required
             onChange={handleSearch}
@@ -115,14 +115,14 @@ function Search() {
         <Link href="/dienthoaimaytinhbang">máy tính bảng ,</Link>
         <Link href="/dienthoaimaytinhbang">realme </Link>
       </div>
-     {search === "" ? null : (<div className="text-xs w-[380px] -left-5 md:w-full md:left-0 bg-gray-100 text-black h-auto absolute top-11 z-50 rounded-lg pb-1" ref={searchref}>
+     {search === "" ? null : (<div className="text-xs w-[380px] -left-5 md:w-full md:left-0 bg-white text-black h-auto absolute top-11 z-50 rounded-lg pb-1" ref={searchref}>
         {result ?
           result.map((res: any) => {
             return (
               <Link href={"/products/" + res.id} key={res.id}
               onClick={() => {setSearch('')}}
               >
-                <div className="flex gap-3 items-center border-b border-gray-300 w-full py-1 hover px-3">
+                <div className="flex gap-3 items-center border-b border-gray-300 w-full py-1 hover:bg-gray-100 px-3">
                   <img src={res.image} className="w-12 h-12 rounded-md" />
                   <div className="flex flex-col items-start">
                     <h1>{res.productName}</h1>

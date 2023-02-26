@@ -37,10 +37,10 @@ function Index() {
   };
 
   return (
-    <div className="w-full md:w-10/12 mx-auto my-6">
+    <div className="w-full md:w-11/12 mx-auto pb-5">
       <HeadSeo prop={prop} />
       
-      <Breadcrumb aria-label="Default breadcrumb example" className="mx-3 my-5">
+      <Breadcrumb aria-label="Default breadcrumb example" className="py-6">
         <Breadcrumb.Item href="/" icon={HiHome}>
           Trang chủ
         </Breadcrumb.Item>
@@ -76,12 +76,12 @@ function Index() {
       </Carousel>
 
       <div className="my-6">
-        <div className="bg-gray-200 rounded-md mb-1 flex justify-center md:justify-start items-center gap-2 p-2">
+        <div className="bg-white rounded-md mb-1 flex justify-center md:justify-start items-center gap-2 p-2">
           <HiPuzzle className="text-2xl text-green-500" />
           <h2 className="text-lg font-medium">Dịch vụ tiện ích</h2>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-1">
-          <div className="bg-gray-200 rounded-md flex flex-col items-start p-2">
+          <div className="bg-white rounded-md flex flex-col items-start p-2">
             <h1 className="font-medium mb-3">Thanh toán hóa đơn</h1>
             <div className="grid grid-cols-4 text-xs">
               <div className="flex flex-col items-center">
@@ -112,7 +112,7 @@ function Index() {
             </div>
           </div>
 
-          <div className="bg-gray-200 rounded-md flex flex-col items-start p-2">
+          <div className="bg-white rounded-md flex flex-col items-start p-2">
             <h1 className="font-medium mb-3">Nạp điện thoại và game</h1>
             <div className="grid grid-cols-4 text-xs">
               <div className="flex flex-col items-center">
@@ -143,7 +143,7 @@ function Index() {
             </div>
           </div>
 
-          <div className="bg-gray-200 rounded-md flex flex-col items-start p-2">
+          <div className="bg-white rounded-md flex flex-col items-start p-2">
             <h1 className="font-medium mb-3">Vũ Trụ Bảo Hiểm Số</h1>
             <div className="grid grid-cols-4 text-xs">
               <div className="flex flex-col items-center">
@@ -185,7 +185,7 @@ function Index() {
             </div>
           </div>
 
-          <div className="bg-gray-200 rounded-md flex flex-col items-start p-2">
+          <div className="bg-white rounded-md flex flex-col items-start p-2">
             <h1 className="font-medium mb-3">Voucher</h1>
             <div className="grid grid-cols-4 text-xs">
               <div className="flex flex-col items-center">
@@ -225,7 +225,7 @@ function Index() {
             </div>
           </div>
 
-          <div className="bg-gray-200 rounded-md flex flex-col items-start p-2">
+          <div className="bg-white rounded-md flex flex-col items-start p-2">
             <h1 className="font-medium mb-3">Sự kiện và giải trí</h1>
             <div className="grid grid-cols-4 text-xs">
               <div className="flex flex-col items-center">
@@ -249,7 +249,7 @@ function Index() {
             </div>
           </div>
 
-          <div className="bg-gray-200 rounded-md flex flex-col items-start p-2">
+          <div className="bg-white rounded-md flex flex-col items-start p-2">
             <h1 className="font-medium mb-3">Phiếu Quà Tặng & TikiXu</h1>
             <div className="grid grid-cols-4 text-xs">
               <div className="flex flex-col items-center">

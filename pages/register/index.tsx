@@ -21,7 +21,7 @@ const Register = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "https://quocson.fatcatweb.top/auth/signup",
+        "http://localhost:3006/auth/signup",
         {
           email: email || "",
           password: password || "",

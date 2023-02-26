@@ -32,7 +32,7 @@ function Index() {
     const user = stored ? JSON.parse(stored) : "";
     const id = user.id;
     const config = {
-      baseURL: "https://quocson.fatcatweb.top/",
+      baseURL: "http://localhost:3006/",
       headers: { Authorization: "Bearer " + user.tokens.accessToken },
     };
 
@@ -45,7 +45,7 @@ function Index() {
   useEffect(() => {
     try {
       axios
-        .get(`https://quocson.fatcatweb.top/cart/admin/order/${users.id}`)
+        .get(`http://localhost:3006/cart/admin/order/${users.id}`)
         .then((res: any) => {
           setOrders(res.data);
         });
@@ -57,7 +57,7 @@ function Index() {
   const handleChangeAvt = () => {
     try {
       axios
-        .patch(`https://quocson.fatcatweb.top/users/${users.id}`, {
+        .patch(`http://localhost:3006/users/${users.id}`, {
           image: avatar || users.image,
         })
         .then((res: any) => {
@@ -77,7 +77,7 @@ function Index() {
   const handleChangePw = () => {
     try {
       axios
-        .patch(`https://quocson.fatcatweb.top/users/profile/${users.id}`, {
+        .patch(`http://localhost:3006/users/profile/${users.id}`, {
           password: userPw,
         })
         .then((res: any) => {
@@ -112,17 +112,17 @@ function Index() {
   };
 
   return (
-    <div className="w-11/12 mx-auto my-10">
+    <div className="w-11/12 mx-auto">
       <HeadSeo prop={prop} />
       <ToastContainer />
-      <Breadcrumb aria-label="Default breadcrumb example" className="my-5">
+      <Breadcrumb aria-label="Default breadcrumb example" className="py-5">
         <Breadcrumb.Item href="/" icon={HiHome}>
           Trang chủ
         </Breadcrumb.Item>
         <Breadcrumb.Item>User profile page</Breadcrumb.Item>
       </Breadcrumb>
       <div className="md:grid md:grid-cols-3 gap-5">
-        <div className="col-end-0 w-full bg-gray-200 rounded-xl pt-2">
+        <div className="col-end-0 w-full bg-white rounded-xl pt-2 mb-6">
           <img
             src={users.image}
             alt={users.username}
@@ -192,7 +192,7 @@ function Index() {
             ) : null}
           </div>
         </div>
-        <div className="col-start-2 col-end-4 w-full bg-gray-200 rounded-xl">
+        <div className="col-start-2 col-end-4 w-full bg-white rounded-xl pt-2  mb-6">
           <h1 className="my-3 mx-3 text-center font-medium">
             {users.username + "'s Orders"}
           </h1>
@@ -213,7 +213,7 @@ function Index() {
                             setPaynow(false);
                             setIsPaid(false);
                             axios.patch(
-                              `https://quocson.fatcatweb.top/cart/admin/listorder/${order.id}`,
+                              `http://localhost:3006/cart/admin/listorder/${order.id}`,
                               {
                                 isPaid: true,
                               }
