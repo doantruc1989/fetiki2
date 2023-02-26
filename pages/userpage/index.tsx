@@ -52,8 +52,7 @@ function Index() {
     } catch (error) {
       console.log(error);
     }
-  }, [users.id ,isPaid]);
-
+  }, [users.id, isPaid]);
 
   const handleChangeAvt = () => {
     try {
@@ -210,21 +209,27 @@ function Index() {
                         <a
                           className="text-blue-600 text-xs cursor-pointer absolute right-2 top-3"
                           onClick={() => {
-                            console.log(order.id)
                             setPayment(true);
                             setPaynow(false);
-                            setIsPaid(false)
-                            axios.patch(`https://quocson.fatcatweb.top/cart/admin/listorder/${order.id}`,
-                                      {
-                                        isPaid: true,
-                                      })
-          
+                            setIsPaid(false);
+                            axios.patch(
+                              `https://quocson.fatcatweb.top/cart/admin/listorder/${order.id}`,
+                              {
+                                isPaid: true,
+                              }
+                            );
                           }}
                         >
                           <div>thanh toán</div>
                         </a>
                       ) : null
-                    ) : null}
+                    ) : (
+                      <img
+                        className="h-7 w-auto absolute right-3"
+                        src="/image/dathanhtoan.png"
+                        alt=""
+                      />
+                    )}
 
                     <div className="flex gap-2 items-center justify-center">
                       <p className="font-medium text-sm">Order number:</p>
@@ -428,12 +433,8 @@ function Index() {
                                     className="my-3 mx-auto"
                                     onClick={(e: any) => {
                                       e.preventDefault();
-                                      console.log(order.id)
-                                      
-                                      
-                                        setPaynow(true);
-                                        setIsPaid(true);
-                                      
+                                      setPaynow(true);
+                                      setIsPaid(true);
                                     }}
                                   >
                                     Pay now

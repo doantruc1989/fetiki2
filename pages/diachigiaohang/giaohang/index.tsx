@@ -1,6 +1,7 @@
 import axios from "axios";
 import { Button, Label, Radio, Select, TextInput } from "flowbite-react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import HeadSeo from "../../components/HeadSeo";
 
@@ -14,13 +15,26 @@ const Index = () => {
   const [username, setUserName] = useState("");
   const [phone, setPhone] = useState("");
   const [address2, setAddress2] = useState("");
-  const [newAdd, setNewAdd] =useState('')
+  const [newAdd, setNewAdd] = useState("");
+  const [disable, setDisable] = useState(false);
+  const [disable2, setDisable2] =useState(false);
+  const router = useRouter();
+
+  useEffect(() => {
+    setDisable(users.phone !== "0" && users.address !== "x");
+  }, [users]);
+
+  useEffect(() => {
+    setDisable2(phone !== "" && city !== "" && address2 !== "" && newAdd !== "")
+  },[phone, city, address2, newAdd])
 
   const handleClick = () => {
     try {
-      axios.get("https://quocson.fatcatweb.top/homepage/provinces").then((response) => {
-        setProvinces(response.data);
-      });
+      axios
+        .get("https://quocson.fatcatweb.top/homepage/provinces")
+        .then((response) => {
+          setProvinces(response.data);
+        });
     } catch (error) {
       console.log(error);
     }
@@ -106,13 +120,11 @@ const Index = () => {
               </p>
             </li>
             <li className="flex items-center">
-              <Link href={"/diachigiaohang/giaohang/thanhtoan"}>
-                <p className="flex items-center after:content-['/'] sm:after:hidden after:mx-2 after:font-light after:text-gray-200 dark:after:text-gray-500">
-                  <span className="mr-2">3</span>
-                  Thanh{" "}
-                  <span className="hidden sm:inline-flex sm:ml-2">toán</span>
-                </p>
-              </Link>
+              <p className="flex items-center after:content-['/'] sm:after:hidden after:mx-2 after:font-light after:text-gray-200 dark:after:text-gray-500">
+                <span className="mr-2">3</span>
+                Thanh{" "}
+                <span className="hidden sm:inline-flex sm:ml-2">toán</span>
+              </p>
             </li>
           </ol>
 
@@ -140,23 +152,24 @@ const Index = () => {
                 />
               </div>
               <div className="mb-2 flex items-center justify-center w-full gap-10 mt-4">
-                <Button className="w-2/3 md:w-1/3">
-                  <Link href="/diachigiaohang/giaohang/thanhtoan"
+                <Button
+                  disabled={!disable}
+                  className="w-2/3 md:w-1/3"
                   onClick={() => {
-                    return(
-                      axios.patch(`https://quocson.fatcatweb.top/users/${users.id}`,
-                      {
-                        address: `${users.address}, ${address}`
-                      }
+                    return axios
+                      .patch(
+                        `https://quocson.fatcatweb.top/users/${users.id}`,
+                        {
+                          address: `${users.address}, ${address}`,
+                        }
                       )
                       .then((res: any) => {
-                        console.log(res.data)
-                      })
-                    )
+                        console.log(res.data);
+                        router.push("/diachigiaohang/giaohang/thanhtoan");
+                      });
                   }}
-                  >
-                    Giao đến địa chỉ này
-                  </Link>
+                >
+                  Giao đến địa chỉ này
                 </Button>
               </div>
             </div>
@@ -185,7 +198,7 @@ const Index = () => {
                 required={true}
                 color="info"
                 className="w-2/3"
-                onChange={(e:any) => setUserName(e.target.value)}
+                onChange={(e: any) => setUserName(e.target.value)}
               />
             </div>
             <div className="mb-2 flex items-center justify-between md:justify-end gap-10">
@@ -197,7 +210,7 @@ const Index = () => {
                 required={true}
                 color="info"
                 className="w-2/3"
-                onChange={(e:any) => setPhone(e.target.value)}
+                onChange={(e: any) => setPhone(e.target.value)}
               />
             </div>
             <div className="mb-2 flex items-center justify-between md:justify-end gap-10">
@@ -247,46 +260,24 @@ const Index = () => {
                 onChange={(e: any) => setNewAdd(e.target.value)}
               />
             </div>
-            {/* <div className="mb-2 flex items-center justify-between md:justify-end gap-10 mt-2">
-              <Label htmlFor="loaidiachi" color="info" value="Loại địa chỉ" />
-              <div className="w-2/3 flex gap-7">
-                <div className="flex items-center gap-2">
-                  <Radio
-                    id="united-state"
-                    name="countries"
-                    value="USA"
-                    defaultChecked={true}
-                  />
-                  <Label htmlFor="united-state"
-                  className="text-center"
-                  >Nhà riêng / Chung cư</Label>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Radio id="germany" name="countries" value="Germany" />
-                  <Label htmlFor="germany" className="text-center">Cơ quan / Công ty</Label>
-                </div>
-              </div>
-            </div> */}
             <div className="mb-2 flex items-center justify-center w-full gap-10 mt-4">
-              <Button className="w-2/3 md:w-1/3">
-                <Link href="/diachigiaohang/giaohang/thanhtoan"
+              <Button
+                className="w-2/3 md:w-1/3"
+                disabled={!disable2}
                 onClick={() => {
-                  return(
-                    axios.patch(`https://quocson.fatcatweb.top/users/${users.id}`,
-                    {
+                  return axios
+                    .patch(`https://quocson.fatcatweb.top/users/${users.id}`, {
                       username: username || users.username,
                       phone: phone || users.phone,
-                      address: `${city}, ${address2}, ${newAdd}`,        
-                    }
-                    )
-                    .then((res: any) => {
-                      console.log(res.data)
+                      address: `${city}, ${address2}, ${newAdd}`,
                     })
-                  )
+                    .then((res: any) => {
+                      console.log(res.data);
+                      router.push("/diachigiaohang/giaohang/thanhtoan");
+                    });
                 }}
-                >
-                  Giao đến địa chỉ này
-                </Link>
+              >
+                Giao đến địa chỉ này
               </Button>
             </div>
           </div>

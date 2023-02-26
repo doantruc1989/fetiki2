@@ -47,7 +47,6 @@ return setTotal(cartTotal + fee - 14000)
 
   },[fee])
 
-  console.log(total);
 
   const prop = {
     title: "tiki payment thanh toán đăng nhập địa chỉ giao hàng",
@@ -316,7 +315,7 @@ return setTotal(cartTotal + fee - 14000)
                   address: users.address,
                   phone: users.phone,
                   username: users.username,
-                  payment: payment,
+                  payment: payment || false,
                   trans: fee === 14000 ? 'fast' : 'express',
                 })
                 .then((res: any) => {
