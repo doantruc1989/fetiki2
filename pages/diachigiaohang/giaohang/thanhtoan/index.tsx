@@ -7,6 +7,7 @@ import { toast, ToastContainer } from "react-toastify";
 import { CartProvider, useCart } from "react-use-cart";
 import HeadSeo from "../../../components/HeadSeo";
 import NestedLayout from "../../../components/NestedLayout";
+import { useRouter } from "next/router";
 
 const Index = () => {
   const [users, setUsers] = useState([] as any);
@@ -16,6 +17,7 @@ const Index = () => {
   const [isPayyed, setIsPayyed] = useState(false);
   const [fee, setFee] = useState(14000);
   const [total, setTotal] = useState(0);
+  const router =useRouter()
 
   useEffect(() => {
     setIsPayyed(cod === true || creditCard===true);
@@ -56,10 +58,10 @@ return setTotal(cartTotal + fee - 14000)
   };
 
   return (
-    <React.Fragment>
+    <div className="bg-[#F5F5FA]">
       <HeadSeo prop={prop} />
 
-      <div className="sticky top-0 z-50 w-full mx-auto">
+      <div className="sticky top-0 z-50 w-full mx-auto bg-white">
         <nav className="navbar flex items-center justify-between py-5 h-fit px-4">
           <Link href="/">
             <img
@@ -118,9 +120,9 @@ return setTotal(cartTotal + fee - 14000)
         </nav>
       </div>
 
-      <div className="grid lg:grid-cols-4 lg:gap-4 w-11/12 mx-auto mt-8 mb-8">
-        <div className="lg:col-start-1 lg:col-end-4 mb-4 ">
-          <div className="p-2 bg-gray-200 rounded-lg">
+      <div className="grid lg:grid-cols-4 lg:gap-4 w-full lg:w-11/12 mx-auto pt-8 pb-8 bg-[#F5F5FA] h-[100vh]">
+        <div className="lg:col-start-1 lg:col-end-4 mb-4">
+          <div className="p-2 bg-white rounded-lg">
             <h1 className="text-base font-medium">Chọn hình thức giao hàng</h1>
             <div className="flex gap-2 justify-between">
               <div className="flex items-center gap-2 mt-3 w-full lg:w-1/2 pl-2 py-1 border border-blue-600 rounded-xl">
@@ -197,7 +199,7 @@ return setTotal(cartTotal + fee - 14000)
               })}
             </div>
           </div>
-          <div className="p-2 bg-gray-200 rounded-lg mt-4">
+          <div className="p-2 bg-white rounded-lg mt-4">
             <h1 className="text-base font-medium">Chọn hình thức thanh toán</h1>
             <div className="flex flex-col gap-4 items-start">
               <div className="flex items-center gap-2 mt-4">
@@ -244,7 +246,7 @@ return setTotal(cartTotal + fee - 14000)
           </div>
         </div>
         <div className="flex flex-col gap-4 lg:fixed lg:right-12 lg:w-1/5">
-          <div className="p-2 bg-gray-200 rounded-lg flex flex-col gap-2">
+          <div className="p-2 bg-white rounded-lg flex flex-col gap-2">
             <div className="flex justify-between gap-2">
               <h1>Giao tới</h1>
               <Link
@@ -265,7 +267,7 @@ return setTotal(cartTotal + fee - 14000)
               </p>
             </div>
           </div>
-          <div className="p-2 bg-gray-200 rounded-lg flex flex-col gap-2">
+          <div className="p-2 bg-white rounded-lg flex flex-col gap-2">
             <div className="flex justify-between gap-2">
               <h1 className="font-medium">Đơn hàng</h1>
               <Link
@@ -284,7 +286,7 @@ return setTotal(cartTotal + fee - 14000)
               <div></div>
             </div>
           </div>
-          <div className="p-2 bg-gray-200 rounded-lg flex flex-col gap-2">
+          <div className="p-2 bg-white rounded-lg flex flex-col gap-2">
             <div className="flex justify-between items-center">
               <p>Tạm tính</p>
               <p>{Intl.NumberFormat().format(cartTotal)}đ</p>
@@ -304,7 +306,7 @@ return setTotal(cartTotal + fee - 14000)
               </p>
             </div>
           </div>
-          <Button
+          <Button className="mb-8"
             disabled={!isPayyed}
             onClick={(e: any) => {
               axios
@@ -319,17 +321,17 @@ return setTotal(cartTotal + fee - 14000)
                   trans: fee === 14000 ? 'fast' : 'express',
                 })
                 .then((res: any) => {
+                  router.push('/diachigiaohang/giaohang/thanhtoan/thanhcong')
                   console.log(res.data);
                 });
             }}
-            href="/diachigiaohang/giaohang/thanhtoan/thanhcong"
           >
             Đặt hàng
           </Button>
         </div>
       </div>
-    </React.Fragment>
-  );
+    </div>
+  )
 };
 
 Index.getLayout = function getLayout(page: ReactElement) {

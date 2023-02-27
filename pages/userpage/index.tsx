@@ -112,7 +112,7 @@ function Index() {
   };
 
   return (
-    <div className="w-11/12 mx-auto">
+    <div className="w-11/12 mx-auto pb-5">
       <HeadSeo prop={prop} />
       <ToastContainer />
       <Breadcrumb aria-label="Default breadcrumb example" className="py-5">

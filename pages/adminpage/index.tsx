@@ -84,9 +84,9 @@ function Index() {
     description: "làm trang quản trị admin đơn giản easy",
   };
   return (
-    <div>
+    <div className="pb-5">
       <HeadSeo prop={prop} />
-      <Breadcrumb aria-label="Default breadcrumb example" className="my-5">
+      <Breadcrumb className="w-full lg:w-11/12 mx-auto py-5">
         <Breadcrumb.Item href="/" icon={HiHome}>
           Trang chủ
         </Breadcrumb.Item>
@@ -96,8 +96,8 @@ function Index() {
         </Breadcrumb.Item>
       </Breadcrumb>
       <ToastContainer />
-      <div className="md:grid md:grid-cols-3 gap-5 mb-6">
-        <div className="col-end-0 w-full bg-gray-200 rounded-xl pt-2">
+      <div className="md:grid md:grid-cols-3 w-full lg:w-11/12 mx-auto gap-5 mb-6">
+        <div className="col-end-0 w-full bg-white rounded-xl pt-2">
           <img
             src={users.image}
             alt={users.username}
@@ -168,7 +168,7 @@ function Index() {
             ) : null}
           </div>
         </div>
-        <div className="col-start-2 col-end-4 w-full bg-gray-200 rounded-xl">
+        <div className="col-start-2 col-end-4 w-full bg-white rounded-xl p-2">
           chưa có ý tưởng để làm
         </div>
       </div>

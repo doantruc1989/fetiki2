@@ -95,7 +95,7 @@ const ListProductdetail = ({ prop }: any) => {
             setModals(!modals);
           }}
         >
-          <Modal.Header>Product Details</Modal.Header>
+          <Modal.Header>Chi Tiết Sản Phẩm</Modal.Header>
           <Modal.Body>
             <div className="grid grid-cols-1 items-center align-center md:grid-cols-2 md:items-start gap-4 mx-3">
               <img

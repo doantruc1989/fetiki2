@@ -18,13 +18,13 @@ function Index() {
       <div>
         Bạn vui lòng xem trạng thái đơn hàng trong trang
         <Link className="text-blue-600" href={"/userpage"}>
-          {" profile "}
+          {" cá nhân "}
         </Link>
         của bạn
       </div>
       <h4>Xin cám ơn</h4>
       <p className="mt-6 text-blue-600">
-        <Link href="/">Back to Home page</Link>
+        <Link href="/">Quay lại Trang chủ</Link>
       </p>
     </div>
   );

@@ -21,7 +21,7 @@ const Index = () => {
   const router = useRouter();
 
   useEffect(() => {
-    setDisable(users.phone !== "0" && users.address !== "x");
+    setDisable(users.phone !== "0" && users.phone !== "" && users.address !== "x" && users.address !== "");
   }, [users]);
 
   useEffect(() => {
@@ -137,15 +137,18 @@ const Index = () => {
         <div className="flex flex-col items-start w-11/12 md:w-3/5 mx-auto">
           <div className="w-full mb-10">
             <h2 className="font-medium mb-3">2. Địa chỉ giao hàng mặc định</h2>
-            <div className="flex flex-col items-center">
+            <div className="flex flex-col w-full mx-auto">
+              <div className="flex flex-col items-center">
               <p className="font-medium">{users.username}</p>
               <p>{users.phone}</p>
               <p>{users.address}</p>
-              <div className="my-2 flex justify-center items-center gap-10 w-full">
+              </div>
+              <div className="mb-2 flex items-center justify-between md:justify-end gap-16">
                 <Label htmlFor="diachi" color="info" value="Địa chỉ" />
                 <TextInput
                   className="w-2/3"
                   value={address}
+                  color="gray"
                   onChange={(e: any) => {
                     setAddress(e.target.value);
                   }}
@@ -188,36 +191,36 @@ const Index = () => {
           </h3>
           {isOpen && (
           <div className="flex flex-col w-full mx-auto mt-5 bg-[#F5F5FA]">
-            <div className="mb-2 flex items-center justify-between md:justify-end gap-10">
+            <div className="mb-2 flex items-center justify-between md:justify-end gap-16">
               <Label htmlFor="name" color="info" value="Họ tên" />
               <TextInput
                 id="name"
                 value={username}
                 placeholder={users.username}
                 required={true}
-                color="info"
+                color="gray"
                 className="w-2/3"
                 onChange={(e: any) => setUserName(e.target.value)}
               />
             </div>
-            <div className="mb-2 flex items-center justify-between md:justify-end gap-10">
+            <div className="mb-2 flex items-center justify-between md:justify-end gap-16">
               <Label htmlFor="phone" color="info" value="Điện thoại" />
               <TextInput
                 id="phone"
                 value={phone}
                 placeholder={users.phone}
                 required={true}
-                color="info"
+                color="gray"
                 className="w-2/3"
                 onChange={(e: any) => setPhone(e.target.value)}
               />
             </div>
-            <div className="mb-2 flex items-center justify-between md:justify-end gap-10">
+            <div className="mb-2 flex items-center justify-between md:justify-end gap-16">
               <Label htmlFor="state" color="info" value="Tỉnh/TP" />
               <Select
                 className="w-2/3"
                 id="state"
-                color="info"
+                color="gray"
                 required={true}
                 value={city}
                 onChange={(e: any) => setCity(e.target.value)}
@@ -229,12 +232,12 @@ const Index = () => {
                 ))}
               </Select>
             </div>
-            <div className="mb-2 flex items-center justify-between md:justify-end gap-10">
+            <div className="mb-2 flex items-center justify-between md:justify-end gap-16">
               <Label htmlFor="district" color="info" value="Quận/Huyện" />
               <Select
                 className="w-2/3"
                 id="district"
-                color="info"
+                color="gray"
                 required={true}
                 onChange={(e: any) => setAddress2(e.target.value)}
               >
@@ -247,14 +250,14 @@ const Index = () => {
                   : null}
               </Select>
             </div>
-            <div className="mb-2 flex items-center justify-between md:justify-end gap-10">
+            <div className="mb-2 flex items-center justify-between md:justify-end gap-16">
               <Label htmlFor="diachi" color="info" value="Địa chỉ" />
               <TextInput
                 id="diachi"
                 value={newAdd}
                 placeholder="địa chỉ cụ thể"
                 required={true}
-                color="info"
+                color="gray"
                 className="w-2/3"
                 onChange={(e: any) => setNewAdd(e.target.value)}
               />

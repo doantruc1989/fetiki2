@@ -130,7 +130,7 @@ const Index = () => {
           </div>
         </div>
       ) : (
-        <div className="flex justify-center font-medium text-lg mb-8 pt-20">
+        <div className="flex justify-center font-medium text-lg mb-8 pt-8">
           Bạn chưa chọn sản phẩm nào
         </div>
       )}
