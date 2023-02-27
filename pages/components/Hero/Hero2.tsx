@@ -8,7 +8,7 @@ const Hero2 = () => {
   const [brands, setBrands] = useState([]);
   useEffect(() => {
     try {
-      axios.get("http://localhost:3006/homepage/chinhhang").then((response) => {
+      axios.get("https://quocson.fatcatweb.top/homepage/chinhhang").then((response) => {
         setBrands(response.data);
       });
     } catch (error) {
@@ -63,12 +63,12 @@ const Hero2 = () => {
         {brands
           ? brands.map((brand: any) => {
               return (
-                <div className="border border-gray-200 rounded-md mx-1">
+                <div className="border border-gray-200 rounded-md mx-1" key={brand.id}>
                 <img
                   src={brand.image}
                   className='w-full h-auto rounded-md'
                   alt={brand.name}
-                  key={brand.id}
+                  
                 />
                 </div>
               );

@@ -31,7 +31,7 @@ const Index = () => {
   const handleClick = () => {
     try {
       axios
-        .get("http://localhost:3006/homepage/provinces")
+        .get("https://quocson.fatcatweb.top/homepage/provinces")
         .then((response) => {
           setProvinces(response.data);
         });
@@ -52,7 +52,7 @@ const Index = () => {
       const user = stored ? JSON.parse(stored) : "";
       const id = user.id;
       const config = {
-        baseURL: "http://localhost:3006/",
+        baseURL: "https://quocson.fatcatweb.top/",
         headers: { Authorization: "Bearer " + user.tokens.accessToken },
       };
 
@@ -70,7 +70,7 @@ const Index = () => {
   useEffect(() => {
     try {
       axios
-        .get(`http://localhost:3006/homepage/provinces/${city}`)
+        .get(`https://quocson.fatcatweb.top/homepage/provinces/${city}`)
         .then((response) => {
           setStates(response.data ? JSON.parse(response.data.districts) : null);
         });
@@ -161,7 +161,7 @@ const Index = () => {
                   onClick={() => {
                     return axios
                       .patch(
-                        `http://localhost:3006/users/${users.id}`,
+                        `https://quocson.fatcatweb.top/users/${users.id}`,
                         {
                           address: `${users.address}, ${address}`,
                         }
@@ -268,7 +268,7 @@ const Index = () => {
                 disabled={!disable2}
                 onClick={() => {
                   return axios
-                    .patch(`http://localhost:3006/users/${users.id}`, {
+                    .patch(`https://quocson.fatcatweb.top/users/${users.id}`, {
                       username: username || users.username,
                       phone: phone || users.phone,
                       address: `${city}, ${address2}, ${newAdd}`,

@@ -36,7 +36,7 @@ const Hero3 = () => {
 
   useEffect(() => {
     try {
-      axios.get("http://localhost:3006/product/all?search=random").then((res) => {
+      axios.get("https://quocson.fatcatweb.top/product/all?search=random").then((res) => {
         setProducts(res.data);
       });
     } catch (error) {
@@ -107,7 +107,7 @@ const Hero3 = () => {
                   <img
                     onClick={() => {
                       axios
-                        .get(`http://localhost:3006/product/${product?.id}`)
+                        .get(`https://quocson.fatcatweb.top/product/${product?.id}`)
                         .then((response) => {
                           setProductDetail(response.data);
                           setModals(!modals);

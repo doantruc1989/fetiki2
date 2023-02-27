@@ -26,7 +26,7 @@ function Index() {
     const user = stored ? JSON.parse(stored) : "";
     const id = user.id;
     const config = {
-      baseURL: "http://localhost:3006/",
+      baseURL: "https://quocson.fatcatweb.top/",
       headers: { Authorization: "Bearer " + user.tokens.accessToken },
     };
 
@@ -39,7 +39,7 @@ function Index() {
   const handleChangeAvt = () => {
     try {
       axios
-        .patch(`http://localhost:3006/users/${users.id}`, {
+        .patch(`https://quocson.fatcatweb.top/users/${users.id}`, {
           image: avatar || users.image,
         })
         .then((res: any) => {
@@ -59,7 +59,7 @@ function Index() {
   const handleChangePw = () => {
     try {
       axios
-        .patch(`http://localhost:3006/users/profile/${users.id}`, {
+        .patch(`https://quocson.fatcatweb.top/users/profile/${users.id}`, {
           password: userPw,
         })
         .then((res: any) => {

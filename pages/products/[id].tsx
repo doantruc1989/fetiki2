@@ -25,7 +25,7 @@ const Index = () => {
 
   useEffect(() => {
     try {
-      axios.get(`http://localhost:3006/product/${productId.id}`).then((res) => {
+      axios.get(`https://quocson.fatcatweb.top/product/${productId.id}`).then((res) => {
         setProductDetail(res.data);
         
       });
@@ -130,7 +130,7 @@ const Index = () => {
 //   // const { id } = router.query;
 //   const productId = params.id;
 //   const res = await axios.get(
-//     `http://localhost:3006/product/${productId}`
+//     `https://quocson.fatcatweb.top/product/${productId}`
 //   );
 //   const productDetail = res.data;
 //   return {
@@ -141,7 +141,7 @@ const Index = () => {
 // }
 
 // export async function getStaticPaths() {
-//   const res = await axios.get(`http://localhost:3006/product/`);
+//   const res = await axios.get(`https://quocson.fatcatweb.top/product/`);
 //   const data = res.data;
 //   const paths = data.map((product: any) => {
 //     return {
