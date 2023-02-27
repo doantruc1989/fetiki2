@@ -2,6 +2,7 @@ import { Breadcrumb, Button, Rating } from "flowbite-react";
 import React, {
   ReactElement,
   useEffect,
+  useRef,
   useState,
 } from "react";
 import { CartProvider, useCart } from "react-use-cart";
@@ -27,7 +28,6 @@ const Index = () => {
     try {
       axios.get(`https://quocson.fatcatweb.top/product/${productId.id}`).then((res) => {
         setProductDetail(res.data);
-        
       });
     } catch (error) {
       console.log(error);

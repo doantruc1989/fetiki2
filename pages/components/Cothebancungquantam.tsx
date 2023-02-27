@@ -48,8 +48,8 @@ function Cothebancungquantam({ prop }: any) {
     },
     tablet: {
       breakpoint: { max: 968, min: 464 },
-      items: 4,
-      slidesToSlide: 4, // optional, default to 1.
+      items: 3,
+      slidesToSlide: 3, // optional, default to 1.
     },
     mobile: {
       breakpoint: { max: 464, min: 0 },
